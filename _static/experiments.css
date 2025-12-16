@@ -1,0 +1,46 @@
+/* ===== ÜBERSCHRIFTEN MIT KORREKTER KLASSE ===== */
+
+/* Alle Überschriften mit der MyST-Klasse */
+.myst-fm-block-title {
+  font-family: -apple-system, "system-ui", "Segoe UI", "Helvetica Neue", Arial, sans-serif !important;
+}
+
+/* H1 Überschriften */
+h1.myst-fm-block-title,
+.myst-fm-block-title h1,
+h1 {
+  font-family: -apple-system, "system-ui", "Segoe UI", "Helvetica Neue", Arial, sans-serif !important;
+  font-size: 42px !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+  margin-bottom: 1rem !important;
+}
+
+/* H2 Überschriften */
+h2.myst-fm-block-title,
+.myst-fm-block-title h2,
+h2 {
+  font-family: -apple-system, "system-ui", "Segoe UI", "Helvetica Neue", Arial, sans-serif !important;
+  font-size: 32px !important;
+  font-weight: 500 !important;
+  margin-bottom: 0.75rem !important;
+}
+
+/* H3 Überschriften */
+h3.myst-fm-block-title,
+.myst-fm-block-title h3,
+h3 {
+  font-family: -apple-system, "system-ui", "Segoe UI", "Helvetica Neue", Arial, sans-serif !important;
+  font-size: 24px !important;
+  font-weight: 500 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* H4, H5, H6 */
+h4.myst-fm-block-title,
+h5.myst-fm-block-title,
+h6.myst-fm-block-title,
+h4, h5, h6 {
+  font-family: -apple-system, "system-ui", "Segoe UI", "Helvetica Neue", Arial, sans-serif !important;
+  font-weight: 500 !important;
+}
