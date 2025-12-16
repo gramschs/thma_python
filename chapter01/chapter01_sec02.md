@@ -181,9 +181,10 @@ häufiger Fehler.
 Python kann mit der `print()`-Funktion jedoch nicht nur Zahlen ausgeben, sondern
 auch Texte. Ein erster Versuch, einfach den Text als Argument der
 `print()`-Funktion zu übergeben, scheitert leider, wie das nächste Beispiel zeigt.
-Entfernen Sie dazu das Kommentarzeichen `#`:
 
 ```{code-cell} python
+:tags: [raises-exception]
+# Achtung, die nachfolgende Code-Zeile enthält einen Fehler!
 print(Hallo)
 ```
 
@@ -195,7 +196,6 @@ definiert wurde. Um den Text ausgeben zu lassen, werden um den Text einfache
 oder doppelte Anführungszeichen gesetzt, wie in dem folgenden Beispiel.
 
 ```{code-cell} python
-:tags: [raises-exception]
 print('Hallo')
 ```
 

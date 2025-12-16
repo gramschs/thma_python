@@ -1,0 +1,759 @@
+{
+  "title" : "",
+  "description" : "",
+  "author" : "",
+  "targetLoudness" : -18.0,
+  "shouldApplyLoudnessNormalization" : true,
+  "videoFormatFrameRate" : 60,
+  "audioFormatSampleRate" : 44100,
+  "allowSubFrameEditing" : false,
+  "width" : 1920.0,
+  "height" : 1080.0,
+  "version" : "6.0",
+  "editRate" : 705600000,
+  "authoringClientName" :  {
+    "name" : "Camtasia",
+    "platform" : "Mac",
+    "version" : "2022.6.10"
+  },
+  "sourceBin" : [
+    {
+      "id" : 1,
+      "src" : "./media/1765885293.859757/2025-12-16_12-26-29.mp4",
+      "rect" : [0, 0, 1920, 1080],
+      "lastMod" : "20251216T112629",
+      "loudnessNormalization" : true,
+      "sourceTracks" : [
+        {
+          "range" : [0, 1564960],
+          "type" : 0,
+          "editRate" : 48000,
+          "trackRect" : [0, 0, 1920, 1080],
+          "sampleRate" : "10887/1000",
+          "bitDepth" : 0,
+          "numChannels" : 0,
+          "integratedLUFS" : 100.0,
+          "peakLevel" : -1.0,
+          "metaData" : ""
+        },
+        {
+          "range" : [0, 1554574],
+          "type" : 2,
+          "editRate" : 48000,
+          "trackRect" : [0, 0, 0, 0],
+          "sampleRate" : 48000,
+          "bitDepth" : 0,
+          "numChannels" : 2,
+          "integratedLUFS" : -1.79769313486232e+308,
+          "peakLevel" : 0.0,
+          "metaData" : ""
+        }
+      ],
+      "metadata" : {
+        "timeAdded" : "20251216T112849.634736"
+      }
+    }
+  ],
+  "timeline" : {
+    "id" : 2,
+    "sceneTrack" : {
+      "scenes" : [
+        {
+          "csml" : {
+            "tracks" : [
+              {
+                "trackIndex" : 0,
+                "medias" : [
+                  {
+                    "id" : 3,
+                    "_type" : "UnifiedMedia",
+                    "video" : 
+                        {
+                          "id" : 4,
+                          "_type" : "VMFile",
+                          "src" : 1,
+                          "trackNumber" : 0,
+                          "attributes" : {
+                            "ident" : "2025-12-16_12-26-29"
+                          },
+                          "parameters" : {
+                            "sourceCrop0" : {
+                              "type" : "double",
+                              "defaultValue" : 0.0,
+                              "interp" : "eioe"
+                            },
+                            "sourceCrop1" : {
+                              "type" : "double",
+                              "defaultValue" : 0.0,
+                              "interp" : "eioe"
+                            },
+                            "sourceCrop2" : {
+                              "type" : "double",
+                              "defaultValue" : 0.0,
+                              "interp" : "eioe"
+                            },
+                            "sourceCrop3" : {
+                              "type" : "double",
+                              "defaultValue" : 0.0,
+                              "interp" : "eioe"
+                            },
+                            "geometryCrop0" : {
+                              "type" : "double",
+                              "defaultValue" : 0.0,
+                              "interp" : "eioe"
+                            },
+                            "geometryCrop1" : {
+                              "type" : "double",
+                              "defaultValue" : 0.0,
+                              "interp" : "eioe"
+                            },
+                            "geometryCrop2" : {
+                              "type" : "double",
+                              "defaultValue" : 0.0,
+                              "interp" : "eioe"
+                            },
+                            "geometryCrop3" : {
+                              "type" : "double",
+                              "defaultValue" : 0.0,
+                              "interp" : "eioe"
+                            }
+                          },
+                          "effects" : [
+
+                          ],
+                          "start" : 0,
+                          "duration" : 22837920000,
+                          "mediaStart" : 0,
+                          "mediaDuration" : 22837920000,
+                          "scalar" : 1,
+                          "animationTracks" : {
+
+                          }
+                        },
+                    "audio" : 
+                        {
+                          "id" : 5,
+                          "_type" : "AMFile",
+                          "src" : 1,
+                          "trackNumber" : 1,
+                          "attributes" : {
+                            "ident" : "",
+                            "gain" : 1.0,
+                            "mixToMono" : false,
+                            "loudnessNormalization" : true,
+                            "sourceFileOffset" : 0
+                          },
+                            "channelNumber" : "0,1",
+                          "effects" : [
+
+                          ],
+                          "start" : 0,
+                          "duration" : 22837920000,
+                          "mediaStart" : 0,
+                          "mediaDuration" : 22837920000,
+                          "scalar" : 1,
+                          "animationTracks" : {
+
+                          }
+                        }
+,
+                    "start" : 0,
+                    "duration" : 22837920000,
+                    "mediaStart" : 0,
+                    "mediaDuration" : 22837920000,
+                    "scalar" : 1,
+                    "metadata" : {
+                      "clipSpeedAttribute" : false,
+                      "default-scale" : "1",
+                      "effectApplied" : "none",
+                      "lockAspectRatio" : true
+                    }
+                  }
+                ]
+              },
+              {
+                "trackIndex" : 1,
+                "medias" : [
+                  {
+                    "id" : 6,
+                    "_type" : "Callout",
+                    "def" : {
+                        "kind" : "TypeWinSpotlight",
+                        "shape" : "",
+                        "style" : "",
+                        "height" : 270.0,
+                        "intensity" : 0.5,
+                        "width" : 480.0
+                    },
+                    "attributes" : {
+                      "ident" : "",
+                      "autoRotateText" : true
+                    },
+                    "parameters" : {
+                      "translation0" : -1.13686837721616e-13,
+                      "translation1" : 456.18009868421,
+                      "scale0" : 4.0,
+                      "scale1" : 0.215095029239766,
+                      "scale2" : 1.0,
+                      "sourceCrop0" : 0.0,
+                      "sourceCrop1" : 0.0,
+                      "sourceCrop2" : 0.0,
+                      "sourceCrop3" : 0.0,
+                      "geometryCrop0" : 0.0,
+                      "geometryCrop1" : 0.0,
+                      "geometryCrop2" : 0.0,
+                      "geometryCrop3" : 0.0
+                    },
+                    "effects" : [
+
+                    ],
+                    "start" : 1916880000,
+                    "duration" : 1728720000,
+                    "mediaStart" : -635040000,
+                    "mediaDuration" : 1728720000,
+                    "scalar" : 1,
+                    "metadata" : {
+                      "AppliedThemeId" : "",
+                      "clipSpeedAttribute" : false,
+                      "default-anchor0" : 0.0,
+                      "default-anchor1" : 0.0,
+                      "default-anchor2" : 0.0,
+                      "default-height" : 360.0,
+                      "default-rotation0" : 0.0,
+                      "default-rotation1" : 0.0,
+                      "default-rotation2" : 0.0,
+                      "default-scale" : "1",
+                      "default-scale0" : 1.33333333333333,
+                      "default-scale1" : 1.33333333333333,
+                      "default-scale2" : 1.0,
+                      "default-shear0" : 0.0,
+                      "default-shear1" : 0.0,
+                      "default-shear2" : 0.0,
+                      "default-translation0" : -1332.11965460526,
+                      "default-translation1" : 352.962582236842,
+                      "default-translation2" : 0.0,
+                      "default-width" : 640.0,
+                      "effectApplied" : "none"
+                    },
+                    "animationTracks" : {
+
+                    }
+                  },
+                  {
+                    "id" : 7,
+                    "_type" : "Callout",
+                    "def" : {
+                        "kind" : "TypeWinSpotlight",
+                        "shape" : "",
+                        "style" : "",
+                        "height" : {
+                          "type" : "double",
+                          "defaultValue" : 270.0,
+                          "interp" : "linr"
+                        },
+                        "intensity" : {
+                          "type" : "double",
+                          "defaultValue" : 0.5,
+                          "interp" : "linr"
+                        },
+                        "width" : {
+                          "type" : "double",
+                          "defaultValue" : 480.0,
+                          "interp" : "linr"
+                        }
+                    },
+                    "attributes" : {
+                      "ident" : "",
+                      "autoRotateText" : true
+                    },
+                    "parameters" : {
+                      "translation0" : {
+                        "type" : "double",
+                        "defaultValue" : -491.101973684211,
+                        "interp" : "eioe"
+                      },
+                      "translation1" : {
+                        "type" : "double",
+                        "defaultValue" : -27.3910361842118,
+                        "interp" : "eioe"
+                      },
+                      "scale0" : {
+                        "type" : "double",
+                        "defaultValue" : 1.63393469024123,
+                        "interp" : "eioe"
+                      },
+                      "scale1" : {
+                        "type" : "double",
+                        "defaultValue" : 3.79710343567251,
+                        "interp" : "eioe"
+                      },
+                      "scale2" : {
+                        "type" : "double",
+                        "defaultValue" : 1.0,
+                        "interp" : "eioe"
+                      },
+                      "sourceCrop0" : {
+                        "type" : "double",
+                        "defaultValue" : 0.0,
+                        "interp" : "eioe"
+                      },
+                      "sourceCrop1" : {
+                        "type" : "double",
+                        "defaultValue" : 0.0,
+                        "interp" : "eioe"
+                      },
+                      "sourceCrop2" : {
+                        "type" : "double",
+                        "defaultValue" : 0.0,
+                        "interp" : "eioe"
+                      },
+                      "sourceCrop3" : {
+                        "type" : "double",
+                        "defaultValue" : 0.0,
+                        "interp" : "eioe"
+                      },
+                      "geometryCrop0" : {
+                        "type" : "double",
+                        "defaultValue" : 0.0,
+                        "interp" : "eioe"
+                      },
+                      "geometryCrop1" : {
+                        "type" : "double",
+                        "defaultValue" : 0.0,
+                        "interp" : "eioe"
+                      },
+                      "geometryCrop2" : {
+                        "type" : "double",
+                        "defaultValue" : 0.0,
+                        "interp" : "eioe"
+                      },
+                      "geometryCrop3" : {
+                        "type" : "double",
+                        "defaultValue" : 0.0,
+                        "interp" : "eioe"
+                      }
+                    },
+                    "effects" : [
+
+                    ],
+                    "start" : 3645600000,
+                    "duration" : 3857280000,
+                    "mediaStart" : 1117200000,
+                    "mediaDuration" : 3857280000,
+                    "scalar" : 1,
+                    "metadata" : {
+                      "AppliedThemeId" : "",
+                      "clipSpeedAttribute" : false,
+                      "default-anchor0" : 0.0,
+                      "default-anchor1" : 0.0,
+                      "default-anchor2" : 0.0,
+                      "default-height" : 360.0,
+                      "default-rotation0" : 0.0,
+                      "default-rotation1" : 0.0,
+                      "default-rotation2" : 0.0,
+                      "default-scale" : "1",
+                      "default-scale0" : 1.33333333333333,
+                      "default-scale1" : 1.33333333333333,
+                      "default-scale2" : 1.0,
+                      "default-shear0" : 0.0,
+                      "default-shear1" : 0.0,
+                      "default-shear2" : 0.0,
+                      "default-translation0" : -1332.11965460526,
+                      "default-translation1" : 352.962582236842,
+                      "default-translation2" : 0.0,
+                      "default-width" : 640.0,
+                      "effectApplied" : "none"
+                    },
+                    "animationTracks" : {
+
+                    }
+                  },
+                  {
+                    "id" : 8,
+                    "_type" : "Callout",
+                    "def" : {
+                        "kind" : "TypeWinSpotlight",
+                        "shape" : "",
+                        "style" : "",
+                        "height" : 270.0,
+                        "intensity" : 0.5,
+                        "width" : 480.0
+                    },
+                    "attributes" : {
+                      "ident" : "",
+                      "autoRotateText" : true
+                    },
+                    "parameters" : {
+                      "translation0" : 2.43626644736844,
+                      "translation1" : -26.2438322368422,
+                      "scale0" : 1.56534402412281,
+                      "scale1" : 1.40807748538012,
+                      "sourceCrop0" : 0.0,
+                      "sourceCrop1" : 0.0,
+                      "sourceCrop2" : 0.0,
+                      "sourceCrop3" : 0.0,
+                      "geometryCrop0" : 0.0,
+                      "geometryCrop1" : 0.0,
+                      "geometryCrop2" : 0.0,
+                      "geometryCrop3" : 0.0
+                    },
+                    "effects" : [
+
+                    ],
+                    "start" : 7526400000,
+                    "duration" : 7114800000,
+                    "mediaStart" : 0,
+                    "mediaDuration" : 7114800000,
+                    "scalar" : 1,
+                    "metadata" : {
+                      "AppliedThemeId" : "",
+                      "clipSpeedAttribute" : false,
+                      "default-anchor0" : 0.0,
+                      "default-anchor1" : 0.0,
+                      "default-anchor2" : 0.0,
+                      "default-height" : 360.0,
+                      "default-rotation0" : 0.0,
+                      "default-rotation1" : 0.0,
+                      "default-rotation2" : 0.0,
+                      "default-scale" : "1",
+                      "default-scale0" : 1.33333333333333,
+                      "default-scale1" : 1.33333333333333,
+                      "default-scale2" : 1.0,
+                      "default-shear0" : 0.0,
+                      "default-shear1" : 0.0,
+                      "default-shear2" : 0.0,
+                      "default-translation0" : -1335.73396381579,
+                      "default-translation1" : 363.694490131579,
+                      "default-translation2" : 0.0,
+                      "default-width" : 640.0,
+                      "effectApplied" : "none"
+                    },
+                    "animationTracks" : {
+
+                    }
+                  }
+                ]
+              },
+              {
+                "trackIndex" : 2,
+                "medias" : [
+                  {
+                    "id" : 9,
+                    "_type" : "Callout",
+                    "def" : {
+                        "kind" : "remix",
+                        "shape" : "shape-rectangle",
+                        "style" : "basic",
+                        "fill-color-blue" : {
+                          "type" : "double",
+                          "defaultValue" : 0.0,
+                          "interp" : "linr"
+                        },
+                        "fill-color-green" : {
+                          "type" : "double",
+                          "defaultValue" : 0.0,
+                          "interp" : "linr"
+                        },
+                        "fill-color-opacity" : {
+                          "type" : "double",
+                          "defaultValue" : 0.0,
+                          "interp" : "linr"
+                        },
+                        "fill-color-red" : {
+                          "type" : "double",
+                          "defaultValue" : 0.0,
+                          "interp" : "linr"
+                        },
+                        "height" : {
+                          "type" : "double",
+                          "defaultValue" : 58.0756578947367,
+                          "interp" : "linr"
+                        },
+                        "stroke-color-blue" : {
+                          "type" : "double",
+                          "defaultValue" : 0.0,
+                          "interp" : "linr"
+                        },
+                        "stroke-color-green" : {
+                          "type" : "double",
+                          "defaultValue" : 0.0,
+                          "interp" : "linr"
+                        },
+                        "stroke-color-opacity" : {
+                          "type" : "double",
+                          "defaultValue" : 1.0,
+                          "interp" : "linr"
+                        },
+                        "stroke-color-red" : {
+                          "type" : "double",
+                          "defaultValue" : 0.901960784313726,
+                          "interp" : "linr"
+                        },
+                        "stroke-width" : {
+                          "type" : "double",
+                          "defaultValue" : 6.0,
+                          "interp" : "linr"
+                        },
+                        "width" : {
+                          "type" : "double",
+                          "defaultValue" : 99.6607730263153,
+                          "interp" : "linr"
+                        },
+                        "fill-style" : "solid",
+                        "stroke-style" : "solid"
+                    },
+                    "attributes" : {
+                      "ident" : "",
+                      "autoRotateText" : true
+                    },
+                    "parameters" : {
+                      "translation0" : {
+                        "type" : "double",
+                        "defaultValue" : -833.415912828948,
+                        "interp" : "eioe"
+                      },
+                      "translation1" : {
+                        "type" : "double",
+                        "defaultValue" : 456.18009868421,
+                        "interp" : "eioe"
+                      },
+                      "sourceCrop0" : {
+                        "type" : "double",
+                        "defaultValue" : 0.0,
+                        "interp" : "eioe"
+                      },
+                      "sourceCrop1" : {
+                        "type" : "double",
+                        "defaultValue" : 0.0,
+                        "interp" : "eioe"
+                      },
+                      "sourceCrop2" : {
+                        "type" : "double",
+                        "defaultValue" : 0.0,
+                        "interp" : "eioe"
+                      },
+                      "sourceCrop3" : {
+                        "type" : "double",
+                        "defaultValue" : 0.0,
+                        "interp" : "eioe"
+                      },
+                      "geometryCrop0" : {
+                        "type" : "double",
+                        "defaultValue" : 0.0,
+                        "interp" : "eioe"
+                      },
+                      "geometryCrop1" : {
+                        "type" : "double",
+                        "defaultValue" : 0.0,
+                        "interp" : "eioe"
+                      },
+                      "geometryCrop2" : {
+                        "type" : "double",
+                        "defaultValue" : 0.0,
+                        "interp" : "eioe"
+                      },
+                      "geometryCrop3" : {
+                        "type" : "double",
+                        "defaultValue" : 0.0,
+                        "interp" : "eioe"
+                      }
+                    },
+                    "effects" : [
+
+                    ],
+                    "start" : 2551920000,
+                    "duration" : 1093680000,
+                    "mediaStart" : 0,
+                    "mediaDuration" : 1093680000,
+                    "scalar" : 1,
+                    "metadata" : {
+                      "AppliedThemeId" : "",
+                      "clipSpeedAttribute" : false,
+                      "default-anchor0" : 0.0,
+                      "default-anchor1" : 0.0,
+                      "default-anchor2" : 0.0,
+                      "default-callout-stroke-color" : "(255,255,255,255)",
+                      "default-height" : 186.0,
+                      "default-rotation0" : 0.0,
+                      "default-rotation1" : 0.0,
+                      "default-rotation2" : 0.0,
+                      "default-scale" : "1",
+                      "default-scale0" : 1.0,
+                      "default-scale1" : 1.0,
+                      "default-scale2" : 1.0,
+                      "default-shear0" : 0.0,
+                      "default-shear1" : 0.0,
+                      "default-shear2" : 0.0,
+                      "default-translation0" : -1306.36924342105,
+                      "default-translation1" : 11.0649671052632,
+                      "default-translation2" : 0.0,
+                      "default-width" : 246.0,
+                      "effectApplied" : "none"
+                    },
+                    "animationTracks" : {
+
+                    }
+                  },
+                  {
+                    "id" : 10,
+                    "_type" : "Callout",
+                    "def" : {
+                        "kind" : "remix",
+                        "shape" : "shape-rectangle",
+                        "style" : "basic",
+                        "fill-color-blue" : 0.0,
+                        "fill-color-green" : 0.0,
+                        "fill-color-opacity" : 0.0,
+                        "fill-color-red" : 0.0,
+                        "height" : 58.0756578947367,
+                        "stroke-color-blue" : 0.0,
+                        "stroke-color-green" : 0.0,
+                        "stroke-color-opacity" : 1.0,
+                        "stroke-color-red" : 0.901960784313726,
+                        "stroke-width" : 6.0,
+                        "width" : 695.04728618421,
+                        "fill-style" : "solid",
+                        "stroke-style" : "solid"
+                    },
+                    "attributes" : {
+                      "ident" : "",
+                      "autoRotateText" : true
+                    },
+                    "parameters" : {
+                      "translation0" : -483.740748355264,
+                      "translation1" : -423.663651315789,
+                      "sourceCrop0" : 0.0,
+                      "sourceCrop1" : 0.0,
+                      "sourceCrop2" : 0.0,
+                      "sourceCrop3" : 0.0,
+                      "geometryCrop0" : 0.0,
+                      "geometryCrop1" : 0.0,
+                      "geometryCrop2" : 0.0,
+                      "geometryCrop3" : 0.0
+                    },
+                    "effects" : [
+
+                    ],
+                    "start" : 5703600000,
+                    "duration" : 1822800000,
+                    "mediaStart" : 0,
+                    "mediaDuration" : 1822800000,
+                    "scalar" : 1,
+                    "metadata" : {
+                      "AppliedThemeId" : "",
+                      "clipSpeedAttribute" : false,
+                      "default-anchor0" : 0.0,
+                      "default-anchor1" : 0.0,
+                      "default-anchor2" : 0.0,
+                      "default-callout-stroke-color" : "(255,255,255,255)",
+                      "default-height" : 186.0,
+                      "default-rotation0" : 0.0,
+                      "default-rotation1" : 0.0,
+                      "default-rotation2" : 0.0,
+                      "default-scale" : "1",
+                      "default-scale0" : 1.0,
+                      "default-scale1" : 1.0,
+                      "default-scale2" : 1.0,
+                      "default-shear0" : 0.0,
+                      "default-shear1" : 0.0,
+                      "default-shear2" : 0.0,
+                      "default-translation0" : -1306.36924342105,
+                      "default-translation1" : 11.0649671052632,
+                      "default-translation2" : 0.0,
+                      "default-width" : 246.0,
+                      "effectApplied" : "none"
+                    },
+                    "animationTracks" : {
+
+                    }
+                  }
+                ]
+              },
+              {
+                "trackIndex" : 3,
+                "medias" : [
+                ]
+              }            ]
+          }
+        }
+      ]
+    },
+    "trackAttributes" : [
+      {
+        "ident" : "",
+        "audioMuted" : false,
+        "videoHidden" : false,
+        "magnetic" : false,
+        "matte" : 0,
+        "solo" : false,
+        "metadata" : {
+          "IsLocked" : "False",
+          "trackHeight" : "54"
+        }
+      },
+      {
+        "ident" : "",
+        "audioMuted" : false,
+        "videoHidden" : false,
+        "magnetic" : false,
+        "matte" : 0,
+        "solo" : false,
+        "metadata" : {
+          "IsLocked" : "False",
+          "trackHeight" : "54"
+        }
+      },
+      {
+        "ident" : "",
+        "audioMuted" : false,
+        "videoHidden" : false,
+        "magnetic" : false,
+        "matte" : 0,
+        "solo" : false,
+        "metadata" : {
+          "IsLocked" : "False",
+          "trackHeight" : "54"
+        }
+      },
+      {
+        "ident" : "",
+        "audioMuted" : false,
+        "videoHidden" : false,
+        "magnetic" : false,
+        "matte" : 0,
+        "solo" : false,
+        "metadata" : {
+          "IsLocked" : "False",
+          "trackHeight" : "54"
+        }
+      }
+    ],
+    "captionAttributes" : {
+      "enabled" : true,
+      "fontName" : "Arial",
+      "fontSize" : 32,
+      "backgroundColor" : [ 0, 0, 0, 204],
+      "foregroundColor" : [ 255, 255, 255, 255],
+      "lang" : "en",
+      "alignment" : 0,
+      "defaultFontSize" : true,
+      "opacity" : 0.5,
+      "backgroundEnabled" : true,
+      "backgroundOnlyAroundText" : true
+    },
+    "gain" : 1.0,
+    "legacyAttenuateAudioMix" : false,
+    "backgroundColor" : [ 0, 0, 0, 255]
+  },
+  "metadata" : {
+    "ProjectThumbnail" : "iVBORw0KGgoAAAANSUhEUgAAAoAAAAFoCAYAAADHMkpRAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAACgKADAAQAAAABAAABaAAAAACeojBPAAASf0lEQVR4Ae3WsREAIAwDscD+OwMFW7y4YwDLKbxm5rzvESBAgAABAgQIRAR2JKeYBAgQIECAAAECX8AAdAoECBAgQIAAgZiAARgrXFwCBAgQIECAgAHoBggQIECAAAECMQEDMFa4uAQIECBAgAABA9ANECBAgAABAgRiAgZgrHBxCRAgQIAAAQIGoBsgQIAAAQIECMQEDMBY4eISIECAAAECBAxAN0CAAAECBAgQiAkYgLHCxSVAgAABAgQIGIBugAABAgQIECAQEzAAY4WLS4AAAQIECBAwAN0AAQIECBAgQCAmYADGCheXAAECBAgQIGAAugECBAgQIECAQEzAAIwVLi4BAgQIECBAwAB0AwQIECBAgACBmIABGCtcXAIECBAgQICAAegGCBAgQIAAAQIxAQMwVri4BAgQIECAAAED0A0QIECAAAECBGICBmCscHEJECBAgAABAgagGyBAgAABAgQIxAQMwFjh4hIgQIAAAQIEDEA3QIAAAQIECBCICRiAscLFJUCAAAECBAgYgG6AAAECBAgQIBATMABjhYtLgAABAgQIEDAA3QABAgQIECBAICZgAMYKF5cAAQIECBAgYAC6AQIECBAgQIBATMAAjBUuLgECBAgQIEDAAHQDBAgQIECAAIGYgAEYK1xcAgQIECBAgIAB6AYIECBAgAABAjEBAzBWuLgECBAgQIAAAQPQDRAgQIAAAQIEYgIGYKxwcQkQIECAAAECBqAbIECAAAECBAjEBAzAWOHiEiBAgAABAgQMQDdAgAABAgQIEIgJGICxwsUlQIAAAQIECBiAboAAAQIECBAgEBMwAGOFi0uAAAECBAgQMADdAAECBAgQIEAgJmAAxgoXlwABAgQIECBgALoBAgQIECBAgEBMwACMFS4uAQIECBAgQMAAdAMECBAgQIAAgZiAARgrXFwCBAgQIECAgAHoBggQIECAAAECMQEDMFa4uAQIECBAgAABA9ANECBAgAABAgRiAgZgrHBxCRAgQIAAAQIGoBsgQIAAAQIECMQEDMBY4eISIECAAAECBAxAN0CAAAECBAgQiAkYgLHCxSVAgAABAgQIGIBugAABAgQIECAQEzAAY4WLS4AAAQIECBAwAN0AAQIECBAgQCAmYADGCheXAAECBAgQIGAAugECBAgQIECAQEzAAIwVLi4BAgQIECBAwAB0AwQIECBAgACBmIABGCtcXAIECBAgQICAAegGCBAgQIAAAQIxAQMwVri4BAgQIECAAAED0A0QIECAAAECBGICBmCscHEJECBAgAABAgagGyBAgAABAgQIxAQMwFjh4hIgQIAAAQIEDEA3QIAAAQIECBCICRiAscLFJUCAAAECBAgYgG6AAAECBAgQIBATMABjhYtLgAABAgQIEDAA3QABAgQIECBAICZgAMYKF5cAAQIECBAgYAC6AQIECBAgQIBATMAAjBUuLgECBAgQIEDAAHQDBAgQIECAAIGYgAEYK1xcAgQIECBAgIAB6AYIECBAgAABAjEBAzBWuLgECBAgQIAAAQPQDRAgQIAAAQIEYgIGYKxwcQkQIECAAAECBqAbIECAAAECBAjEBAzAWOHiEiBAgAABAgQMQDdAgAABAgQIEIgJGICxwsUlQIAAAQIECBiAboAAAQIECBAgEBMwAGOFi0uAAAECBAgQMADdAAECBAgQIEAgJmAAxgoXlwABAgQIECBgALoBAgQIECBAgEBMwACMFS4uAQIECBAgQMAAdAMECBAgQIAAgZiAARgrXFwCBAgQIECAgAHoBggQIECAAAECMQEDMFa4uAQIECBAgAABA9ANECBAgAABAgRiAgZgrHBxCRAgQIAAAQIGoBsgQIAAAQIECMQEDMBY4eISIECAAAECBAxAN0CAAAECBAgQiAkYgLHCxSVAgAABAgQIGIBugAABAgQIECAQEzAAY4WLS4AAAQIECBAwAN0AAQIECBAgQCAmYADGCheXAAECBAgQIGAAugECBAgQIECAQEzAAIwVLi4BAgQIECBAwAB0AwQIECBAgACBmIABGCtcXAIECBAgQICAAegGCBAgQIAAAQIxAQMwVri4BAgQIECAAAED0A0QIECAAAECBGICBmCscHEJECBAgAABAgagGyBAgAABAgQIxAQMwFjh4hIgQIAAAQIEDEA3QIAAAQIECBCICRiAscLFJUCAAAECBAgYgG6AAAECBAgQIBATMABjhYtLgAABAgQIEDAA3QABAgQIECBAICZgAMYKF5cAAQIECBAgYAC6AQIECBAgQIBATMAAjBUuLgECBAgQIEDAAHQDBAgQIECAAIGYgAEYK1xcAgQIECBAgIAB6AYIECBAgAABAjEBAzBWuLgECBAgQIAAAQPQDRAgQIAAAQIEYgIGYKxwcQkQIECAAAECBqAbIECAAAECBAjEBAzAWOHiEiBAgAABAgQMQDdAgAABAgQIEIgJGICxwsUlQIAAAQIECBiAboAAAQIECBAgEBMwAGOFi0uAAAECBAgQMADdAAECBAgQIEAgJmAAxgoXlwABAgQIECBgALoBAgQIECBAgEBMwACMFS4uAQIECBAgQMAAdAMECBAgQIAAgZiAARgrXFwCBAgQIECAgAHoBggQIECAAAECMQEDMFa4uAQIECBAgAABA9ANECBAgAABAgRiAgZgrHBxCRAgQIAAAQIGoBsgQIAAAQIECMQEDMBY4eISIECAAAECBAxAN0CAAAECBAgQiAkYgLHCxSVAgAABAgQIGIBugAABAgQIECAQEzAAY4WLS4AAAQIECBAwAN0AAQIECBAgQCAmYADGCheXAAECBAgQIGAAugECBAgQIECAQEzAAIwVLi4BAgQIECBAwAB0AwQIECBAgACBmIABGCtcXAIECBAgQICAAegGCBAgQIAAAQIxAQMwVri4BAgQIECAAAED0A0QIECAAAECBGICBmCscHEJECBAgAABAgagGyBAgAABAgQIxAQMwFjh4hIgQIAAAQIEDEA3QIAAAQIECBCICRiAscLFJUCAAAECBAgYgG6AAAECBAgQIBATMABjhYtLgAABAgQIEDAA3QABAgQIECBAICZgAMYKF5cAAQIECBAgYAC6AQIECBAgQIBATMAAjBUuLgECBAgQIEDAAHQDBAgQIECAAIGYgAEYK1xcAgQIECBAgIAB6AYIECBAgAABAjEBAzBWuLgECBAgQIAAAQPQDRAgQIAAAQIEYgIGYKxwcQkQIECAAAECBqAbIECAAAECBAjEBAzAWOHiEiBAgAABAgQMQDdAgAABAgQIEIgJGICxwsUlQIAAAQIECBiAboAAAQIECBAgEBMwAGOFi0uAAAECBAgQMADdAAECBAgQIEAgJmAAxgoXlwABAgQIECBgALoBAgQIECBAgEBMwACMFS4uAQIECBAgQMAAdAMECBAgQIAAgZiAARgrXFwCBAgQIECAgAHoBggQIECAAAECMQEDMFa4uAQIECBAgAABA9ANECBAgAABAgRiAgZgrHBxCRAgQIAAAQIGoBsgQIAAAQIECMQEDMBY4eISIECAAAECBAxAN0CAAAECBAgQiAkYgLHCxSVAgAABAgQIGIBugAABAgQIECAQEzAAY4WLS4AAAQIECBAwAN0AAQIECBAgQCAmYADGCheXAAECBAgQIGAAugECBAgQIECAQEzAAIwVLi4BAgQIECBAwAB0AwQIECBAgACBmIABGCtcXAIECBAgQICAAegGCBAgQIAAAQIxAQMwVri4BAgQIECAAAED0A0QIECAAAECBGICBmCscHEJECBAgAABAgagGyBAgAABAgQIxAQMwFjh4hIgQIAAAQIEDEA3QIAAAQIECBCICRiAscLFJUCAAAECBAgYgG6AAAECBAgQIBATMABjhYtLgAABAgQIEDAA3QABAgQIECBAICZgAMYKF5cAAQIECBAgYAC6AQIECBAgQIBATMAAjBUuLgECBAgQIEDAAHQDBAgQIECAAIGYgAEYK1xcAgQIECBAgIAB6AYIECBAgAABAjEBAzBWuLgECBAgQIAAAQPQDRAgQIAAAQIEYgIGYKxwcQkQIECAAAECBqAbIECAAAECBAjEBAzAWOHiEiBAgAABAgQMQDdAgAABAgQIEIgJGICxwsUlQIAAAQIECBiAboAAAQIECBAgEBMwAGOFi0uAAAECBAgQMADdAAECBAgQIEAgJmAAxgoXlwABAgQIECBgALoBAgQIECBAgEBMwACMFS4uAQIECBAgQMAAdAMECBAgQIAAgZiAARgrXFwCBAgQIECAgAHoBggQIECAAAECMQEDMFa4uAQIECBAgAABA9ANECBAgAABAgRiAgZgrHBxCRAgQIAAAQIGoBsgQIAAAQIECMQEDMBY4eISIECAAAECBAxAN0CAAAECBAgQiAkYgLHCxSVAgAABAgQIGIBugAABAgQIECAQEzAAY4WLS4AAAQIECBAwAN0AAQIECBAgQCAmYADGCheXAAECBAgQIGAAugECBAgQIECAQEzAAIwVLi4BAgQIECBAwAB0AwQIECBAgACBmIABGCtcXAIECBAgQICAAegGCBAgQIAAAQIxAQMwVri4BAgQIECAAAED0A0QIECAAAECBGICBmCscHEJECBAgAABAgagGyBAgAABAgQIxAQMwFjh4hIgQIAAAQIEDEA3QIAAAQIECBCICRiAscLFJUCAAAECBAgYgG6AAAECBAgQIBATMABjhYtLgAABAgQIEDAA3QABAgQIECBAICZgAMYKF5cAAQIECBAgYAC6AQIECBAgQIBATMAAjBUuLgECBAgQIEDAAHQDBAgQIECAAIGYgAEYK1xcAgQIECBAgIAB6AYIECBAgAABAjEBAzBWuLgECBAgQIAAAQPQDRAgQIAAAQIEYgIGYKxwcQkQIECAAAECBqAbIECAAAECBAjEBAzAWOHiEiBAgAABAgQMQDdAgAABAgQIEIgJGICxwsUlQIAAAQIECBiAboAAAQIECBAgEBMwAGOFi0uAAAECBAgQMADdAAECBAgQIEAgJmAAxgoXlwABAgQIECBgALoBAgQIECBAgEBMwACMFS4uAQIECBAgQMAAdAMECBAgQIAAgZiAARgrXFwCBAgQIECAgAHoBggQIECAAAECMQEDMFa4uAQIECBAgAABA9ANECBAgAABAgRiAgZgrHBxCRAgQIAAAQIGoBsgQIAAAQIECMQEDMBY4eISIECAAAECBAxAN0CAAAECBAgQiAkYgLHCxSVAgAABAgQIGIBugAABAgQIECAQEzAAY4WLS4AAAQIECBAwAN0AAQIECBAgQCAmYADGCheXAAECBAgQIGAAugECBAgQIECAQEzAAIwVLi4BAgQIECBAwAB0AwQIECBAgACBmIABGCtcXAIECBAgQICAAegGCBAgQIAAAQIxAQMwVri4BAgQIECAAAED0A0QIECAAAECBGICBmCscHEJECBAgAABAgagGyBAgAABAgQIxAQMwFjh4hIgQIAAAQIEDEA3QIAAAQIECBCICRiAscLFJUCAAAECBAgYgG6AAAECBAgQIBATMABjhYtLgAABAgQIEDAA3QABAgQIECBAICZgAMYKF5cAAQIECBAgYAC6AQIECBAgQIBATMAAjBUuLgECBAgQIEDAAHQDBAgQIECAAIGYgAEYK1xcAgQIECBAgIAB6AYIECBAgAABAjEBAzBWuLgECBAgQIAAAQPQDRAgQIAAAQIEYgIGYKxwcQkQIECAAAECBqAbIECAAAECBAjEBAzAWOHiEiBAgAABAgQMQDdAgAABAgQIEIgJGICxwsUlQIAAAQIECBiAboAAAQIECBAgEBMwAGOFi0uAAAECBAgQMADdAAECBAgQIEAgJmAAxgoXlwABAgQIECBgALoBAgQIECBAgEBMwACMFS4uAQIECBAgQMAAdAMECBAgQIAAgZiAARgrXFwCBAgQIECAgAHoBggQIECAAAECMQEDMFa4uAQIECBAgAABA9ANECBAgAABAgRiAgZgrHBxCRAgQIAAAQIGoBsgQIAAAQIECMQEDMBY4eISIECAAAECBAxAN0CAAAECBAgQiAkYgLHCxSVAgAABAgQIGIBugAABAgQIECAQEzAAY4WLS4AAAQIECBAwAN0AAQIECBAgQCAmYADGCheXAAECBAgQIGAAugECBAgQIECAQEzAAIwVLi4BAgQIECBAwAB0AwQIECBAgACBmIABGCtcXAIECBAgQICAAegGCBAgQIAAAQIxAQMwVri4BAgQIECAAAED0A0QIECAAAECBGICBmCscHEJECBAgAABAhfaGQPPRmdxkAAAAABJRU5ErkJggg==",
+    "RulerGuidesX" : [],
+    "RulerGuidesY" : [],
+    "RulerShowing" : false,
+    "activeThemeId" : "ad77e0fa-9763-4c41-8bc3-6abe58776d4a",
+    "audiateSessionId" : "",
+    "firstMedia" : true,
+    "hasNotifiedAboutHFRMedia" : false,
+    "projectDuration" : "00:32"
+  }
+}
