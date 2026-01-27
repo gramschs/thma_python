@@ -1,0 +1,10 @@
+/* User Provided Stylesheet */
+
+/* ===== CODE-ZELLEN GRÜN ===== */
+div.myst-code {
+  border-left-color: #19a249 !important;
+}
+
+.dark div.myst-code {
+  border-left-color: #18a046 !important;
+}
