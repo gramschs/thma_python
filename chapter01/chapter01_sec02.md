@@ -15,10 +15,10 @@ Rechnungen lassen wir uns mit der `print()`-Funktion anzeigen.
 
 ```{admonition} Lernziele
 :class: attention
-* Sie wissen, was ein **Jupyter Notebook** ist.
-* Sie können Python als Taschenrechner benutzen.
-* Sie können Ergebnisse von Rechnungen mit **print()** anzeigen.
-* Sie wissen, was ein **Argument** einer Anweisung ist.
+* [ ] Sie wissen, was ein **Jupyter Notebook** ist.
+* [ ] Sie können Python als Taschenrechner benutzen.
+* [ ] Sie können Ergebnisse von Rechnungen mit **print()** anzeigen.
+* [ ] Sie wissen, was ein **Argument** einer Anweisung ist.
 ```
 
 ## Was sind Jupyter Notebooks?

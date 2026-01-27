@@ -21,11 +21,11 @@ Zeit zu sparen. Dies kann Fehler minimieren und die Effizienz steigern.
 
 ```{admonition} Lernziele
 :class: attention
-* Sie können erklären, was ein **Algorithmus** ist.
-* Sie wissen, was eine **Programmiersprache** ist.
-* Sie kennen den Unterschied zwischen **höheren Programmiersprachen** und
+* [ ] Sie können erklären, was ein **Algorithmus** ist.
+* [ ] Sie wissen, was eine **Programmiersprache** ist.
+* [ ] Sie kennen den Unterschied zwischen **höheren Programmiersprachen** und
   **Maschinensprache**.
-* Sie wissen, was der Unterschied zwischen einer **kompilierten
+* [ ] Sie wissen, was der Unterschied zwischen einer **kompilierten
   Programmiersprache** und einer **interpretierten Programmiersprache** ist. Sie
   können für beide Kategorien Beispiele benennen.
 ```

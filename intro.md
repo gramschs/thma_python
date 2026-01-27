@@ -10,7 +10,9 @@ site:
 
 TH Mannheim
 
+<!-- markdownlint-disable MD001 -->
 ### Vorlesungsskript Python
+<!-- markdownlint-enable MD001 -->
 
 ![Python snake with glasses in front of a computer](title.jpg)
 
@@ -19,5 +21,3 @@ Python-Kurs zukünftigen Ingenieurinnen und Ingenieuren einen Einstieg in die
 grundlegenden Programmiertechniken mit Python. Jedes Kapitel entspricht dabei
 einer Vorlesung mit integrierten Übungen von 90 min Dauer. Weitere Übungen
 dienen der Vertiefung der gelernten Inhalte im Selbststudium.
-
-{button}`toc`
