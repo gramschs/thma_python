@@ -194,7 +194,7 @@ print('Die Erdbeschleunigung g = ' + str(g) + 'm/s^2.')
 Schreiben Sie ein Programm, das nach einer Temperatur in Grad Celsius fragt und
 diese in Kelvin umrechnet. Formel: $K = C + 273.15$
 
-Beispiel: Eingabe 20 → Ausgabe "20.0°C entspricht 293.15 K"
+Beispiel: Eingabe 20 ==> Ausgabe "20.0°C entspricht 293.15 K"
 ```
 
 ```{code-cell} python

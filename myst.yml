@@ -27,6 +27,8 @@ project:
       children:
       - file: chapter02/chapter02_sec01.md
       - file: chapter02/chapter02_sec02.md
+      - file: chapter02/chapter02_sec03.md
+      
    
     
 site:
