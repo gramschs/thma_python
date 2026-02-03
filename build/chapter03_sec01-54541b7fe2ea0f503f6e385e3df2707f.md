@@ -1,0 +1,296 @@
+---
+kernelspec:
+  name: python3
+  display_name: 'Python 3'
+---
+
+# 3.1 Listen
+
+Bisher haben wir drei verschiedene Datentypen kennengelernt:
+
+* Integer (ganze Zahlen),
+* Float (Fließkommazahlen) und
+* String (Zeichenketten).
+
+Damit können wir einzelne Objekte der realen Welt gut abbilden. Mit einem String
+können wir den Namen einer Person erfassen, mit einem Integer das Alter der
+Person und mit einem Float die Körpergröße der Person gemessen in Meter. Was uns
+aber bisher fehlt ist, eine Sammlung von Namen oder eine Sammlung von
+Körpergrößen verwalten zu können. Daher werden wir uns in diesem Jupyter
+Notebook mit Listen beschäftigen.
+
+## Lernziele
+
+```{admonition} Lernziele
+:class: attention
+* [ ] Sie können eine **Liste** erzeugen.
+* [ ] Sie wissen, was der Fachbegriff **Index** bedeutet.
+* [ ] Sie können mit dem Index lesend und schreibend auf die Elemente einer
+  Liste zugreifen, beherrschen also **Lesezugriff** und **Schreibzugriff**.
+* [ ] Sie können die Anzahl der Elemente einer Liste mit `len()` bestimmen.
+* [ ] Sie können eine Liste manipulieren, z.B. die Liste mit der Methode
+* `.append()` am Ende erweitern oder Werte mit der Methode `.remove()` löschen.
+```
+
++++
+
+## Listen erzeugen
+
+In der Mathematik gibt es den Begriff des Vektors. Einen Vektor kann man als
+eine Sammlung von Zahlen interpretieren. Dabei müssen Vektoren nicht immer eine
+geometrische Interpretation haben. Beispielsweise steht der Vektor
+
+(116, 144, 199)
+
+für ein sehr schönes Blau, wenn die drei Komponenten als die Intensität der
+Farbanteile Rot - Grün - Blau interpretiert werden. Diese Art Farben zu
+beschreiben, wird RGB-Wert genannt (siehe auch [Wikipedia →
+RGB-Farbraum](https://de.wikipedia.org/wiki/RGB-Farbraum)). Die Internetseite
+[https://www.color-hex.com](https://www.color-hex.com/) ermöglicht es, die
+RGB-Werte verschiedener Farbtöne zu ermitteln.
+
+Wir könnten aber auch eine Namensliste mit den Mitgliedern einer WG führen
+wollen, z.B. ["Alice", "Bob", "Charlie"]. Damit verlassen wir die mathematische
+Welt der Zahlen und damit des Vektors. Aber auch für diese Anwendungsszenarien
+wäre es schön, Daten gemeinsam zu sammeln und zu verwalten. Eine Möglichkeit
+dafür ist, eine Liste zu benutzen.
+
+Eine Liste wird in Python durch eckige Klammern `[`  `]` erzeugt. Die Elemente,
+die in der Liste gespeichert werden sollen, werden durch Komma getrennt.
+
+Betrachten wir ein Beispiel. Hier wird eine Liste mit den Elementen 1, 2, 3, 4,
+5 erzeugt und dann anschließend in der Variablen `liste_beispiel` gespeichert.
+Mit der Funktion `print()` lassen wir den Inhalt der Liste ausgeben.
+
+```{code-cell} python
+liste_beispiel = [1, 2, 3, 4, 5]
+print(liste_beispiel)
+```
+
+Probieren Sie in der nächsten Mini-Übung selbst aus, wie eine Liste erzeugt
+wird.
+
++++
+
+```{admonition} Mini-Übung
+:class: tip
+Erzeugen Sie eine Liste mit Ihrem Vornamen, Ihrem Nachnamen und Ihrer
+Körpergröße in m. Welche Datentypen brauchen Sie für diese drei Objekte? Lassen
+Sie Ihre Liste auch ausgeben.
+```
+
+```{code-cell} python
+# Code-Zelle
+```
+
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+```python
+person = ['Alice', 'Musterfrau', 1.61]
+print(person)
+```
+Vor- und Nachname werden durch Strings repräsentiert, die Körpergröße als Float.
+````
+
+Im folgenden Video können Sie sich die Erzeugung von Listen nochmal ansehen.
+
+```{dropdown} Video "Python Tutorial - Listen" von Programmieren starten
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ihF8bZoauBs"
+title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+```
+
+## Lese- und Schreibzugriff
+
+Jede Liste hat einen Index. Man kann sich eine Liste wie eine Straße mit einer
+Sammlung von Häusern vorstellen. Um ein Haus in der Straße zu finden, hat es
+eine Hausnummer. Und das ist in der Informatik der **Index**, also die Position
+in der Liste, an der ein Element zu finden ist. Etwas ungewohnt mag aber sein,
+dass **Python mit der Null anfängt.**
+
+Dann können wir mit dem Index sozusagen nachsehen, welches Element an dieser
+Index-Position gespeichert ist. Das nennt man in der Informatik **Lesezugriff**.
+Oder wir können das Element an einer bestimmten Index-Position gegen ein neues
+Element austauschen. Das nennt man dann **Schreibzugriff**.
+
+Um auf ein Element einer Liste zugreifen zu können (egal ob lesend oder
+schreibend), verwenden wir eckige Klammern und den Index. Der Lesezugriff für
+das erste Element sieht beispielsweise so aus:
+
+```{code-cell} python
+# Erzeugung einer Liste für Schraubenschlüssel in einem Werkzeugkoffer
+werkzeugkoffer = ['3 mm', '4 mm', '5 mm', '8 mm']
+
+# Welcher Schlüssel ist an Position 1 = Index 0?
+print(werkzeugkoffer[0])
+```
+
+In der nächsten Mini-Übung wird der Lesezugriff genutzt, um ein Element in einer
+neuen Variable zu speichern und weiter damit arbeiten zu können.
+
++++
+
+```{admonition} Mini-Übung
+:class: tip
+Speichern Sie den 3. Schraubenschlüssel im Werkzeugkoffer in der Variablen
+`schluessel` ab und lassen Sie ihn anzeigen.
+```
+
+```{code-cell} python
+# Hier Ihr Code
+```
+
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+```python
+# Erzeugung einer Liste für Schraubenschlüssel in einem Werkzeugkoffer
+werkzeugkoffer = ['3 mm', '4 mm', '5 mm', '8 mm']
+
+# Lesezugriff auf Schraubenschlüssel Position 3 = Index 2
+schluessel = werkzeugkoffer[2]
+
+# Anzeige
+print(schluessel)
+```
+````
+
++++
+
+Der Schreibzugriff erfolgt ebenfalls mit eckigen Klammern und dem Index. Wir
+möchten den letzten Schraubenschlüssel durch einen 12er-Schraubenschlüssel
+ersetzen.
+
+```{code-cell} python
+# Erzeugung einer Liste für Schraubenschlüssel in einem Werkzeugkoffer
+werkzeugkoffer = ['3 mm', '4 mm', '5 mm', '8 mm']
+
+# Schreibzugriff: ersetze den Schraubenschlüssel an Position 4 = Index 3
+# durch 12 mm
+werkzeugkoffer[3] = '12 mm'
+
+# Anzeige des Werkzeugkoffers zur Kontrolle
+print(werkzeugkoffer)
+```
+
+Der Zugriff auf Listen wird auch in dem folgenden Video erklärt.
+
+```{dropdown} Video "Python Tutorial - Zugriff auf Listen" von Programmieren starten
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_XzWPXvya2w"
+title="YouTube video player" frameborder="0" allow="accelerometer; autoplay;
+clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+</iframe>
+```
+
++++
+
+## Listen manipulieren
+
+Die einfachste Art, eine Liste zu manipulieren, ist die **Verkettung** zweier
+Listen zu einer neuen, erweiterten Liste. In dem folgenden Beispiel gibt es zwei
+unterschiedliche Werkzeugkoffer. Wir packen den Inhalt beider Listen mit dem
+`+`-Operator in eine gemeinsame, neue Liste, so als ob wir die
+Schraubenschlüssel aus beiden Koffern zusammenlegen würden. Die ursprünglichen
+Listen bleiben unverändert.
+
+```{code-cell} python
+# Erzeugung zweier Listen für zwei Werkzeugkoffer
+werkzeugkoffer_gross = ['5 mm', '8 mm', '12 mm', '20 mm', '24 mm', '27 mm', '30 mm']
+werkzeugkoffer_klein = ['3 mm', '4 mm', '5 mm']
+
+# Erzeugung einer neuen, gemeinsamen Liste durch Addition
+gemeinsamer_koffer = werkzeugkoffer_gross + werkzeugkoffer_klein
+
+# Anzeige zur Kontrolle
+print(gemeinsamer_koffer)
+```
+
+Bei der Verkettung werden die Elemente beider Listen hintereinander aufgelistet.
+Es wird nicht sortiert und es werden auch nicht doppelte Einträge bereinigt. Wir
+hatten sowohl in dem großen als auch im kleinen Werkzeugkoffer den
+Schraubenschlüssel der Größe 5 mm und daher ist er in dem gemeinsamen Koffer
+doppelt vorhanden. Wenn wir ihn jetzt aus dem Koffer löschen wollen, verwenden
+wir die `remove()`-Methode. Methoden werden hinter die Variable gesetzt und mit
+einem Punkt von der Variable abgetrennt.
+
+```{code-cell} python
+# Entfernung des Schraubenschlüssels M5
+gemeinsamer_koffer.remove('5 mm')
+
+# Anzeige zur Kontrolle
+print(gemeinsamer_koffer)
+```
+
+Der erste Schraubenschlüssel 5 mm, der in der Liste gefunden wurde, wurde
+entfernt. Würden wir auch den anderen 5-mm-Schlüssel entfernen wollen, könnten
+wir die `.remove()`-Methode erneut anwenden. Darauf verzichten wir hier,
+mindestens einmal soll er im Koffer verbleiben. Stattdessen erweitern wir jetzt
+die Liste um einen neuen Schraubenschlüssel M48. Dazu verwenden wir die
+`.append()`-Methode, die ebenfalls mit einem Punkt getrennt an die Variable
+gesetzt wird.
+
+```{code-cell} python
+# Erweiterung um den neuen Schraubenschlüssel M48
+gemeinsamer_koffer.append('48 mm')
+
+# Anzeige zur Kontrolle
+print(gemeinsamer_koffer)
+```
+
+## Wie lang ist eine Liste?
+
+Manchmal möchte man wissen, wie viele Elemente in einer Liste enthalten sind.
+Dafür gibt es in Python die eingebaute Funktion `len()`, was die Abkürzung für
+das englische Wort "length" ist.
+
+```{code-cell} python
+# Erzeugung einer Liste für Schraubenschlüssel in einem Werkzeugkoffer
+werkzeugkoffer = ['3 mm', '4 mm', '5 mm', '8 mm']
+
+print(len(werkzeugkoffer))
+```
+
+In diesem Beispiel enthält die Liste `werkzeugkoffer` vier Elemente
+(Schraubenschlüssel), daher gibt `len(werkzeugkoffer)` den Wert 4 zurück. Diese
+Funktion ist besonders nützlich, wenn man mit Listen arbeitet, deren Länge sich
+im Laufe des Programms verändert, weil die Liste erweitert wird oder Elemente
+aus der Liste gelöscht werden.
+
+```{admonition} Mini-Übung
+:class: tip
+Erzeugen Sie eine Liste mit Ihren Lieblingsgerichten. Verwenden Sie `len()`, um
+die Länge der Liste zu bestimmen. Geben Sie einen Satz nach dem folgenden Schema
+aus: Ich habe {Anzahl} Lieblingsgerichte und das sind: {Lieblingsgerichte}.
+
+Die geschweiften Klammern `{` und `}` brauchen nicht ausgegeben werden. Sie
+sollen andeuten, dass an dieser Stelle des Satzes die richtigen Werte eingefügt
+werden.
+```
+
+```{code-cell} python
+# Code-Zelle
+```
+
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+```python
+# Eingabe: Erzeugung der Liste mit den Lieblingsgerichten
+lieblingsgerichte = ['Pizza', 'Lasagne', 'Sushi']
+
+# Verarbeitung: Bestimmung der Anzahl der Lieblingsgerichte
+anzahl = len(lieblingsgerichte)
+
+# Ausgabe
+print('Ich habe', str(anzahl), 'Lieblingsgerichte und das sind:', lieblingsgerichte, '.')
+```
+````
+
+## Zusammenfassung und Ausblick
+
+In diesem Kapitel haben wir gelernt, wie man mit Listen mehrere Werte in Python
+strukturiert speichern kann. Wir wissen nun, wie Listen erstellt und manipuliert
+werden. Außerdem kennen wir mit `len()` eine einfache Möglichkeit, die Länge
+einer Liste zu bestimmen. Diese Konzepte bilden die Grundlage für viele
+weiterführende Themen wie Schleifen und Interaktionen, die in späteren Kapiteln
+behandelt werden.
