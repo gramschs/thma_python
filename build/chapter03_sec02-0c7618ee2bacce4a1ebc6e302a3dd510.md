@@ -1,0 +1,215 @@
+---
+kernelspec:
+  name: python3
+  display_name: 'Python 3'
+---
+
+# 3.2 Plotly Express
+
+Python kann auch auf sleistungsarmer Hardware laufen wie beispielsweise auf dem
+Raspberry Pi. Ein Grund für die Effizienz von Python ist, dass nicht alle
+möglichen Datentypen, Funktionen und Methoden von Beginn an in den Speicher
+geladen werden, sondern erst bei Bedarf. Python-Code ist in sogenannte Module
+unterteilt.
+
+In diesem Jupyter Notebook werden wir den Modul-Mechanismus anhand des
+Plotly-Express-Moduls kennenlernen.
+
+## Lernziele
+
+```{admonition} Lernziele
+:class: attention
+* [ ] Sie können ein Modul mit einem Alias importieren.
+* [ ] Sie können mit dem Befehl `dir()` sich den Inhalt des Moduls anzeigen
+  lassen.
+* [ ] Sie können mit dem Befehl `help()` sich die Hilfe zu einer Funktion
+  anzeigen lassen.
+* [ ] Sie können mit Plotly Express einen Lineplot (`px.line()`) oder einen
+  Scatterplot (`px.scatter()`) mit Titel generieren.
+```
+
+## Import von Modulen
+
+Module sind Python-Code, der Konstanten oder Anweisungen (Funktionen, Klassen)
+zur Verfügung stellt, die den eigentlichen Python-Kern erweitern. Module müssen
+importiert werden, damit der Python-Interpreter diese erweiterten
+Funktionalitäten benutzen kann.
+
+Es gibt mehrere Anweisungen, ein Modul zu importieren. Wir verwenden hier den
+sogenannten **Alias-Import**. Ein Alias ist eine Abkürzung, in diesem Fall für
+den Namen des Moduls. Theoretisch können wir jeden beliebigen Alias verwenden,
+in der Praxis haben sich jedoch bestimmte Aliase eingebürgert. Im Fall von
+Plotly Express ist `px` der Standard-Alias. Um also das Modul Plotly Express
+mit dem alias `px` zu importieren, schreiben wir die folgende Code-Zeile:
+
+```{code-cell} python
+import plotly.express as px
+```
+
+Wird die obige Anweisung ausgeführt, passiert scheinbar nichts. Tatsächlich hat
+der Python-Interpreter jedoch das Modul geladen. Die Anweisung `dir(px)` listet
+auf, was genau alles importiert wurde.
+
+```{code-cell} python
+dir(px)
+```
+
+Die Liste der importierten Funktionalitäten ist ganz schön lang. Modulinhalte
+mit einem Unterstrich `_` oder zwei Unterstrichen `__` ignorieren wir in dieser
+Vorlesung. Wenn wir wissen möchten, was sich hinter den einzelnen
+Funktionalitäten verbirgt, können wir die eingebaute Hilfe von Python aufrufen.
+Dazu suchen wir uns einen Modulinhalt aus, über die wir mehr wissen wollen, und
+rufen dann die Funktion `help()` auf. Wenn wir beispielsweise mehr über
+`scatter` wissen wollen, lautet der Aufruf folgendermaßen:
+
+```{code-cell} python
+help(px.scatter)
+```
+
+```{admonition} Alias benutzen
+:class: warning
+Wenn wir eine Konstante, Funktion oder Klasse aus einem Modul benutzen wollen,
+das wir mit einem Alias importiert haben, müssen wir immer den Alias
+voranstellen und mit einem Punkt von der Funktionalität abtrennen.
+```
+
+Offensichtlich ist `px.scatter` eine Funktion ("function"), die einen
+Scatterplot in 2D erstellt. Dabei ist Scatterplot die englische Bezeichnung für
+Streudiagramm.
+
+```{admonition} Mini-Übung
+:class: tip
+Rufen Sie die eingebaute Hilfe für die Funktion `line` auf und vergleichen Sie
+die Ausgabe mit dem Hilfetext zu `scatter`. Gibt es Gemeinsamkeiten in der
+Struktur der Hilfebeschreibung?
+```
+
+```{code-cell} python
+# Code-Zelle
+```
+
+```{admonition} Lösung
+:class: tip
+:class: dropdown
+Bei den Hilfebeschreibungen wird zuerst der Funktionsaufruf mit Argumenten
+gezeigt, dann folgt eine kurze Beschreibung, was der Zweck der Funktion ist. Als
+nächstes werden detailliert die Parameter der Funktion beschrieben und zuletzt
+wird der Rückgabewert der Funktion angezeigt. Damit folgt die Hilfe dem
+EVA-Prinzip. Die Hilfe beantowrtet die Fragen:
+
+* Welche Eingaben sind möglich (Argumente und Parameter der Funktion)?
+* Was gibt die Funktion nach der Verarbeitung als Ausgabe zurück?
+```
+
+## Liniendiagramme
+
+Wir bleiben bei der `line()`-Funktion. Die Hilfe verrät uns, dass das erste
+Argument der Funktion `data_frame` ist. Die Standardeinstellung lautet:
+`data_frame=None`. Dabei steht `None` für einen fehlenden oder leeren Wert. Wir
+brauchen also das erste Argument nicht notwendigerweise. Das zweite Argument ist
+`x=None` und das dritte Argument `y=None`. Auch diese Argumente sind optional.
+In der Beschreibung der Parameter steht, dass `x` und `y` Listen sein können.
+Probieren wir es aus. Wir betrachten ein Auto, das von 100 km/h auf 0 km/h
+abgebremst wird. Dabei wird die Temperatur der Bremsscheibe in °C gemessen.
+
+```{code-cell} python
+# Zeit in Sekunden während des Bremsvorgangs
+zeit_s = [0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0]
+
+# Temperatur der Bremsscheibe in °C
+temperatur_celsius = [80, 145, 210, 265, 305, 335, 350]
+
+# Visualisierung als Liniendiagramm
+px.line(x=zeit_s, y=temperatur_celsius)
+```
+
+In Jupyter Notebooks wird das Diagramm meist automatisch angezeigt. Mit
+`.show()` erzwingen wir die Anzeige explizit. Dazu speichern wir zunächst das
+Diagramm in einer Variablen (hier `fig`) und wenden dann `.show()` an.
+
+```{code-cell} python
+# Visualisierung als Liniendiagramm unabhängig vom Jupyter Notebook
+fig = px.line(x=zeit_s, y=temperatur_celsius)
+fig.show()
+```
+
+Jedes Diagramm muss Achsenbeschriftungen und einen Titel haben! Die Hilfe verrät
+uns, dass dem Parameter `title` ein String übergeben werden kann. Wir setzen das
+Argument auf den Titel "Bremsscheibentemperatur während der Bremsung".
+
+```{code-cell} python
+# Visualisierung als Liniendiagramm mit Titel
+fig = px.line(x=zeit_s, y=temperatur_celsius,
+              title='Bremsscheibentemperatur während der Bremsung')
+fig.show()
+```
+
+Auch verrät uns die Hilfe, dass Achsenbeschriftungen über den Parameter `labels`
+gesteuert werden. Dabei werden die beiden Achsen über ein sogenanntes Dictionary
+konfiguriert. Das ist eine Datenstruktur, die wir in einem späteren Kapitel noch
+ausführlich behandeln werden. Für heute genügt es zu wissen: Dictionaries werden
+mit geschweiften Klammern `{ }` erzeugt und ordnen Schlüsseln Werte zu. Die
+Syntax ist: {'Schlüssel': 'Wert'}.
+
+```{code-cell} python
+# Visualisierung als Liniendiagramm mit Titel und Achsenbeschriftung
+fig = px.line(x=zeit_s, y=temperatur_celsius,
+              title='Bremsscheibentemperatur während der Bremsung',
+              labels={'x': 'Zeit in Sekunden', 'y': 'Temperatur in °C'})
+fig.show()
+```
+
+Mit Titel und Achsenbeschriftung haben wir ein vollständiges Liniendiagramm
+erstellt.
+
+```{admonition} Mini-Übung
+:class: tip
+Nach einer Bergabfahrt, wo das Auto häufig bremsen musste, wird es geparkt. Die
+folgende Tabelle gibt an, wie die sich die stark erhitzte Bremsscheibe wieder
+abkühlt:
+
+| Zeit \[min\] | Bremsscheibentemperatur \[°C\] |
+| ------------ | ------------------------------ |
+| 0 | 380 |
+| 1 | 310 |
+| 2 | 265 |
+| 3 | 230 |
+| 5 | 185 |
+| 7 | 155 |
+| 10 | 120 |
+| 15 | 85 |
+
+Visualisieren Sie diese Messdaten als Liniendiagramm. Setzen Sie auch einen
+Titel und eine passende Achsenbeschriftung.
+```
+
+```{code-cell} python
+# Code-Zelle
+```
+
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+```python
+# Zeit nach Ende der Fahrt in Minuten
+zeit_minuten = [0, 1, 2, 3, 5, 7, 10, 15]
+
+# Bremsscheibentemperatur in °C
+temperatur_celsius = [380, 310, 265, 230, 185, 155, 120, 85]
+
+# Visualisierung als Liniendiagramm
+fig = px.line(x=zeit_minuten, y=temperatur_celsius, 
+              title='Abkühlung der Bremsscheibe nach Bergabfahrt',
+              labels={'x': 'Zeit in Minuten', 'y': 'Temperatur in °C'})
+fig.show()
+```
+````
+
+## Zusammenfassung und Ausblick
+
+Module haben dazu geführt, dass Python derzeit eine der beliebtesten
+Programmiersprachen ist, weil es für alle möglichen denkbaren Anwendungszwecke
+Module gibt. In diesem Jupyter Notebook haben wir gelernt, Module zu importieren
+und mit der eingebauten Hilfe sich den Inhalt der Module anzusehen. Darüber
+hinaus haben wir ein erstes Modul namens Plotly Express kennengelernt, um
+Messdaten als Liniendiagramm zu visualisieren.
