@@ -95,10 +95,10 @@ material = "Edelstahl"
 norm = "DIN 933"
 durchmesser = "M8"
 ```
-
 1. Verketten Sie diese vier Strings mit dem `+`-Operator zu einem vollständigen
-   Satz nach folgendem Muster: `Bauteil: [Typ], Material: [Material], Norm:
-   [Norm], Durchmesser: [Durchmesser]`
+   Satz nach folgendem Muster: `Bauteil: {Typ}, Material: {Material}, Norm:
+   {Norm}, Durchmesser: {Durchmesser}`. Die geschweiften Klammern `{` und `}`
+   brauchen Sie nicht ausgeben. Sie stehen hier nur als Platzhalter.
 2. Geben Sie den zusammengesetzten String mit `print()` aus.
 
 Tipp: Vergessen Sie nicht die Leerzeichen und Kommas zwischen den Textteilen!
@@ -140,8 +140,9 @@ Schreiben Sie ein Programm, das nacheinander nach folgenden Informationen fragt:
 3. Lieblingsfach
 
 Das Programm soll anschließend einen vollständigen Satz ausgeben: "Hallo
-[Vorname], du studierst [Studiengang] und dein Lieblingsfach ist
-[Lieblingsfach]."
+{Vorname}, du studierst {Studiengang} und dein Lieblingsfach ist
+{Lieblingsfach}." Die geschweiften Klammern `{` und `}` brauchen Sie nicht
+ausgeben. Sie stehen hier nur als Platzhalter.
 
 Hinweis: Verwenden Sie die `input()`-Funktion und String-Verkettung mit `+`.
 ```
@@ -177,7 +178,7 @@ berechnet.
 1. Fragen Sie nach der Länge des Bauteils in Metern.
 2. Fragen Sie nach der Breite des Bauteils in Metern.
 3. Berechnen Sie die Fläche mit der Formel: Fläche = Länge · Breite.
-4. Geben Sie das Ergebnis aus: "Die Fläche beträgt \[Ergebnis\] m^2."
+4. Geben Sie das Ergebnis aus: "Die Fläche beträgt {Ergebnis} m^2."
 
 Hinweis: Verwenden Sie `float()`, um die Eingaben in Fließkommazahlen
 umzuwandeln, und `str()`, um die berechnete Fläche in der Ausgabe einzufügen.
@@ -322,8 +323,8 @@ Schreiben Sie ein vollständiges Programm, das
 2. nach der Beschleunigung $a$ fragt (in m/s²),
 3. nach der Zeit $t$ fragt (in s),
 4. die Endgeschwindigkeit berechnet und
-5. das Ergebnis ausgibt: "Nach [Zeit] Sekunden beträgt die Geschwindigkeit
-   [Ergebnis] m/s".
+5. das Ergebnis ausgibt: "Nach {Zeit} Sekunden beträgt die Geschwindigkeit
+   {Ergebnis} m/s".
 
 Wichtig: Strukturieren Sie Ihren Code mit Kommentaren nach dem EVA-Prinzip:
 - `# Eingabe`
@@ -449,9 +450,9 @@ Ihr Programm soll
 2. Das Volumen, das Gewicht und die Gesamtkosten berechnen.
 
 3. Alle Ergebnisse übersichtlich ausgeben:
-   - "Volumen: [Wert] m^3"
-   - "Gewicht: [Wert] kg"
-   - "Materialkosten: [Wert] EUR"
+   - "Volumen: {Wert} m^3"
+   - "Gewicht: {Wert} kg"
+   - "Materialkosten: {Wert} EUR"
 
 Anforderungen:
 
