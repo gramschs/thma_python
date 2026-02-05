@@ -52,7 +52,7 @@ unterschiedlich!
 :class: tip
 Ein Stahlträger hat eine Länge von 3.5 m und wiegt pro Meter 25.4 kg.
 
-1. Speichern Sie die Länge in einer Variable `laenge` und das Gewicht pro Meter
+1. Speichern Sie die Länge in einer Variable `laenge_m` und das Gewicht pro Meter
    in einer Variable `gewicht_pro_meter`.
 2. Berechnen Sie das Gesamtgewicht des Trägers mit der Formel: Gesamtgewicht =
    Länge · Gewicht pro Meter.
@@ -68,19 +68,19 @@ Ein Stahlträger hat eine Länge von 3.5 m und wiegt pro Meter 25.4 kg.
 :class: dropdown
 ```python
 # Variablen initialisieren
-laenge = 3.5
+laenge_m = 3.5
 gewicht_pro_meter = 25.4
 
 # Berechnung
-gesamtgewicht = laenge * gewicht_pro_meter
+gesamtgewicht_kg = laenge_m * gewicht_pro_meter
 
 # Ausgabe
-print(gesamtgewicht)
+print(gesamtgewicht_kg)
 ```
 
 Alternative Ausgabe mit Text und Einheit:
 ```python
-print('Das Gesamtgewicht beträgt', gesamtgewicht, 'kg')
+print('Das Gesamtgewicht beträgt', gesamtgewicht_kg, 'kg')
 ```
 Das Ergebnis ist 88.9 kg.
 ````
@@ -193,14 +193,14 @@ umzuwandeln, und `str()`, um die berechnete Fläche in der Ausgabe einzufügen.
 :class: dropdown
 ```python
 # Eingabe
-laenge = float(input('Geben Sie die Länge in Metern ein: '))
-breite = float(input('Geben Sie die Breite in Metern ein: '))
+laenge_m = float(input('Geben Sie die Länge in Metern ein: '))
+breite_m = float(input('Geben Sie die Breite in Metern ein: '))
 
 # Verarbeitung
-flaeche = laenge * breite
+flaeche_m2 = laenge_m * breite_m
 
 # Ausgabe
-print('Die Fläche beträgt ' + str(flaeche) + ' m^2.')
+print('Die Fläche beträgt ' + str(flaeche_m2) + ' m^2.')
 ```
 
 Beispiel-Ausgabe:
@@ -257,14 +257,14 @@ keine Bindestriche, keine Schlüsselwörter, aussagekräftige Namen bevorzugen.
 Gegeben ist folgender Code:
 
 ```python
-spannung = 230
-spannung = spannung * 2
-spannung = spannung - 100
-spannung = spannung / 3
-print(spannung)
+spannung_V = 230
+spannung_V = spannung_V * 2
+spannung_V = spannung_V - 100
+spannung_V = spannung_V / 3
+print(spannung_V)
 ```
 1. Führen Sie den Code *gedanklich* Schritt für Schritt aus und notieren Sie
-   nach jeder Zeile den aktuellen Wert der Variable `spannung`.
+   nach jeder Zeile den aktuellen Wert der Variable `spannung_V`.
 2. Erstellen Sie eine Tabelle mit zwei Spalten: "nach Zeile" und "Wert von
    spannung"
 3. Führen Sie den Code anschließend in der Code-Zelle aus und überprüfen Sie
@@ -287,10 +287,10 @@ Schrittweise Ausführung:
 
 | nach Zeile | Wert von spannung | Berechnung |
 |------------|-------------------|------------|
-| `spannung = 230` | 230 | Initialisierung |
-| `spannung = spannung * 2` | 460 | 230 * 2 = 460 |
-| `spannung = spannung - 100` | 360 | 460 - 100 = 360 |
-| `spannung = spannung / 3` | 120.0 | 360 / 3 = 120.0 |
+| `spannung_V = 230` | 230 | Initialisierung |
+| `spannung_V = spannung_V * 2` | 460 | 230 * 2 = 460 |
+| `spannung_V = spannung_V - 100` | 360 | 460 - 100 = 360 |
+| `spannung_V = spannung_V / 3` | 120.0 | 360 / 3 = 120.0 |
 
 Endergebnis: `120.0`
 
@@ -474,15 +474,15 @@ Testen Sie Ihr Programm mit einem Beispiel: Länge = 2.0 m, Breite = 0.5 m, Höh
 :class: dropdown
 ```python
 # Eingabe
-laenge = float(input('Geben Sie die Länge des Bauteils in Metern ein: '))
-breite = float(input('Geben Sie die Breite des Bauteils in Metern ein: '))
-hoehe = float(input('Geben Sie die Höhe des Bauteils in Metern ein: '))
-dichte_stahl = float(input('Geben Sie die Dichte von Stahl in kg/m³ ein: '))
+laenge_m = float(input('Geben Sie die Länge des Bauteils in Metern ein: '))
+breite_m = float(input('Geben Sie die Breite des Bauteils in Metern ein: '))
+hoehe_m = float(input('Geben Sie die Höhe des Bauteils in Metern ein: '))
+dichte_stahl_kg_m3 = float(input('Geben Sie die Dichte von Stahl in kg/m³ ein: '))
 preis_pro_kg = float(input('Geben Sie den Preis pro Kilogramm in € ein: '))
 
 # Verarbeitung
-volumen_m3 = laenge * breite * hoehe
-gewicht_kg = volumen_m3 * dichte_stahl
+volumen_m3 = laenge_m * breite_m * hoehe_m
+gewicht_kg = volumen_m3 * dichte_stahl_kg_m3
 materialkosten_euro = gewicht_kg * preis_pro_kg
 
 # Ausgabe
