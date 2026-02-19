@@ -6,7 +6,7 @@ kernelspec:
 
 # 3.2 Liniendiagramme
 
-Python kann auch auf sleistungsarmer Hardware laufen wie beispielsweise auf dem
+Python kann auch auf leistungsarmer Hardware laufen wie beispielsweise auf dem
 Raspberry Pi. Ein Grund für die Effizienz von Python ist, dass nicht alle
 möglichen Datentypen, Funktionen und Methoden von Beginn an in den Speicher
 geladen werden, sondern erst bei Bedarf. Python-Code ist in sogenannte Module
