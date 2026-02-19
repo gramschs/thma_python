@@ -44,8 +44,7 @@ Datentyps nur zwei verschiedene Werte annehmen kann, nämlich
 * `False`: Wahrheitswert ist falsch.
 
 Aber wie kann man dann überprüfen, welcher Datentyp in einer Variablen
-gespeichert ist? Dazu gibt es das Kommando `type`. Führen Sie die nächste
-Code-Zelle aus.
+gespeichert ist? Dazu gibt es die Funktion `type()`.
 
 ```{code-cell} python
 variable = False
@@ -58,7 +57,7 @@ Funktion `type()` den Wert `bool` aus.
 ## Vergleiche mit Zahlen
 
 Nachdem wir jetzt den Datentyp Bool kennengelernt haben, mit dem Python das
-Ergebnis eines Vergleichs speichert, kommen wir nun zu dem Vergleich selbst.
+Ergebnis eines Vergleichs speichert, kommen wir zu dem Vergleich selbst.
 
 Zunächst beschäftigen wir uns mit mathematischen Vergleichen. In der Mathematik
 ist ein Vergleich ein Ausdruck mit zwei Argumenten und einem Vergleichsoperator
@@ -177,11 +176,10 @@ encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Vergleiche mit Strings
 
-Als Nächstes werden wir uns mit der Verwendung von Strings in Vergleichen
-beschäftigen. Um festzustellen, ob zwei Strings in Python gleich sind, können
-wir den Gleichheitsoperator `==` verwenden. Der Gleichheitsoperator gibt `True`
-zurück, wenn die beiden Strings exakt übereinstimmen, und `False`, wenn sie sich
-unterscheiden.
+Als Nächstes beschäftigen wir uns mit dem Vergleich von Strings. Um zu prüfen,
+ob zwei Strings in Python gleich sind, verwenden wir den Gleichheitsoperator
+`==`. Dieser gibt `True` zurück, wenn die Strings exakt übereinstimmen, und
+andernfalls `False`.
 
 ```{code-cell} python
 print('Hallo' == 'Welt')   # False
@@ -196,16 +194,17 @@ gleich.
 
 Um zu überprüfen, ob ein String in einem anderen enthalten ist, können wir den
 Operator `in` verwenden. Der Operator `in` gibt `True` zurück, wenn der
-Teilstring in dem anderen String enthalten ist, und `False`, wenn nicht.
+erste Teilstring in dem zweiten String enthalten ist, und ansonsten `False`.
 
 ```{code-cell} python
 print('Welt' in 'Hallo Welt')    # True
 print('Python' in 'Hallo Welt')  # False
 ```
 
-Beachten Sie, dass bei der Überprüfung die Groß- und Kleinschreibung in Python
-beachtet werden muss. Wenn wir also nach dem String `'welt'` suchen, erhalten wir
-`False`, da der String `'Welt'` großgeschrieben ist.
+*Hinweis*: Python unterscheidet bei String-Vergleichen zwischen Groß- und
+Kleinschreibung. Suchen wir beispielsweise nach dem String `'welt'`, ergibt der
+Vergleich mit `'Welt'` den Wert `False`, da die Schreibweise nicht
+übereinstimmt.
 
 Wir können auch andere Vergleichsoperationen wie <, >, <=, >= mit Strings
 verwenden. Diese Operationen vergleichen die Strings **lexikografisch**, also
@@ -213,17 +212,19 @@ Zeichen für Zeichen von links nach rechts. Sobald ein Zeichen in den beiden
 Strings unterschiedlich ist, entscheidet dieses Zeichen über das Gesamtergebnis.
 
 ```{code-cell} python
-print('Apfel' < 'Banane')    # True, weil 'A' vor 'B' kommt
-print('Apfel' < 'Aprikose')  # True, weil 'f' vor 'r' kommt
-print('Apfel' < 'apfel')     # True, weil Großbuchstaben vor Kleinbuchstaben kommen    
+print('Apfel' < 'Banane')    # True, da 'A' im Alphabet vor 'B' steht
+print('Apfel' < 'Aprikose')  # True, da 'f' vor 'r' kommt
+print('Apfel' < 'apfel')     # True, da Großbuchstaben vor Kleinbuchstaben kommen    
 ```
 
-In diesem Beispiel ist `'Apfel'` kleiner als `'Banane'`, da "A" im Alphabet vor
-"B" steht. Es ist auch `'Apfel'` kleiner als `'Aprikose'`, da das erste
-unterschiedliche Zeichen das dritte Zeichen ist und "f" vor "r" im Alphabet
-steht. Großbuchstaben gelten als 'kleiner' als Kleinbuchstaben, d.h. Python
-ordnet intern alle Großbuchstaben vor allen Kleinbuchstaben ein. Daher kommt "A"
-vor "a" und der letzte Vergleich ist ebenfalls wahr.
+Erklärung:
+
+* "Apfel" ist kleiner als "Banane", weil der erste Buchstabe "A" im Alphabet vor
+  "B" steht.
+* "Apfel" ist kleiner als "Aprikose", da beim ersten Unterschied (dritter
+  Buchstabe) "f" vor "r" kommt.
+* Großbuchstaben werden in Python als kleiner eingestuft als Kleinbuchstaben.
+  Daher ist "A" kleiner als "a", und der letzte Vergleich ergibt `True`.
 
 ````{admonition} Mini-Übung
 :class: tip
