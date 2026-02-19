@@ -1,0 +1,286 @@
+---
+kernelspec:
+  name: python3
+  display_name: 'Python 3'
+---
+
+# 4.1 Wahrheitswerte und Vergleiche
+
+Viele Möglichkeiten unserer Gesellschaft stehen nur Volljährigen offen und sind
+damit an eine Altersangabe gebunden. Wenn jetzt ein Computersystem vorab prüfen
+soll, ob Volljährigkeit vorliegt oder nicht, dann brauchen wir einen *einfachen
+Vergleich*. Daher beschäftigen wir uns in diesem Kapitel mit Vergleichen und dem
+*Datentyp Bool*.
+
+## Lernziele
+
+```{admonition} Lernziele
+:class: attention
+* [ ] Sie kennen den Datentyp **Bool** mit seinen beiden Werten `True` und
+  `False`.
+* [ ] Sie kennen die wichtigsten **Vergleichsoperatoren** für Zahlen und
+  Strings.
+* [ ] Sie können mit `in` überprüfen, ob ein Teilstring in einem String
+  enthalten ist.
+```
+
+## Der Datentyp Bool
+
+Zurück zu dem Beispiel mit der Überprüfung der Volljährigkeit. Angenommen, wir
+speichern das Alter des Benutzers oder der Benutzerin in der Variable `alter`.
+Damit wäre ein simples Beispiel für einen einfachen Vergleich der mathematische
+Ausdruck `alter < 18`. Der Wert der Variablen `alter` wird also mit der Zahl 18
+verglichen. Dieser Vergleich ist entweder **wahr (True)** oder **falsch
+(False)**. Oder anders formuliert, diese Bedingung ist entweder erfüllt oder
+nicht erfüllt.
+
+Um den Wahrheitswert einer Bedingung zu speichern, hat Python einen eigenen
+Datentyp, den sogenannten booleschen Datentyp. Nach dem englischen Wort wird
+dieser Datentyp in der Informatik üblicherweise **Bool** oder **Boolean**
+genannt. Das Besondere an diesem Datentyp ist, dass eine Variable dieses
+Datentyps nur zwei verschiedene Werte annehmen kann, nämlich
+
+* `True`: Wahrheitswert ist wahr oder
+* `False`: Wahrheitswert ist falsch.
+
+Aber wie kann man dann überprüfen, welcher Datentyp in einer Variablen
+gespeichert ist? Dazu gibt es die Funktion `type()`.
+
+```{code-cell} python
+variable = False
+type(variable)
+```
+
+Ist in einer Variablen ein Objekt vom Datentyp Bool gespeichert, gibt die
+Funktion `type()` den Wert `bool` aus.
+
+## Vergleiche mit Zahlen
+
+Nachdem wir jetzt den Datentyp Bool kennengelernt haben, mit dem Python das
+Ergebnis eines Vergleichs speichert, kommen wir zu dem Vergleich selbst.
+
+Zunächst beschäftigen wir uns mit mathematischen Vergleichen. In der Mathematik
+ist ein Vergleich ein Ausdruck mit zwei Argumenten und einem Vergleichsoperator
+in der Mitte. Die beiden Argumente können auch unterschiedliche Datentypen
+haben, dann muss der Vergleichsoperator aber sinnvoll für diese Datentypen
+definiert sein. Zum Beispiel darf man einen Integer mit einem Float vergleichen
+
+`3 < 17.2`
+
+aber
+
+`3 < 'vier'`
+
+führt in Python zu einem Fehler (`TypeError`), da Zahlen und Strings nicht
+miteinander verglichen werden können.
+
+Es gibt die folgenden Vergleichsoperatoren in Python:
+
+* `<`   kleiner
+* `<=`  kleiner oder gleich
+* `>`   größer
+* `>=`  größer oder gleich
+* `==`  gleich
+* `!=` ungleich
+
+Mit Python können wir leicht den Wahrheitsgehalt von Vergleichen überprüfen. Wir
+setzen eine Variable auf den Wert 7:
+
+```{code-cell} python
+x = 7
+```
+
+Jetzt probieren wir in den nachfolgenden Code-Zellen verschiedene
+Vergleichsoperatoren aus.
+
+Ist x kleiner als 7?
+
+```{code-cell} python
+print(x < 7)  # Ausgabe: False
+```
+
+Ist x kleiner oder gleich 7?
+
+```{code-cell} python
+print(x <= 7)  # Ausgabe: True
+```
+
+Ist x größer als 10?
+
+```{code-cell} python
+print(x > 10)  # Ausgabe: False    
+```
+
+Ist x größer oder gleich 10?
+
+```{code-cell} python
+print(x >= 10)  # Ausgabe: False    
+```
+
+Ist x gleich 7?
+
+```{code-cell} python
+print(x == 7)  # Ausgabe: True
+```
+
+Ist x ungleich 7?
+
+```{code-cell} python
+print(x != 7)  # Ausgabe: False
+```
+
+```{admonition} Mini-Übung
+:class: tip
+Wählen Sie sich eine Zahl. Testen Sie anschließend:
+* Ist Ihre Zahl kleiner gleich 5?
+* Ist Ihre Zahl genau 17?
+* Ist Ihre Zahl nicht gleich 17?
+* Ist Ihre Zahl positiv?
+* Ist Ihre Zahl kleiner als -17.7?
+```
+
+```{code-cell} python
+# Code-Zelle
+
+```
+
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+```python
+# Eingabe: Wahl meiner Zahl
+x = 33
+
+# kleiner gleich 5?
+print(x <= 5)
+
+# genau gleich 17?
+print(x == 17)
+
+# nicht gleich 17?
+print(x != 17)
+
+# positiv?
+print(x > 0)
+
+# kleiner als -17.7?
+print(x < -17.7)
+```
+````
+
+```{dropdown} Video "Vergleiche in Python" von Programmieren Starten
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ucsv_Nhhxmk"
+title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write;
+encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+```
+
+## Vergleiche mit Strings
+
+Als Nächstes werden wir uns mit der Verwendung von Strings in Vergleichen
+beschäftigen. Um festzustellen, ob zwei Strings in Python gleich sind, können
+wir den Gleichheitsoperator `==` verwenden. Der Gleichheitsoperator gibt `True`
+zurück, wenn die beiden Strings exakt übereinstimmen, und `False`, wenn sie sich
+unterscheiden.
+
+```{code-cell} python
+print('Hallo' == 'Welt')   # False
+print('Hallo' == 'Hallo')  # True
+print('Hallo' == 'hallo')  # False
+```
+
+Die ersten beiden Beispiele sind offensichtlich, jedoch das dritte Beispiel
+verdient mehr Aufmerksamkeit. Python unterscheidet strikt zwischen Groß- und
+Kleinschreibung. Daher sind die beiden Strings `'Hallo'` und `'hallo'` nicht
+gleich.
+
+Um zu überprüfen, ob ein String in einem anderen enthalten ist, können wir den
+Operator `in` verwenden. Der Operator `in` gibt `True` zurück, wenn der
+Teilstring in dem anderen String enthalten ist, und `False`, wenn nicht.
+
+```{code-cell} python
+print('Welt' in 'Hallo Welt')    # True
+print('Python' in 'Hallo Welt')  # False
+```
+
+Beachten Sie, dass bei der Überprüfung die Groß- und Kleinschreibung in Python
+beachtet werden muss. Wenn wir also nach dem String `'welt'` suchen, erhalten wir
+`False`, da der String `'Welt'` großgeschrieben ist.
+
+Wir können auch andere Vergleichsoperationen wie <, >, <=, >= mit Strings
+verwenden. Diese Operationen vergleichen die Strings **lexikografisch**, also
+Zeichen für Zeichen von links nach rechts. Sobald ein Zeichen in den beiden
+Strings unterschiedlich ist, entscheidet dieses Zeichen über das Gesamtergebnis.
+
+```{code-cell} python
+print('Apfel' < 'Banane')    # True, weil 'A' vor 'B' kommt
+print('Apfel' < 'Aprikose')  # True, weil 'f' vor 'r' kommt
+print('Apfel' < 'apfel')     # True, weil Großbuchstaben vor Kleinbuchstaben kommen    
+```
+
+In diesem Beispiel ist `'Apfel'` kleiner als `'Banane'`, da "A" im Alphabet vor
+"B" steht. Es ist auch `'Apfel'` kleiner als `'Aprikose'`, da das erste
+unterschiedliche Zeichen das dritte Zeichen ist und "f" vor "r" im Alphabet
+steht. Großbuchstaben gelten als 'kleiner' als Kleinbuchstaben, d.h. Python
+ordnet intern alle Großbuchstaben vor allen Kleinbuchstaben ein. Daher kommt "A"
+vor "a" und der letzte Vergleich ist ebenfalls wahr.
+
+````{admonition} Mini-Übung
+:class: tip
+Gegeben sind die folgenden Strings:
+```python
+material1 = "Stahl"
+material2 = "Aluminium"
+material3 = "Stahllegierung"
+material4 = "aluminium"
+```
+Überprüfen Sie folgende Vergleiche und überlegen Sie zunächst selbst, bevor Sie
+den Code ausführen:
+
+1. Ist `material1` lexikografisch größer als `material2`?
+2. Enthält `material3` den String `material1`?
+3. Sind `material2` und `material4` identisch?
+4. Überprüfen Sie mit dem `in`-Operator, ob die Zeichenfolge "leg" in
+   `material3` vorkommt.
+5. Ist `material4` lexikografisch kleiner als `material1`?
+````
+
+```{code-cell} python
+# Code-Zelle
+
+```
+
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+```python
+material1 = "Stahl"
+material2 = "Aluminium"
+material3 = "Stahllegierung"
+material4 = "aluminium"
+
+# 1. Ist material1 lexikografisch größer als material2?
+print(material1 > material2)  # True, da 'S' im Alphabet nach 'A' kommt
+
+# 2. Enthält material3 den String material1?
+print(material1 in material3)  # True, da "Stahl" in "Stahllegierung" enthalten ist
+
+# 3. Sind material2 und material4 identisch?
+print(material2 == material4)  # False, da Groß-/Kleinschreibung unterschiedlich ist
+
+# 4. Überprüfen Sie mit dem in-Operator, ob die Zeichenfolge "leg" in material3 vorkommt.
+print("leg" in material3)     # True, da "leg" in "Stahllegierung" enthalten ist
+
+# 5. Ist material4 lexikografisch kleiner als material1?
+print(material4 < material1)  # False, da "a" (Kleinbuchstabe) als größer gilt als "S" (Großbuchstabe)
+```
+````
+
+## Zusammenfassung und Ausblick
+
+In diesem Kapitel haben wir den booleschen Datentyp Bool mit seinen Werten
+`True` und `False` kennengelernt. Wir haben Vergleichsoperatoren (<, >, ==, !=,
+<=, >=) für Zahlen und Strings untersucht und gesehen, wie String-Vergleiche auf
+lexikografischer Ordnung basieren. Außerdem haben wir den `in`-Operator zur
+Überprüfung von Teilstrings kennengelernt. Im nächsten Kapitel werden wir
+Vergleiche einsetzen, um abhängig vom Ergebnis des Vergleichs Entscheidungen zu
+treffen.
