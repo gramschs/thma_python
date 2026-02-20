@@ -1,0 +1,58 @@
+---
+kernelspec:
+  name: python3
+  display_name: 'Python 3'
+---
+
+# Übungen
+
+````{admonition} Übung 4.1
+:class: tip
+Gegeben ist folgende Variable:
+```python
+x = 15
+```
+
+Sagen Sie vorher, welches Ergebnis die folgenden Vergleiche liefern (`True` oder
+`False`), und notieren Sie Ihre Antwort. Führen Sie anschließend den Code aus
+und überprüfen Sie Ihre Vorhersage.
+
+1. `x >= 10`
+2. `x != 15`
+3. `x > 15`
+4. `x < 20`
+5. `x == 15`
+6. `x <= 15`
+````
+
+```{code-cell} python
+# Code-Zelle
+```
+
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+```python
+x = 15
+
+print(x >= 10)  # True,  da 15 größer oder gleich 10 ist
+print(x != 15)  # False, da 15 gleich 15 ist, also nicht ungleich
+print(x > 15)   # False, da 15 nicht größer als 15 ist
+print(x < 20)   # True,  da 15 kleiner als 20 ist
+print(x == 15)  # True,  da 15 gleich 15 ist
+print(x <= 15)  # True,  da 15 kleiner oder gleich 15 ist
+```
+
+Ausgabe:
+```
+True
+False
+False
+True
+True
+True
+```
+````
+
+```{admonition} Übung 4.2
+```
