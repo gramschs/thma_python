@@ -36,7 +36,8 @@ project:
     - title: 4. Entscheidungen treffen
       children:
       - file: chapter04/chapter04_sec01.md    
-      - file: chapter04/chapter04_sec02.md    
+      - file: chapter04/chapter04_sec02.md
+      - file: chapter04/chapter04_sec03.md   
     
 site:
   template: book-theme
