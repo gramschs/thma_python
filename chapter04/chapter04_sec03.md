@@ -6,7 +6,7 @@ kernelspec:
 
 # Übungen
 
-````{admonition} Übung 4.1
+````{admonition} Übung 4.1 (✩)
 :class: tip
 Gegeben ist folgende Variable:
 ```python
@@ -54,7 +54,7 @@ True
 ```
 ````
 
-````{admonition} Übung 4.2
+````{admonition} Übung 4.2 (✩✩)
 :class: tip
 Gegeben sind folgende Variablen:
 ```python
@@ -108,7 +108,7 @@ False
 ```
 ````
 
-```{admonition} Übung 4.3
+```{admonition} Übung 4.3 (✩)
 :class: tip
 In einer Lehrveranstaltung gilt: Wer mindestens 50 Punkte erreicht, hat die
 Prüfung bestanden.
@@ -137,7 +137,7 @@ if punkte >= 50:
 ```
 ````
 
-```{admonition} Übung 4.4
+```{admonition} Übung 4.4 (✩)
 :class: tip
 An einem Prüfstand wird der Luftdruck in einem Behälter gemessen. Der maximale
 Betriebsdruck beträgt 12.0 bar. Wird dieser Wert überschritten, muss ein
@@ -167,7 +167,7 @@ if druck_bar > 12.0:
 ```
 ````
 
-```{admonition} Übung 4.5
+```{admonition} Übung 4.5 (✩✩)
 :class: tip
 An einem internationalen Flughafen werden Passagiere in ihrer Landessprache
 begrüßt. Schreiben Sie ein Skript, das nach dem Kürzel der gewünschten Sprache
@@ -201,7 +201,7 @@ if sprache == 'FR':
 ```
 ````
 
-```{admonition} Übung 4.6
+```{admonition} Übung 4.6 (✩✩✩)
 :class: tip
 Bei der Überwachung einer Produktionsanlage wird die Betriebstemperatur in drei
 Bereiche eingeteilt:
@@ -262,7 +262,7 @@ sich sicherstellen, dass immer genau eine Meldung ausgegeben wird. Sobald eine
 Bedingung erfüllt ist, werden die übrigen nicht mehr geprüft.
 ````
 
-````{admonition} Übung 4.7
+````{admonition} Übung 4.7 (✩✩)
 :class: tip
 Gegeben ist folgende Liste mit den aktuellen Tabellenplätzen 1 bis 5 
 der 1. Fußball-Bundesliga:
@@ -300,7 +300,7 @@ print('Auf Platz 3 steht:', tabelle[2])
 Für den Zugriff auf den 3. Platz in der Tabelle benutzen wir Index 2.
 ````
 
-````{admonition} Übung 4.8
+````{admonition} Übung 4.8 (✩✩✩)
 :class: tip
 Gegeben sind folgende Messwerte der Bremsscheibentemperatur:
 ```python
@@ -371,7 +371,7 @@ Bei diesen Werten ergibt der Durchschnitt (60+80+100+120+140+160+180)/7 ≈ 120 
 und der Titel bleibt unverändert.
 ````
 
-````{admonition} Übung 4.9
+````{admonition} Übung 4.9  (✩✩✩)
 :class: tip
 Bei einem internationalen Ingenieurbüro werden Messdaten der Bremsscheibe in
 verschiedenen Einheiten dokumentiert. Gegeben sind folgende Messwerte:
