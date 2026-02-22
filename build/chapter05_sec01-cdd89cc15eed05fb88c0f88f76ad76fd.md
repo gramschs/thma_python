@@ -1,0 +1,310 @@
+---
+kernelspec:
+  name: python3
+  display_name: 'Python 3'
+---
+
+# 5.1 for-Schleifen
+
+In der Praxis kommt es oft vor, dass wir von vornherein wissen, wie oft wir eine
+Handlung wiederholen wollen. Beispielsweise soll in einem Verein darüber
+abgestimmt werden, ob Anna oder Bob zukünftig die Kasse verwalten soll. Alle
+Vereinsmitglieder schreiben einen der beiden Namen auf einen Zettel und werfen
+ihn in die Wahlurne. Jetzt beginnt die Wiederholung. Charlie greift in die Urne,
+zieht einen Zettel heraus, liest den Namen vor und macht dann entweder bei Anna
+oder bei Bob einen Strich auf dem Flipboard. Solange Zettel in der Urne sind,
+wird diese Prozedur wiederholt. In Python verwenden wir dafür die sogenannte
+for-Schleife.
+
+## Lernziele
+
+```{admonition} Lernziele
+:class: attention
+* [ ] Sie können eine **for-Schleife mit Liste** programmieren.
+* [ ] Sie wissen, wie die Fachbegriffe der einzelnen Bestandteile der Schleife
+  lauten:
+  * **Kopfzeile**, wird mit **Doppelpunkt :** abgeschlossen
+  * Schlüsselwörter **for** und **in**
+  * **Schleifenvariable**
+* [ ] Sie können Zahlenlisten mit der **range()**-Funktion erzeugen und diese mit
+  der for-Schleife kombinieren.
+```
+
+## for-Schleifen mit Liste
+
+Erkunden wir den folgenden Python-Code, der das Vorlesen der Wahlzettel
+nachbildet:
+
+```{code-cell} python
+for zettel in ["Bob", "Anna", "Anna", "Bob", "Anna", "Bob", "Anna"]:
+    print(zettel)
+```
+
+Nacheinander wird die Variable `zettel` auf die Werte in der Liste `["Bob",
+"Anna", "Anna", "Bob", "Anna", "Bob", "Anna"]` gesetzt und per `print()`
+ausgegeben. Dieses Programmierkonstrukt nennt man eine **for-Schleife**.
+
+Eine for-Schleife beginnt mit dem Schlüsselwort **for**. Danach kommt der Name
+der sogenannten **Schleifenvariable**, in diesem Fall also `zettel`. Als
+nächstes folgt wieder ein Schlüsselwort, nämlich **in** und zuletzt eine Liste.
+Diese Zeile nennt man **Kopfzeile**.
+
+Python muss wissen, welche Kommandos für jeden Schleifendurchgang ausgeführt
+werden sollen. Daher wird die Kopfzeile der Schleife mit einem Doppelpunkt `:`
+beendet. Danach werden alle Kommandos aufgelistet, die ausgeführt werden sollen.
+Damit Python weiß, wann es wieder mit dem Code außerhalb der Schleife
+weitergehen soll, müssen wir dem Python-Interpreter das Ende der Schleife
+signalisieren. In vielen Programmiersprachen wird das mit dem Schlüsselwort
+`end` gemacht oder es werden Klammern gesetzt. In Python wird stattdessen mit
+**Einrückung** gearbeitet. Alle Zeilen mit Anweisungen, die eingerückt sind,
+werden in der Schleife wiederholt.
+
+In dem obigen Beispiel heißt die Schleifenvariable `zettel`. Sie nimmt beim 1.
+Schleifendurchgang den Wert `"Bob"` an. Dann werden die Anweisungen im
+Schleifeninneren ausgeführt, also die `print()`-Funktion für `zettel = "Bob"`
+angewendet und "Bob" ausgegeben. Dann wird die Schleife ein 2. Mal durchlaufen.
+Diesmal nimmt die Schleifenvariable `zettel` den Wert `"Anna"` an und die
+`print()`-Funktion gibt "Anna" aus. Das geht so weiter bis zum 7.
+Schleifendurchgang, wo die Schleifenvariable den Wert `zettel = "Anna"` annimmt
+und "Anna" auf dem Bildschirm angezeigt wird. Da dies das letzte Element der
+Liste war, macht der Python-Interpreter mit dem Code außerhalb der Schleife
+weiter. Bei unserem kurzen Beispiel ist aber schon das Ende des Programmes
+erreicht. Zusammengefasst, werden nacheinander die Elemente der Liste `"Bob",
+"Anna", "Anna", "Bob", "Anna", "Bob", "Anna"` auf dem Bildschirm ausgegeben.
+
+Allgemein hat die for-Schleife mit Liste folgende Syntax (= Grammatik einer
+Programmiersprache):
+
+```python
+for element in liste:
+    anweisungen
+```
+
+## Anwendungsbeispiel der for-Schleife
+
+Meistens geht es nicht darum, nur etwas einzeln anzuzeigen, sondern die Elemente
+der Menge zu verarbeiten. Im nächsten Beispiel soll gezählt werden, wie viele
+Stimmen für Anna und Bob abgegeben wurden.
+
+Wir initialisieren zwei Variablen `anzahl_anna` und `anzahl_bob` mit dem Wert
+`0`. Mit einer for-Schleife gehen wir jeden Zettel durch. Steht auf dem Zettel
+Anna, erhöhen wir den Wert der Variablen `anzahl_anna` um 1. Steht auf dem
+Zettel Bob, erhöhen wir den Wert der Variablen `anzahl_bob` um 1. Beide
+Ergebnisse geben wir am Ende aus.
+
+```{code-cell} python
+anzahl_anna = 0
+anzahl_bob = 0
+
+for zettel in ["Bob", "Anna", "Anna", "Bob", "Anna", "Bob", "Anna"]:
+    # Anna steht auf Zettel
+    if zettel == "Anna":
+        anzahl_anna = anzahl_anna + 1
+    # Bob steht auf Zettel
+    if zettel == "Bob":
+        anzahl_bob = anzahl_bob + 1
+
+print('Stimmen für Anna: ', anzahl_anna)
+print('Stimmen für Bob: ', anzahl_bob)
+```
+
+```{admonition} Mini-Übung
+:class: tip
+
+Bei der Wahl ist ein Fehler passiert: Ein Vereinsmitglied hat versehentlich
+„Charlie" auf seinen Zettel geschrieben. Die Urne enthält jetzt folgende Zettel:
+
+`["Bob", "Anna", "Anna", "Charlie", "Bob", "Anna", "Bob", "Anna"]`
+
+1. Führen Sie den obigen Code mit der neuen Liste aus. Was gibt das Programm aus?
+   Erklären Sie das Ergebnis.
+2. Ergänzen Sie den Code so, dass auch die Anzahl ungültiger Stimmen berechnet
+   und ausgegeben wird. Hinweis: Zählen Sie die Gesamtzahl der Zettel in der
+   Schleife mit.
+```
+
+```{code-cell} python
+# Code-Zelle
+```
+
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+
+Das Programm gibt aus:
+
+    Stimmen für Anna:  4
+    Stimmen für Bob:   3
+
+Die Gesamtzahl der Stimmen beträgt nur 7, obwohl 8 Zettel in der Urne lagen.
+Der Zettel mit „Charlie" wird von keiner der beiden if-Bedingungen erfasst
+und daher stillschweigend ignoriert.
+
+```python
+anzahl_anna = 0
+anzahl_bob = 0
+anzahl_gesamt = 0
+
+for zettel in ["Bob", "Anna", "Anna", "Charlie", "Bob", "Anna", "Bob", "Anna"]:
+    anzahl_gesamt = anzahl_gesamt + 1
+    if zettel == "Anna":
+        anzahl_anna = anzahl_anna + 1
+    if zettel == "Bob":
+        anzahl_bob = anzahl_bob + 1
+
+anzahl_ungueltig = anzahl_gesamt - anzahl_anna - anzahl_bob
+
+print('Stimmen für Anna: ', anzahl_anna)
+print('Stimmen für Bob: ', anzahl_bob)
+print('Ungültige Stimmen: ', anzahl_ungueltig)
+```
+````
+
+```{dropdown} Video "for-Schleife" von Programmieren Starten
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ISo1uqLcVw8?si=HhdcBq1rzxtLZ10L" title="YouTube video player" frameborder="0" allow="accelerometer;
+autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+```
+
+## for-Schleifen mit range()
+
+In vielen Fällen möchten wir eine Schleife für eine bestimmte Anzahl von
+Iterationen ausführen. In Python können wir dies mit Hilfe der
+`range()`-Funktion erreichen. Die `range()`-Funktion generiert ein spezielles
+Objekt von Zahlen, die wir dann anschließend in einer for-Schleife verwenden
+können. Natürlich kann die Folge von Zahlen auch für andere Dinge genutzt
+werden, aber die Verwendung für for-Schleifen ist sicherlich der häufigste
+Einsatzzweck von `range()`.
+
+Die Syntax der `range()`-Funktion ist:
+
+```python
+range(stop)               # erzeugt Zahlen von 0 bis (stop - 1)
+range(start, stop)        # erzeugt Zahlen von start bis (stop - 1)
+range(start, stop, step)  # erzeugt Zahlen von start bis (stop - 1) mit der Schrittweite step
+```
+
+Es ist schwierig, sich den Inhalt von `range()` direkt anzuschauen. Am
+einfachsten ist es, die `range()`-Funktion direkt mit der for-Schleife zu
+kombinieren.
+
+```python
+for i in range(start, stop, step):
+    anweisungen
+```
+
+Hier ist `i` die Schleifenvarible, die nacheinander bei jedem Schleifendurchgang
+die Werte in der von `range()` erzeugten Zahlenfolge annimmt. Im Folgenden
+finden Sie einige Beispiele für die Verwendung von for-Schleifen mit `range()`:
+
+```{code-cell} python
+for i in range(5):
+    print(i)
+```
+
+`range(5)` erzeugt die Zahlen 0, 1, 2, 3, 4, die dann durch die
+`print()`-Funktion nacheinander ausgegeben werden.
+
+```{code-cell} python
+for i in range(2, 6):      
+    print(i)
+```
+
+`range(2,6)` erzeugt die Zahlen 2, 3, 4, 5. Achtung, die 6 gehört nicht dazu, da
+das letzte Element der Liste ja die stop-Zahl - 1 ist.
+
+```{code-cell} python
+for i in range(1, 10, 2): 
+    print(i)
+```
+
+`range(1, 10, 2)` erzeugt die Liste 1, 3, 5, 7, 9.
+
+Um die Bedeutung der Schrittweite `step` zu zeigen, können wir einmal eine
+negative Schrittweite ausprobieren.
+
+```{code-cell} python
+for i in range(10, 0, -1):
+    print(i)
+```
+
+Die negative Schrittweite `step = -1` führt dazu, dass der Python-Interpreter
+rückwärts zählt.
+
+```{admonition} Mini-Übung
+:class: tip
+Lassen Sie die Dreier-Zahlen von 3 bis 99 ausgeben, also 3, 6, 9, 12, 15, ...,
+96, 99.
+```
+
+```{code-cell} python
+# Code-Zelle
+```
+
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+```python
+for i in range(3, 100, 3):
+    print(i)
+```
+````
+
+Insbesondere, wenn die Anzahl der Wiederholungen feststeht, kommt die
+for-Schleife in Kombination mit `range()` zum Einsatz. Im Folgenden sehen wir
+uns ein Beispiel dazu an.
+
+Beispiel: Berechnung der Summe der ersten 10 natürlichen Zahlen
+
+```{code-cell} ipython3
+summe = 0
+for i in range(1, 11):
+    summe += i
+
+print("Die Summe der ersten 10 natürlichen Zahlen ist: ", summe)
+```
+
+```{admonition} Mini-Übung
+:class: tip
+Schreiben Sie ein Programm, dass die Summe der ersten n Quadratzahlen berechnet.
+```
+
+```{code-cell} python
+# Code-Zelle
+```
+
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+```python
+n = 5  # Beispielwert
+summe = 0
+
+for i in range(1, n + 1):
+    summe += i ** 2
+
+print("Die Summe der ersten Quadratzahlen ist:", summe)
+```
+Hier ist die Variable `n` im Python-Code gesetzt worden. Schöner wäre eine
+interaktive Abfrage mit der input()-Funktion:
+```python
+n = int(input('Wie viele Quadratzahlen sollen summiert werden?'))
+```
+Aber das war nicht gefragt.
+````
+
+```{dropdown} Video "for-Schleife mit range()" von Programmieren Starten
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pQh5Idw2sKM?si=TKEewQnlA8At66KA" title="YouTube video player" frameborder="0" allow="accelerometer; 
+autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+```
+
+## Zusammenfassung und Ausblick
+
+In diesem Kapitel haben wir gelernt, wie man in Python for-Schleifen verwendet,
+um Wiederholungen umzusetzen. Wir haben zwei Varianten kennengelernt: die
+for-Schleife mit Liste und die for-Schleife mit der `range()`-Funktion. Dabei
+haben wir Begriffe wie Schleifenvariable, Kopfzeile und Einrückung eingeführt
+und deren Bedeutung erklärt. Anhand von Beispielen und Übungen haben wir
+gesehen, wie man Listen von Zahlen oder Texten durchläuft und die Elemente
+weiterverarbeitet. Außerdem haben wir gelernt, wie man mit `range()`
+Zahlenfolgen erzeugt. Im nächsten Kapitel werden wir das Thema Strings erneut
+aufgreifen und vertiefen.
