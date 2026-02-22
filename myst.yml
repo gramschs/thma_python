@@ -37,7 +37,10 @@ project:
       children:
       - file: chapter04/chapter04_sec01.md    
       - file: chapter04/chapter04_sec02.md
-      - file: chapter04/chapter04_sec03.md   
+      - file: chapter04/chapter04_sec03.md
+    - title: 5. Wiederholungen automatisieren
+      children:
+      - file: chapter05/chapter05_sec01.md
     
 site:
   template: book-theme
