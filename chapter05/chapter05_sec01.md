@@ -114,7 +114,7 @@ print('Stimmen für Bob: ', anzahl_bob)
 Bei der Wahl ist ein Fehler passiert: Ein Vereinsmitglied hat versehentlich
 „Charlie" auf seinen Zettel geschrieben. Die Urne enthält jetzt folgende Zettel:
 
-`["Bob", "Anna", "Anna", "Charlie", "Bob", "Anna", "Bob", "Anna"]`
+`["Bob", "Anna", "Anna", "Charlie", "Anna", "Bob", "Anna"]`
 
 1. Führen Sie den obigen Code mit der neuen Liste aus. Was gibt das Programm aus?
    Erklären Sie das Ergebnis.
@@ -134,9 +134,9 @@ Bei der Wahl ist ein Fehler passiert: Ein Vereinsmitglied hat versehentlich
 Das Programm gibt aus:
 
     Stimmen für Anna:  4
-    Stimmen für Bob:   3
+    Stimmen für Bob:   2
 
-Die Gesamtzahl der Stimmen beträgt nur 7, obwohl 8 Zettel in der Urne lagen.
+Die Gesamtzahl der Stimmen beträgt nur 6, obwohl 7 Zettel in der Urne lagen.
 Der Zettel mit „Charlie" wird von keiner der beiden if-Bedingungen erfasst
 und daher stillschweigend ignoriert.
 
@@ -145,7 +145,7 @@ anzahl_anna = 0
 anzahl_bob = 0
 anzahl_gesamt = 0
 
-for zettel in ["Bob", "Anna", "Anna", "Charlie", "Bob", "Anna", "Bob", "Anna"]:
+for zettel in ["Bob", "Anna", "Anna", "Charlie", "Anna", "Bob", "Anna"]:
     anzahl_gesamt = anzahl_gesamt + 1
     if zettel == "Anna":
         anzahl_anna = anzahl_anna + 1
