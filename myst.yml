@@ -42,6 +42,7 @@ project:
       children:
       - file: chapter05/chapter05_sec01.md
       - file: chapter05/chapter05_sec02.md
+      - file: chapter05/chapter05_sec03.md
     
 site:
   template: book-theme

@@ -1,0 +1,483 @@
+---
+kernelspec:
+  name: python3
+  display_name: 'Python 3'
+---
+
+# Übungen
+
+````{admonition} Übung 5.1 (✩)
+:class: tip
+Gegeben ist folgende Liste mit Werkstoffen:
+
+```python
+materialien = ["Stahl", "Aluminium", "Titan", "Kupfer"]
+```
+
+Schreiben Sie ein Programm, das mit einer for-Schleife jedes Material
+nummeriert ausgibt. Die Ausgabe soll folgendes Format haben:
+
+```
+Material 1: Stahl
+Material 2: Aluminium
+Material 3: Titan
+Material 4: Kupfer
+```
+
+Hinweis: Verwenden Sie eine zusätzliche Zählvariable, die Sie vor der Schleife
+auf 1 setzen und in jedem Schleifendurchgang um 1 erhöhen.
+````
+
+```{code-cell} python
+# Code-Zelle
+```
+
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+```python
+materialien = ["Stahl", "Aluminium", "Titan", "Kupfer"]
+
+nummer = 1
+for material in materialien:
+    print("Material " + str(nummer) + ": " + material)
+    nummer = nummer + 1
+```
+
+Ausgabe:
+```
+Material 1: Stahl
+Material 2: Aluminium
+Material 3: Titan
+Material 4: Kupfer
+```
+
+Erklärung: Die Variable `nummer` wird vor der Schleife auf `1` initialisiert.
+In jedem Schleifendurchgang nimmt die Schleifenvariable `material` den nächsten
+Wert aus der Liste an. Da `nummer` eine Ganzzahl (Integer) ist, muss sie mit
+`str()` in einen String umgewandelt werden, bevor sie mit `+` verkettet werden
+kann. Am Ende jedes Durchgangs wird `nummer` um 1 erhöht, damit beim nächsten
+Durchgang die nächste Nummer ausgegeben wird.
+````
+
+````{admonition} Übung 5.2 (✩)
+:class: tip
+Schreiben Sie ein Programm, das den Benutzer oder die Benutzerin nach einer
+ganzen Zahl fragt und anschließend das kleine Einmaleins für diese Zahl ausgibt.
+
+Beispiel: Wenn die Zahl `3` eingegeben wird, soll die Ausgabe so aussehen:
+
+```
+1 x 3 = 3
+2 x 3 = 6
+3 x 3 = 9
+4 x 3 = 12
+5 x 3 = 15
+6 x 3 = 18
+7 x 3 = 21
+8 x 3 = 24
+9 x 3 = 27
+10 x 3 = 30
+```
+
+Verwenden Sie eine for-Schleife mit `range()`.
+````
+
+```{code-cell} python
+# Code-Zelle
+```
+
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+```python
+# Eingabe
+zahl = int(input("Für welche Zahl soll das Einmaleins ausgegeben werden? "))
+
+# Verarbeitung und Ausgabe
+for i in range(1, 11):
+    ergebnis = i * zahl 
+    print(str(i) + " x " + str(zahl) + " = " + str(ergebnis))
+```
+Erklärung: `range(1, 11)` erzeugt die Zahlen 1 bis 10. Die obere Grenze `11`
+gehört dabei nicht mehr zur Folge, da `range()` immer bis zur stop-Zahl minus 1
+zählt. In jedem Schleifendurchgang nimmt `i` nacheinander die Werte 1, 2, ...,
+10 an. Das Produkt `zahl * i` wird in der Variablen `ergebnis` gespeichert und
+anschließend ausgegeben.
+````
+
+```{admonition} Übung 5.3 (✩)
+:class: tip
+Bei rotierenden Maschinenteilen (z. B. Turbinenschaufeln oder Kupplungsscheiben)
+wirkt auf jedes Bauteil eine Fliehkraft. Diese hängt von der Drehzahl der
+Maschine ab und ist bei der Auslegung von Bauteilen zu berücksichtigen.
+
+Die Fliehkraft $F$ in Newton berechnet sich nach der Formel:
+
+$$F = m \cdot \omega^2 \cdot r$$
+
+Dabei ist $\omega$ die Winkelgeschwindigkeit in rad/s, die sich aus der Drehzahl
+$n$ in U/min wie folgt ergibt:
+
+$$\omega = \frac{2 \pi \cdot n}{60}$$
+
+Gegeben sind folgende Werte:
+
+| Größe | Wert |
+| ----- | ---- |
+| Masse $m$ | 2.0 kg |
+| Radius $r$ | 0.3 m |
+| Kreiszahl $\pi$ | 3.14159 |
+
+Berechnen Sie die Fliehkraft für Drehzahlen von 500 U/min bis 3000 U/min in
+500er-Schritten und geben Sie die Ergebnisse aus.
+```
+
+```{code-cell} python
+# Code-Zelle
+```
+
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+```python
+# Eingabe
+PI = 3.14159
+m_kg = 2.0
+r_m = 0.3
+
+# Verarbeitung und Ausgabe
+for n in range(500, 3001, 500):
+    omega = 2 * PI * n / 60
+    F_N = m_kg * omega**2 * r_m
+    print("n = " + str(n) + " U/min,  F = " + str(F_N) + " N")
+```
+Erklärung: `PI` wird als Konstante mit dem Wert 3.14159 definiert und in der
+Berechnung der Winkelgeschwindigkeit `omega` verwendet. Großbuchstaben für
+Konstanten sind eine bewährte Konvention in der Programmierung, die auf den
+ersten Blick deutlich macht, dass sich dieser Wert im Programm nicht ändert
+soll. `range(500, 3001, 500)` erzeugt die Zahlen 500, 1000, 1500, 2000, 2500,
+3000. Die obere Grenze muss `3001` lauten, damit 3000 noch enthalten ist. Die
+Ausgabe enthält viele Nachkommastellen, da Python mit Gleitkommazahlen rechnet.
+In einem späteren Kapitel werden wir NumPy kennenlernen, das u. a. eine
+präzisere Kreiszahl `numpy.pi` sowie komfortablere Möglichkeiten zur Berechnung
+solcher Wertetabellen bereitstellt.
+````
+
+````{admonition} Übung 5.4 (✩✩)
+:class: tip
+An einem Hydrauliksystem werden während eines Belastungstests folgende
+Druckwerte in bar gemessen:
+
+```python
+druckwerte_bar = [8.5, 11.2, 13.7, 9.8, 15.1, 10.3, 12.6, 14.9, 7.4, 11.8]
+```
+
+Der maximale Betriebsdruck beträgt 12.0 bar. Schreiben Sie ein Programm, das die
+Messpunkte nummeriert durchläuft und für jeden Wert eine der folgenden Meldungen
+ausgibt:
+
+* Liegt der Druck im zulässigen Bereich: `"Messung 1: 8.5 bar ==> OK"`
+* Überschreitet der Druck den Grenzwert: `"Messung 3: 13.7 bar ==> WARNUNG:
+  Maximaldruck überschritten!"`
+
+Strukturieren Sie Ihren Code mit EVA-Kommentaren.
+````
+
+```{code-cell} python
+# Code-Zelle
+```
+
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+```python
+# Eingabe
+druckwerte_bar = [8.5, 11.2, 13.7, 9.8, 15.1, 10.3, 12.6, 14.9, 7.4, 11.8]
+MAX_DRUCK_BAR = 12.0
+
+# Verarbeitung und Ausgabe
+nummer = 1
+for druck in druckwerte_bar:
+    if druck <= MAX_DRUCK_BAR:
+        print("Messung " + str(nummer) + ": " + str(druck) + " bar ==> OK")
+    if druck > MAX_DRUCK_BAR:
+        print("Messung " + str(nummer) + ": " + str(druck) + " bar ==> WARNUNG: Maximaldruck überschritten!")
+    nummer = nummer + 1
+```
+
+Erklärung: In jedem Schleifendurchgang wird der aktuelle Druckwert `druck`
+mit dem Grenzwert `MAX_DRUCK_BAR` verglichen. Je nach Ergebnis wird eine der
+beiden Meldungen ausgegeben. Beachten Sie, dass die beiden `if`-Bedingungen
+sich gegenseitig ausschließen: Ein Druckwert kann nicht gleichzeitig kleiner
+oder gleich und größer als der Grenzwert sein. Die Zählvariable `nummer` wird
+wie in Übung 5.1 manuell mitgeführt und am Ende jedes Durchgangs um 1 erhöht.
+````
+
+````{admonition} Übung 5.5 (✩✩)
+:class: tip
+Bei einem Zugversuch wurden an zehn Stahlproben folgende Zugfestigkeitswerte in
+Megapascal (MPa) gemessen:
+
+```python
+zugfestigkeit_mpa = [512, 498, 521, 507, 489, 534, 503, 518, 495, 526]
+```
+
+Berechnen Sie mit einer for-Schleife:
+
+1. den **Minimalwert** (kleinster Messwert),
+2. den **Maximalwert** (größter Messwert),
+3. den **Mittelwert** (Summe aller Werte geteilt durch die Anzahl).
+
+Geben Sie die drei Ergebnisse am Ende aus. Verwenden Sie ausschließlich
+for-Schleifen und Zählervariablen. Die eingebauten Python-Funktionen `min()`,
+`max()` und `sum()` sind für diese Übung nicht erlaubt.
+
+Hinweis: Initialisieren Sie den Minimalwert und den Maximalwert mit dem ersten
+Listenelement, bevor Sie die Schleife starten.
+````
+
+```{code-cell} python
+# Code-Zelle
+```
+
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+```python
+# Eingabe
+zugfestigkeit_mpa = [512, 498, 521, 507, 489, 534, 503, 518, 495, 526]
+
+# Verarbeitung
+minimalwert = zugfestigkeit_mpa[0]
+maximalwert = zugfestigkeit_mpa[0]
+summe = 0
+anzahl = 0
+
+for wert in zugfestigkeit_mpa:
+    if wert < minimalwert:
+        minimalwert = wert
+    if wert > maximalwert:
+        maximalwert = wert
+    summe = summe + wert
+    anzahl = anzahl + 1
+
+mittelwert = summe / anzahl
+
+# Ausgabe
+print("Minimalwert: " + str(minimalwert) + " MPa")
+print("Maximalwert: " + str(maximalwert) + " MPa")
+print("Mittelwert:  " + str(mittelwert) + " MPa")
+```
+
+Erklärung: `minimalwert` und `maximalwert` werden mit dem ersten Listenelement
+initialisiert. Das ist wichtig: Würde man mit `0` initialisieren, wäre
+`minimalwert` nach der Schleife immer `0`, da alle Messwerte größer als `0`
+sind. In jedem Schleifendurchgang wird der aktuelle Wert mit dem bisherigen
+Minimal- und Maximalwert verglichen und bei Bedarf ersetzt. Die Variable
+`summe` summiert alle Werte, `anzahl` zählt die Durchläufe. Der Mittelwert
+wird erst nach der Schleife aus beiden berechnet.
+````
+
+````{admonition} Übung 5.6 (✩✩)
+:class: tip
+Das Hooke'sche Gesetz beschreibt den linearen Zusammenhang zwischen der
+Federkraft $F$ und der Auslenkung $x$ einer Feder:
+
+$$F = k \cdot x$$
+
+Dabei ist $k$ die Federkonstante in N/mm und $x$ die Auslenkung in mm.
+
+Gegeben ist eine Feder mit der Federkonstante $k = 3.5$ N/mm. Erstellen Sie
+mit einer for-Schleife zwei Listen:
+
+* `auslenkung_mm`: Auslenkungen von 0 mm bis 100 mm in 5-mm-Schritten,
+* `federkraft_n`: die zugehörigen Federkräfte in Newton.
+
+Visualisieren Sie anschließend die Federkraft in Abhängigkeit der Auslenkung
+als Liniendiagramm mit Titel und Achsenbeschriftungen.
+````
+
+```{code-cell} python
+# Code-Zelle
+```
+
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+```python
+import plotly.express as px
+
+# Eingabe
+k_n_mm = 3.5
+
+# Verarbeitung
+auslenkung_mm = []
+federkraft_n = []
+
+for x in range(0, 101, 5):
+    auslenkung_mm.append(x)
+    federkraft_n.append(k_n_mm * x)
+
+# Ausgabe
+fig = px.line(x=auslenkung_mm, y=federkraft_n,
+              title="Federkraft nach Hooke'schem Gesetz",
+              labels={"x": "Auslenkung in mm", "y": "Federkraft in N"})
+fig.show()
+```
+
+Erklärung: Vor der Schleife werden zwei leere Listen initialisiert. In jedem
+Schleifendurchgang wird die aktuelle Auslenkung `x` an `auslenkung_mm`
+angehängt und die zugehörige Federkraft `k_n_mm * x` an `federkraft_n`.
+`range(0, 101, 5)` erzeugt die Werte 0, 5, 10, ..., 100. Die obere Grenze
+muss `101` lauten, damit 100 noch enthalten ist. Nach der Schleife werden beide
+Listen an Plotly Express übergeben. Dieses Muster (leere Listen initialisieren,
+in der Schleife befüllen, anschließend visualisieren) werden wir in späteren
+Kapiteln häufig verwenden.
+````
+
+````{admonition} Übung 5.7 (✩✩)
+:class: tip
+In einer Fertigung wurden 15 Bauteile produziert und ihr Material dokumentiert:
+
+```python
+materialien = ["Stahl", "Aluminium", "Stahl", "Kunststoff", "Stahl",
+               "Aluminium", "Stahl", "Kunststoff", "Aluminium", "Stahl",
+               "Kunststoff", "Stahl", "Aluminium", "Stahl", "Kunststoff"]
+```
+
+Schreiben Sie ein Programm, das mit einer for-Schleife die Häufigkeit jedes
+Materials zählt und das Ergebnis als Balkendiagramm darstellt.
+
+Strukturieren Sie Ihren Code mit EVA-Kommentaren.
+````
+
+```{code-cell} python
+# Code-Zelle
+```
+
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+```python
+import plotly.express as px
+
+# Eingabe
+materialien = ["Stahl", "Aluminium", "Stahl", "Kunststoff", "Stahl",
+               "Aluminium", "Stahl", "Kunststoff", "Aluminium", "Stahl",
+               "Kunststoff", "Stahl", "Aluminium", "Stahl", "Kunststoff"]
+
+# Verarbeitung
+anzahl_stahl = 0
+anzahl_aluminium = 0
+anzahl_kunststoff = 0
+
+for material in materialien:
+    if material == "Stahl":
+        anzahl_stahl = anzahl_stahl + 1
+    if material == "Aluminium":
+        anzahl_aluminium = anzahl_aluminium + 1
+    if material == "Kunststoff":
+        anzahl_kunststoff = anzahl_kunststoff + 1
+
+# Ausgabe
+fig = px.bar(x=["Stahl", "Aluminium", "Kunststoff"],
+             y=[anzahl_stahl, anzahl_aluminium, anzahl_kunststoff],
+             labels={"x": "Material", "y": "Anzahl Bauteile"},
+             title="Materialverteilung in der Fertigung")
+fig.show()
+```
+
+Erklärung: Die drei Zählvariablen werden vor der Schleife auf `0` initialisiert.
+In jedem Durchgang wird das aktuelle Material mit den drei bekannten Werten
+verglichen und der passende Zähler um 1 erhöht. Nach der Schleife werden die
+gezählten Häufigkeiten als Listen an `px.bar()` übergeben.
+````
+
+````{admonition} Übung 5.8 (✩✩✩)
+:class: tip
+In der Qualitätssicherung werden gefertigte Bolzen vermessen. Der Soll-Durchmesser
+beträgt 25.0 mm, und die zulässige Toleranz liegt bei +/- 0.3 mm. Bolzen
+außerhalb dieser Toleranz gelten als Ausschuss.
+
+Die Messwerte von 12 Bolzen in Millimetern sind:
+
+```python
+durchmesser_mm = [25.1, 24.6, 25.3, 25.0, 24.7, 25.4,
+                  24.9, 25.2, 24.5, 25.1, 25.3, 24.8]
+```
+
+Schreiben Sie ein Programm, das:
+
+1. jeden Bolzen prüft und als "iO" (in Ordnung) oder "niO" (nicht in Ordnung,
+   d.h. Ausschuss) klassifiziert,
+2. die Anzahl der iO-Teile und niO-Teile zählt,
+3. die Ausschussquote in Prozent berechnet und ausgibt,
+4. die Klassifizierung als Balkendiagramm visualisiert.
+
+Definieren Sie den Sollwert und die Toleranz als Konstanten. Strukturieren Sie
+Ihren Code mit EVA-Kommentaren.
+
+Hinweis: Verwenden Sie eine Hilfsvariable `ist_fehlerhaft`, die Sie zu Beginn
+jedes Schleifendurchgangs auf `False` setzen und auf `True` setzen, sobald der
+Durchmesser die untere oder obere Grenze verletzt.
+````
+
+```{code-cell} python
+# Code-Zelle
+```
+
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+```python
+import plotly.express as px
+
+# Eingabe
+durchmesser_mm = [25.1, 24.6, 25.3, 25.0, 24.7, 25.4,
+                  24.9, 25.2, 24.5, 25.1, 25.3, 24.8]
+SOLL_MM = 25.0
+TOLERANZ_MM = 0.3
+GRENZE_UNTEN_MM = SOLL_MM - TOLERANZ_MM
+GRENZE_OBEN_MM = SOLL_MM + TOLERANZ_MM
+
+# Verarbeitung
+anzahl_iO = 0
+anzahl_niO = 0
+
+for d in durchmesser_mm:
+    ist_fehlerhaft = False
+    if d < GRENZE_UNTEN_MM:
+        ist_fehlerhaft = True
+    if d > GRENZE_OBEN_MM:
+        ist_fehlerhaft = True
+    if ist_fehlerhaft == True:
+        anzahl_niO = anzahl_niO + 1
+    if ist_fehlerhaft == False:
+        anzahl_iO = anzahl_iO + 1
+
+anzahl_gesamt = anzahl_iO + anzahl_niO
+ausschussquote = anzahl_niO / anzahl_gesamt * 100
+
+# Ausgabe
+print("iO-Teile:       " + str(anzahl_iO))
+print("niO-Teile:      " + str(anzahl_niO))
+print("Ausschussquote: " + str(ausschussquote) + " %")
+
+fig = px.bar(x=["iO-Teile", "niO-Teile"],
+             y=[anzahl_iO, anzahl_niO],
+             labels={"x": "Klassifizierung", "y": "Anzahl Bolzen"},
+             title="Ergebnis der Qualitätsprüfung")
+fig.show()
+```
+
+Erklärung: Die Grenzen werden vor der Schleife als Konstanten berechnet, damit
+die Berechnung nicht in jedem Durchgang wiederholt wird. Die Hilfsvariable
+`ist_fehlerhaft` ist vom Typ Bool und wird zu Beginn jedes Schleifendurchgangs
+auf `False` gesetzt. Wird die untere oder obere Grenze verletzt, springt sie
+auf `True`. Am Ende jedes Durchgangs entscheiden zwei `if`-Abfragen auf Basis
+von `ist_fehlerhaft`, welchen Zähler sie erhöhen. Dieses Muster mit einer
+Bool-Variablen, die einen Zustand speichert, nennt man in der Programmierung
+ein **Flag**. Die Ausschussquote enthält viele Nachkommastellen. In einem
+späteren Kapitel werden wir lernen, die Ausgabe mit f-Strings zu formatieren.
+````
