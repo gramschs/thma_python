@@ -1,0 +1,61 @@
+---
+kernelspec:
+  name: python3
+  display_name: 'Python 3'
+---
+
+# Übungen
+
+````{admonition} Übung 5.1 (✩)
+:class: tip
+Gegeben ist folgende Liste mit Werkstoffen:
+
+```python
+materialien = ["Stahl", "Aluminium", "Titan", "Kupfer"]
+```
+
+Schreiben Sie ein Programm, das mit einer for-Schleife jedes Material
+nummeriert ausgibt. Die Ausgabe soll folgendes Format haben:
+
+```
+Material 1: Stahl
+Material 2: Aluminium
+Material 3: Titan
+Material 4: Kupfer
+```
+
+Hinweis: Verwenden Sie eine zusätzliche Zählvariable, die Sie vor der Schleife
+auf 1 setzen und in jedem Schleifendurchgang um 1 erhöhen.
+````
+
+```{code-cell} python
+# Code-Zelle
+```
+
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+```python
+materialien = ["Stahl", "Aluminium", "Titan", "Kupfer"]
+
+nummer = 1
+for material in materialien:
+    print("Material " + str(nummer) + ": " + material)
+    nummer = nummer + 1
+```
+
+Ausgabe:
+```
+Material 1: Stahl
+Material 2: Aluminium
+Material 3: Titan
+Material 4: Kupfer
+```
+
+Erklärung: Die Variable `nummer` wird vor der Schleife auf `1` initialisiert.
+In jedem Schleifendurchgang nimmt die Schleifenvariable `material` den nächsten
+Wert aus der Liste an. Da `nummer` eine Ganzzahl (Integer) ist, muss sie mit
+`str()` in einen String umgewandelt werden, bevor sie mit `+` verkettet werden
+kann. Am Ende jedes Durchgangs wird `nummer` um 1 erhöht, damit beim nächsten
+Durchgang die nächste Nummer ausgegeben wird.
+````
