@@ -43,6 +43,11 @@ project:
       - file: chapter05/chapter05_sec01.md
       - file: chapter05/chapter05_sec02.md
       - file: chapter05/chapter05_sec03.md
+    - title: 6. Formatierung und Simulation
+      children:
+      - file: chapter06/chapter06_sec01.md
+      - file: chapter06/chapter06_sec02.md
+      - file: chapter06/chapter06_sec03.md
     
 site:
   template: book-theme
