@@ -53,10 +53,12 @@ project:
       - file: chapter07/chapter07_sec01.md
       - file: chapter07/chapter07_sec02.md
       - file: chapter07/chapter07_sec03.md
-    - title: 8. Projekt
+    - title: 8. Funktionen
       children:
-      - file: chapter08/chapter08.md
-    - title: 9. Funktionen
+      - file: chapter08/chapter08_sec01.md
+      - file: chapter08/chapter08_sec02.md
+      - file: chapter08/chapter08_sec03.md
+    - title: 9. Numerisches Python mit NumPy
       children:
       - file: chapter09/chapter09_sec01.md
       - file: chapter09/chapter09_sec02.md

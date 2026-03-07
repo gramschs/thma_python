@@ -4,244 +4,179 @@ kernelspec:
   display_name: 'Python 3'
 ---
 
-# 9.2 Physikalische Formeln als Funktionen
+# 9.2 Kinematik und Schwingungen
 
-In Kapitel 9.1 haben wir gelernt, eigene Funktionen zu schreiben. In diesem
-Kapitel wenden wir das direkt auf physikalische Formeln an. Der Mehrwert zeigt
-sich sofort: Eine Formel wird einmal als Funktion implementiert und kann dann
-beliebig oft aufgerufen werden, beispielsweise in Schleifen, für verschiedene
-Parameterwerte und zur Visualisierung von Kennlinien. Das ist deutlich
-übersichtlicher als dieselbe Berechnung an mehreren Stellen im Code zu
-wiederholen.
+In Kapitel 9.1 haben wir NumPy-Arrays kennengelernt und gesehen, wie sich
+Vektoroperationen und mathematische Funktionen direkt auf ganze Zahlenreihen
+anwenden lassen. In diesem Kapitel nutzen wir diese Werkzeuge, um physikalische
+Vorgänge zu berechnen und zu visualisieren. Statt wie bisher in einer Schleife
+Listen Schritt für Schritt aufzufüllen, berechnen wir den gesamten Zeitverlauf
+in einem einzigen Ausdruck und übergeben das Ergebnis direkt an Plotly Express.
+Das macht den Code kürzer, lesbarer und näher an der mathematischen Notation.
 
 ## Lernziele
 
 ```{admonition} Lernziele
 :class: attention
-* [ ] Sie können physikalische Formeln als Python-Funktionen implementieren und
-  mit einem Docstring dokumentieren.
-* [ ] Sie können Funktionen in einer for-Schleife aufrufen, um Kennlinien zu
-  berechnen.
-* [ ] Sie können berechnete Kennlinien mit Plotly Express als Liniendiagramm
-  visualisieren.
+* [ ] Sie können mit `np.linspace()` und Vektoroperationen kinematische Größen
+  (Ort, Geschwindigkeit) berechnen und mit `px.line()` visualisieren.
+* [ ] Sie können eine harmonische Schwingung mit `np.cos()` modellieren und
+  als Diagramm darstellen.
+* [ ] Sie können die Exponentialfunktion `np.exp()` auf Arrays anwenden.
+* [ ] Sie können eine gedämpfte Schwingung als Funktion implementieren und
+  die Wirkung des Dämpfungskoeffizienten durch mehrere Diagramme vergleichen.
 ```
 
-## Kennlinie berechnen und visualisieren
+## Gleichmäßig beschleunigte Bewegung
 
-Das bekannte Muster aus Kapitel 5.2 - leere Listen initialisieren, in der
-Schleife befüllen, an Plotly Express übergeben - bleibt unverändert. Neu ist,
-dass die eigentliche Berechnung jetzt in einer Funktion steckt. Wird die Formel
-später geändert, muss nur die Funktion angepasst werden; die Schleife und der
-Plot bleiben unverändert.
+Die gleichmäßig beschleunigte Bewegung aus der Mechanik beschreibt, wie sich
+Ort und Geschwindigkeit eines Körpers mit konstanter Beschleunigung über die
+Zeit verändern:
 
-```{code-cell} python
-import plotly.express as px
+\begin{align*}
+s(t) &= s_0 + v_0 \, t + \frac{1}{2} \, a \, t^2, \\
+v(t) &= v_0 + a \, t.
+\end{align*}
 
-def berechne_bremsweg(v_kmh):
-    """Berechnet den Bremsweg in Metern für eine Geschwindigkeit in km/h."""
-    return v_kmh**2 / 100
-
-# Eingabe
-geschwindigkeiten = []
-bremswege = []
-
-# Verarbeitung
-for v in range(0, 131, 10):
-    geschwindigkeiten.append(v)
-    bremswege.append(berechne_bremsweg(v))
-
-# Ausgabe
-fig = px.line(x=geschwindigkeiten, y=bremswege,
-              labels={"x": "Geschwindigkeit (km/h)", "y": "Bremsweg (m)"},
-              title="Bremsweg in Abhängigkeit der Geschwindigkeit")
-fig.show()
-```
-
-Im Vergleich zu Kapitel 5.2 ist der Code in der Schleife kürzer und klarer:
-`berechne_bremsweg(v)` erklärt sich durch seinen Namen von selbst.
-
-## Ohmsches Gesetz: Strom-Spannungs-Kennlinie
-
-Das Ohmsche Gesetz beschreibt den Zusammenhang zwischen Spannung $U$, Strom $I$
-und Widerstand $R$:
-
-\begin{equation*}
-U = R \cdot I.
-\end{equation*}
-
-Wir implementieren es als Funktion und visualisieren die
-Strom-Spannungs-Kennlinie für einen gegebenen Widerstand.
-
-```{code-cell} python
-def berechne_spannung(R_ohm, I_A):
-    """Berechnet die Spannung in Volt nach dem Ohmschen Gesetz U = R * I."""
-    return R_ohm * I_A
-```
-
-Jetzt berechnen wir die Kennlinie für einen Widerstand von 100 Ω und
-Stromstärken von 0 bis 2 A in Schritten von 0.1 A. Da `range()` nur mit
-ganzen Zahlen arbeitet, skalieren wir den Schleifenzähler:
-
-```{code-cell} python
-import plotly.express as px
-
-# Eingabe
-R = 100   # Widerstand in Ohm
-
-# Verarbeitung
-stroeme_A = []
-spannungen_V = []
-
-for i in range(0, 21):
-    I = i * 0.1              # 0.0, 0.1, 0.2, ..., 2.0 A
-    stroeme_A.append(I)
-    spannungen_V.append(berechne_spannung(R, I))
-
-# Ausgabe
-fig = px.line(x=stroeme_A, y=spannungen_V,
-              labels={"x": "Strom (A)", "y": "Spannung (V)"},
-              title=f"Strom-Spannungs-Kennlinie für R = {R} Ω")
-fig.show()
-```
-
-Die Kennlinie ist eine Gerade. Das ist das charakteristische Merkmal eines
-ohmschen Widerstands. Die Steigung der Geraden entspricht dem Widerstandswert.
-
-## Wurfweite als Funktion des Abwurfwinkels
-
-Beim schiefen Wurf legt ein Körper, der mit Anfangsgeschwindigkeit $v_0$ unter
-dem Winkel $\alpha$ abgeworfen wird, folgende Wurfweite zurück (ohne
-Luftwiderstand):
-
-$$w = \frac{v_0^2 \cdot \sin(2\alpha)}{g}$$
-
-wobei $g = 9.81 \, \text{m/s}^2$ die Erdbeschleunigung ist. Der Winkel $\alpha$
-muss dabei im Bogenmaß (Radiant) angegeben werden. Das Modul NumPy stellt die
-Funktion `np.deg2rad()` bereit, um Grad in Radiant umzurechnen.
+Mit NumPy lässt sich der gesamte Zeitverlauf ohne Schleife berechnen. Die
+Zeitachse wird mit `np.linspace()` erzeugt, alle weiteren Größen ergeben sich
+durch Vektoroperationen:
 
 ```{code-cell} python
 import numpy as np
-
-def berechne_wurfweite(v0_ms, alpha_grad):
-    """Berechnet die Wurfweite in Metern beim schiefen Wurf ohne Luftwiderstand.
-
-    v0_ms:      Anfangsgeschwindigkeit in m/s
-    alpha_grad: Abwurfwinkel in Grad (0 bis 90)
-    """
-    g = 9.81
-    alpha_rad = np.deg2rad(alpha_grad)
-    return v0_ms**2 * np.sin(2 * alpha_rad) / g
-```
-
-Wir berechnen die Wurfweite für eine Anfangsgeschwindigkeit von 20 m/s und
-alle Winkel von 0° bis 90°:
-
-```{code-cell} python
 import plotly.express as px
 
 # Eingabe
-v0 = 20   # Anfangsgeschwindigkeit in m/s
+s0 = 0.0     # Anfangsort in m
+v0 = 0.0     # Anfangsgeschwindigkeit in m/s
+a = 3.0      # Beschleunigung in m/s²
+t_end = 5.0  # Simulationsdauer in s
 
 # Verarbeitung
-winkel = []
-wurfweiten = []
-
-for alpha in range(0, 91):
-    winkel.append(alpha)
-    wurfweiten.append(berechne_wurfweite(v0, alpha))
+t = np.linspace(0, t_end, 500)
+s = s0 + v0 * t + 0.5 * a * t**2
+v = v0 + a * t
 
 # Ausgabe
-fig = px.line(x=winkel, y=wurfweiten,
-              labels={"x": "Abwurfwinkel (°)", "y": "Wurfweite (m)"},
-              title=f"Wurfweite beim schiefen Wurf (v₀ = {v0} m/s)")
-fig.show()
+fig_s = px.line(x=t, y=s,
+                labels={"x": "Zeit (s)", "y": "Weg (m)"},
+                title=f"Weg-Zeit-Diagramm (a = {a} m/s²)")
+fig_s.show()
+
+fig_v = px.line(x=t, y=v,
+                labels={"x": "Zeit (s)", "y": "Geschwindigkeit (m/s)"},
+                title=f"Geschwindigkeits-Zeit-Diagramm (a = {a} m/s²)")
+fig_v.show()
 ```
 
-Das Diagramm zeigt das bekannte Ergebnis aus der Physik: Die maximale Wurfweite
-wird bei einem Abwurfwinkel von 45° erreicht. Die Kurve ist symmetrisch um
-diesen Punkt, d.h. ein Wurf mit 30° und ein Wurf mit 60° ergeben die gleiche
-Wurfweite.
+Der Vergleich mit dem Muster aus Kapitel 8.2 zeigt den Unterschied deutlich:
+Statt einer Schleife mit `.append()` wird jede Größe in einem einzigen Ausdruck
+berechnet. Das Array `t` mit 500 Zeitpunkten wird dabei wie eine einzelne Zahl
+behandelt; Python und NumPy erledigen die Wiederholung intern.
 
-```{admonition} Mini-Übung
+````{admonition} Mini-Übung
 :class: tip
-Die Fliehkraft, die auf eine rotierende Masse wirkt, berechnet sich nach:
+Simulieren Sie einen Bremsvorgang: Ein Fahrzeug fährt mit 100 km/h und bremst
+mit einer konstanten Verzögerung von $a = -7.5 \, \text{m/s}^2$.
 
-$$F = m \cdot \omega^2 \cdot r \qquad \text{mit} \qquad \omega = \frac{2 \pi n}{60}$$
-
-wobei $m$ die Masse in kg, $r$ der Radius in m und $n$ die Drehzahl in U/min
-ist.
-
-1. Schreiben Sie eine Funktion `berechne_fliehkraft(m_kg, r_m, n_umin)`, die
-   die Fliehkraft in Newton zurückgibt. Versehen Sie die Funktion mit einem
-   Docstring.
-2. Berechnen Sie die Fliehkraft für eine Masse von 2.0 kg bei einem Radius von
-   0.3 m für Drehzahlen von 0 bis 3000 U/min in Schritten von 100 U/min.
-3. Visualisieren Sie das Ergebnis als Liniendiagramm mit Plotly Express.
+1. Rechnen Sie die Anfangsgeschwindigkeit in m/s um.
+2. Berechnen Sie den Zeitpunkt, an dem das Fahrzeug zum Stillstand kommt:
+   $t_{\text{stop}} = -v_0 / a$.
+3. Erzeugen Sie eine Zeitachse von 0 bis $t_{\text{stop}}$ mit 500 Punkten.
+4. Berechnen Sie $v(t)$ und $s(t)$ und stellen Sie beide als separate
+   Liniendiagramme dar.
 
 Strukturieren Sie Ihren Code mit EVA-Kommentaren.
-
-Tipp: Das Modul NumPy stellt $\pi$ als Konstante mit `np.pi` zur Verfügung.
-```
-
-```{code-cell} python
-# Code-Zelle
-```
-
-````{admonition} Lösung
-:class: tip
-:class: dropdown
-```python
-import numpy as np
-import plotly.express as px
-
-def berechne_fliehkraft(m_kg, r_m, n_umin):
-    """Berechnet die Fliehkraft in Newton für eine rotierende Masse.
-
-    m_kg:   Masse in kg
-    r_m:    Radius in m
-    n_umin: Drehzahl in U/min
-    """
-    omega = 2 * np.pi * n_umin / 60
-    return m_kg * omega**2 * r_m
-
-# Eingabe
-m = 2.0   # kg
-r = 0.3   # m
-
-# Verarbeitung
-drehzahlen = []
-kraefte = []
-
-for n in range(0, 3001, 100):
-    drehzahlen.append(n)
-    kraefte.append(berechne_fliehkraft(m, r, n))
-
-# Ausgabe
-fig = px.line(x=drehzahlen, y=kraefte,
-              labels={"x": "Drehzahl (U/min)", "y": "Fliehkraft (N)"},
-              title=f"Fliehkraft-Kennlinie (m = {m} kg, r = {r} m)")
-fig.show()
-```
-
-Bei 3000 U/min ergibt sich eine Fliehkraft von ca. 59217 N. Die Kennlinie
-wächst quadratisch mit der Drehzahl. Eine Verdopplung der Drehzahl vervierfacht
-die Fliehkraft. Das ist für die Auslegung rotierender Bauteile wie Wellen,
-Schwungräder oder Kupplungen von großer praktischer Bedeutung.
 ````
 
-```{admonition} Mini-Übung
-:class: tip
-Eine Schraubenfeder folgt dem Hookeschen Gesetz: $F = k \cdot x$, wobei $k$
-die Federkonstante in N/m und $x$ die Auslenkung in m ist.
-
-1. Schreiben Sie eine Funktion `berechne_federkraft(k_nm, x_m)`, die die
-   Federkraft in Newton zurückgibt, und versehen Sie sie mit einem Docstring.
-2. Berechnen Sie die Federkennlinie für $k = 500 \, \text{N/m}$ und
-   Auslenkungen von 0 bis 0.20 m in Schritten von 0.01 m.
-3. Visualisieren Sie das Ergebnis als Liniendiagramm.
-
-Strukturieren Sie Ihren Code mit EVA-Kommentaren.
+```{code-cell} python
+# Code-Zelle
 ```
+
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+```python
+import numpy as np
+import plotly.express as px
+
+# Eingabe
+v0_ms = 100 / 3.6     # 100 km/h in m/s ≈ 27.78 m/s
+a_ms2 = -7.5          # Verzögerung in m/s²
+t_stop = -v0_ms / a_ms2
+
+# Verarbeitung
+t    = np.linspace(0, t_stop, 500)
+v_ms = v0_ms + a_ms2 * t
+s_m  = v0_ms * t + 0.5 * a_ms2 * t**2
+
+# Ausgabe
+fig_v = px.line(x=t, y=v_ms,
+                labels={"x": "Zeit (s)", "y": "Geschwindigkeit (m/s)"},
+                title="Bremsvorgang: Geschwindigkeit")
+fig_v.show()
+
+fig_s = px.line(x=t, y=s_m,
+                labels={"x": "Zeit (s)", "y": "Weg (m)"},
+                title="Bremsvorgang: Weg")
+fig_s.show()
+```
+
+Das Fahrzeug kommt nach ca. 3.7 s zum Stehen und legt dabei rund 51.4 m zurück.
+Das Geschwindigkeitsdiagramm zeigt eine Gerade mit negativer Steigung, das
+Wegdiagramm eine nach oben geöffnete Parabel, die ihr Maximum genau bei
+$t_{\text{stop}}$ erreicht.
+````
+
+## Harmonische Schwingung
+
+Ein Feder-Masse-System schwingt nach dem Modell der harmonischen Schwingung.
+Die Auslenkung in Abhängigkeit der Zeit lautet:
+
+$$x(t) = A \cdot \cos(\omega \, t) \qquad \text{mit} \quad \omega = 2 \pi f.$$
+
+$A$ ist die Amplitude in Metern, $f$ die Frequenz in Hz und $\omega$ die
+Kreisfrequenz in rad/s. Mit NumPy lässt sich der Schwingungsverlauf direkt
+berechnen:
+
+```{code-cell} python
+import numpy as np
+import plotly.express as px
+
+# Eingabe
+A_m   = 0.05     # Amplitude in m
+f_hz  = 2.0      # Frequenz in Hz
+t_end = 2.0      # Simulationsdauer in s
+
+# Verarbeitung
+omega = 2 * np.pi * f_hz
+t     = np.linspace(0, t_end, 1000)
+x_m   = A_m * np.cos(omega * t)
+
+# Ausgabe
+fig = px.line(x=t, y=x_m,
+              labels={"x": "Zeit (s)", "y": "Auslenkung (m)"},
+              title=f"Harmonische Schwingung (A = {A_m} m, f = {f_hz} Hz)")
+fig.show()
+```
+
+Das Diagramm zeigt eine gleichmäßige Schwingung ohne jede Veränderung der
+Amplitude. In der Realität nimmt die Schwingung durch Reibung und andere
+Dämpfungseffekte mit der Zeit ab. Das behandeln wir im nächsten Abschnitt.
+
+````{admonition} Mini-Übung
+:class: tip
+Berechnen und visualisieren Sie die harmonische Schwingung für folgende zwei
+Szenarien und vergleichen Sie die Diagramme:
+
+| Szenario | Amplitude $A$ | Frequenz $f$ |
+|---|---|---|
+| Weiche Feder | 0.10 m | 1.0 Hz |
+| Steife Feder | 0.02 m | 5.0 Hz |
+
+Erzeugen Sie für jedes Szenario ein eigenes Diagramm über 2 Sekunden.
+Was beobachten Sie?
+````
 
 ```{code-cell} python
 # Code-Zelle
@@ -251,46 +186,190 @@ Strukturieren Sie Ihren Code mit EVA-Kommentaren.
 :class: tip
 :class: dropdown
 ```python
+import numpy as np
 import plotly.express as px
 
-def berechne_federkraft(k_nm, x_m):
-    """Berechnet die Federkraft in Newton nach dem Hookeschen Gesetz F = k * x.
+t = np.linspace(0, 2.0, 1000)
 
-    k_nm: Federkonstante in N/m
-    x_m:  Auslenkung in m
-    """
-    return k_nm * x_m
+# Weiche Feder
+A1, f1 = 0.10, 1.0
+x1 = A1 * np.cos(2 * np.pi * f1 * t)
+fig1 = px.line(x=t, y=x1,
+               labels={"x": "Zeit (s)", "y": "Auslenkung (m)"},
+               title=f"Weiche Feder (A = {A1} m, f = {f1} Hz)")
+fig1.show()
 
-# Eingabe
-k = 500   # N/m
-
-# Verarbeitung
-auslenkungen = []
-kraefte = []
-
-for i in range(0, 21):
-    x = i * 0.01       # 0.00, 0.01, ..., 0.20 m
-    auslenkungen.append(x)
-    kraefte.append(berechne_federkraft(k, x))
-
-# Ausgabe
-fig = px.line(x=auslenkungen, y=kraefte,
-              labels={"x": "Auslenkung (m)", "y": "Federkraft (N)"},
-              title=f"Federkennlinie (k = {k} N/m)")
-fig.show()
+# Steife Feder
+A2, f2 = 0.02, 5.0
+x2 = A2 * np.cos(2 * np.pi * f2 * t)
+fig2 = px.line(x=t, y=x2,
+               labels={"x": "Zeit (s)", "y": "Auslenkung (m)"},
+               title=f"Steife Feder (A = {A2} m, f = {f2} Hz)")
+fig2.show()
 ```
 
-Die Kennlinie ist eine Gerade durch den Ursprung; das Hookesche Gesetz ist
-linear. Bei maximaler Auslenkung von 0.20 m beträgt die Federkraft 100 N.
+Die weiche Feder schwingt langsam mit großer Auslenkung (2 vollständige
+Schwingungen in 2 s), die steife Feder schwingt schnell mit kleiner Auslenkung
+(10 Schwingungen in 2 s). Eine höhere Steifigkeit führt zu einer höheren
+Eigenfrequenz. Das entspricht der physikalischen Erwartung aus dem Modell
+$f = \frac{1}{2\pi}\sqrt{k/m}$.
+````
+
+## Gedämpfte Schwingung
+
+In der Praxis nimmt die Amplitude einer Schwingung durch Reibung und Dämpfung
+mit der Zeit ab. Die gedämpfte Schwingung lässt sich durch folgende Formel
+beschreiben:
+
+$$x(t) = A \cdot e^{-\delta \, t} \cdot \cos(\omega \, t)$$
+
+Der Faktor $e^{-\delta t}$ ist die **Einhüllende**: eine exponentiell
+abfallende Kurve, die die maximale Auslenkung zu jedem Zeitpunkt begrenzt.
+$\delta$ (in $1/\text{s}$) heißt **Dämpfungskoeffizient** und bestimmt, wie
+schnell die Schwingung abklingt.
+
+```{admonition} Einheit im Exponenten
+:class: caution
+Der Exponent einer Exponentialfunktion muss **dimensionslos** sein. Da $t$ in
+Sekunden angegeben wird, muss $\delta$ die Einheit $1/\text{s}$ haben, damit
+das Produkt $\delta \cdot t$ einheitenlos ist. Ein Wert wie
+$\delta = 0{,}5 \, \text{s}^{-1}$ bedeutet, dass die Amplitude nach
+$1/\delta = 2 \, \text{s}$ auf etwa 37 % ihres Ausgangswertes abgeklungen ist.
+```
+
+NumPy stellt die Exponentialfunktion als `np.exp()` bereit. Sie erwartet ein
+Array und gibt ein Array mit den Funktionswerten $e^x$ zurück:
+
+```{code-cell} python
+import numpy as np
+
+x = np.array([0.0, 1.0, 2.0, 3.0])
+print(np.exp(x))    # [1.     2.718  7.389  20.086]
+```
+
+Wir implementieren die gedämpfte Schwingung als Funktion aus Kapitel 8, damit
+wir den Dämpfungskoeffizienten später bequem variieren können:
+
+```{code-cell} python
+import numpy as np
+import plotly.express as px
+
+def berechne_gedaempfte_schwingung(t, A_m, f_hz, delta):
+    """Berechnet eine gedämpfte Schwingung.
+
+    t:      Zeitachse als NumPy-Array in s
+    A_m:    Amplitude in m
+    f_hz:   Frequenz in Hz
+    delta:  Dämpfungskoeffizient in 1/s
+    """
+    omega = 2 * np.pi * f_hz
+    return A_m * np.exp(-delta * t) * np.cos(omega * t)
+```
+
+Um die Wirkung von $\delta$ zu verstehen, berechnen wir drei Fälle und
+stellen jeden als eigenes Diagramm dar:
+
+```{code-cell} python
+# Eingabe
+A_m  = 0.10    # Amplitude in m
+f_hz = 2.0     # Frequenz in Hz
+t    = np.linspace(0, 5.0, 1000)
+
+# schwache Dämpfung
+x1 = berechne_gedaempfte_schwingung(t, A_m, f_hz, delta=0.3)
+fig1 = px.line(x=t, y=x1,
+               labels={"x": "Zeit (s)", "y": "Auslenkung (m)"},
+               title="Schwache Dämpfung (δ = 0.3 s⁻¹)")
+fig1.show()
+
+# mittlere Dämpfung
+x2 = berechne_gedaempfte_schwingung(t, A_m, f_hz, delta=1.0)
+fig2 = px.line(x=t, y=x2,
+               labels={"x": "Zeit (s)", "y": "Auslenkung (m)"},
+               title="Mittlere Dämpfung (δ = 1.0 s⁻¹)")
+fig2.show()
+
+# starke Dämpfung
+x3 = berechne_gedaempfte_schwingung(t, A_m, f_hz, delta=2.5)
+fig3 = px.line(x=t, y=x3,
+               labels={"x": "Zeit (s)", "y": "Auslenkung (m)"},
+               title="Starke Dämpfung (δ = 2.5 s⁻¹)")
+fig3.show()
+```
+
+Die drei Diagramme zeigen eindrücklich, wie $\delta$ die Schwingung beeinflusst:
+Bei schwacher Dämpfung klingt die Schwingung langsam ab und bleibt lange
+sichtbar. Bei mittlerer Dämpfung ist die Schwingung nach wenigen Sekunden
+weitgehend verschwunden. Bei starker Dämpfung bricht sie fast sofort zusammen.
+Im nächsten Kapitel lernen wir Dictionaries kennen, mit denen wir alle drei
+Kurven in einem einzigen Diagramm überlagern können.
+
+````{admonition} Mini-Übung
+:class: tip
+Ein Stoßdämpfer in einem Fahrzeugfahrwerk soll eine Schwingung mit
+$f = 1{,}5 \, \text{Hz}$ und $A = 0{,}08 \, \text{m}$ möglichst schnell
+unterdrücken.
+
+1. Berechnen und visualisieren Sie die gedämpfte Schwingung über 6 Sekunden
+   für $\delta = 0{,}8 \, \text{s}^{-1}$.
+2. Erhöhen Sie die Dämpfung auf $\delta = 2{,}0 \, \text{s}^{-1}$ und
+   vergleichen Sie das Diagramm mit dem ersten.
+3. Ab welchem ungefähren Zeitpunkt ist die Auslenkung in beiden Fällen
+   kleiner als 1 mm? Lesen Sie den Wert aus dem Diagramm ab.
+````
+
+```{code-cell} python
+# Code-Zelle
+```
+
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+```python
+import numpy as np
+import plotly.express as px
+
+def berechne_gedaempfte_schwingung(t, A_m, f_hz, delta):
+    """Berechnet eine gedämpfte Schwingung.
+
+    t:      Zeitachse als NumPy-Array in s
+    A_m:    Amplitude in m
+    f_hz:   Frequenz in Hz
+    delta:  Dämpfungskoeffizient in 1/s
+    """
+    omega = 2 * np.pi * f_hz
+    return A_m * np.exp(-delta * t) * np.cos(omega * t)
+
+t = np.linspace(0, 6.0, 1000)
+
+# 1. Schwächere Dämpfung
+x1 = berechne_gedaempfte_schwingung(t, 0.08, 1.5, delta=0.8)
+fig1 = px.line(x=t, y=x1,
+               labels={"x": "Zeit (s)", "y": "Auslenkung (m)"},
+               title="Stoßdämpfer (δ = 0.8 s⁻¹)")
+fig1.show()
+
+# 2. Stärkere Dämpfung
+x2 = berechne_gedaempfte_schwingung(t, 0.08, 1.5, delta=2.0)
+fig2 = px.line(x=t, y=x2,
+               labels={"x": "Zeit (s)", "y": "Auslenkung (m)"},
+               title="Stoßdämpfer (δ = 2.0 s⁻¹)")
+fig2.show()
+```
+
+Bei $\delta = 0.8 \, \text{s}^{-1}$ liegt die Auslenkung nach etwa 5.5 s
+unter 1 mm. Bei $\delta = 2.0 \, \text{s}^{-1}$ wird dieser Wert bereits
+nach ca. 2.5 s unterschritten. Die stärkere Dämpfung unterdrückt die Schwingung
+also mehr als doppelt so schnell.
 ````
 
 ## Zusammenfassung und Ausblick
 
-In diesem Kapitel haben wir physikalische Formeln als Funktionen implementiert
-und ihre Kennlinien mit Plotly Express visualisiert. Das Muster ist dabei immer
-dasselbe: Funktion definieren, leere Listen initialisieren, Funktion in einer
-Schleife aufrufen, Listen an Plotly Express übergeben. Durch die Kapselung der
-Formeln in Funktionen wird der Code in der Schleife kürzer, lesbarer und
-wiederverwendbar. Im nächsten Kapitel lernen wir NumPy Arrays kennen, mit denen
-sich dieses Muster noch eleganter umsetzen lässt: Anstatt einer Schleife
-verarbeitet NumPy ganze Wertereihen auf einmal.
+In diesem Kapitel haben wir NumPy-Arrays direkt für physikalische Simulationen
+eingesetzt. Kinematik, harmonische und gedämpfte Schwingung ließen sich jeweils
+ohne eine einzige Schleife berechnen: Eine Zeitachse mit `np.linspace()`,
+Vektoroperationen für die Kinematik, `np.cos()` für die Schwingung und
+`np.exp()` für die Einhüllende. Die Implementierung als Funktion aus Kapitel 8
+ermöglichte es, den Dämpfungskoeffizienten bequem zu variieren. Im nächsten
+Kapitel lernen wir Dictionaries kennen und werden damit mehrere Kurven in einem
+einzigen Diagramm überlagern.

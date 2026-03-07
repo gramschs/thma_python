@@ -11,25 +11,21 @@ kernelspec:
 Gegeben ist folgender Code:
 
 ```python
-PI = 3.141592653589793
+import numpy as np
 
-def berechne_kreisflaeche(r_m):
-    return PI * r_m**2
-
-def berechne_kreisumfang(r_m):
-    return 2 * PI * r_m
-
-r = 5
-flaeche = berechne_kreisflaeche(r)
-umfang = berechne_kreisumfang(r)
+a = [1, 2, 3] + [4, 5, 6]
+b = np.array([1, 2, 3]) + np.array([4, 5, 6])
+c = np.array([1, 2.0, 3])
+d = np.array([10, 20, 30, 40, 50])
 ```
 
-1. Sagen Sie vorher, welche Werte `flaeche` und `umfang` nach der Ausführung
-   enthalten. Notieren Sie Ihre Antwort, bevor Sie den Code ausführen.
-2. Führen Sie den Code aus und überprüfen Sie Ihre Vorhersage.
-3. Erklären Sie: Was ist der Unterschied zwischen dem Parameter `r_m` in der
-   Funktionsdefinition und dem Argument `r` beim Aufruf?
-4. Was gibt `type(berechne_kreisflaeche(5))` zurück? Überlegen Sie zuerst.
+1. Sagen Sie vorher, was `print(a)` und `print(b)` ausgeben. Worin besteht
+   der Unterschied?
+2. Sagen Sie vorher, was `print(c.dtype)` ausgibt. Warum wählt NumPy diesen
+   Typ, obwohl zwei der drei Werte ganze Zahlen sind?
+3. Was geben `print(d[-1])` und `print(d[-2])` aus? Erklären Sie, warum der
+   negative Index auch bei NumPy-Arrays funktioniert.
+4. Führen Sie den Code aus und überprüfen Sie Ihre Vorhersagen.
 ````
 
 ```{code-cell} python
@@ -39,110 +35,59 @@ umfang = berechne_kreisumfang(r)
 ````{admonition} Lösung
 :class: tip
 :class: dropdown
-1. Vorhersage:
-   - `flaeche` = PI * 25 ≈ 78.54
-   - `umfang` = 2 * PI * 5 ≈ 31.42
-
-2. Code zur Überprüfung:
 ```python
-PI = 3.141592653589793
+import numpy as np
 
-def berechne_kreisflaeche(r_m):
-    return PI * r_m**2
+a = [1, 2, 3] + [4, 5, 6]
+b = np.array([1, 2, 3]) + np.array([4, 5, 6])
+c = np.array([1, 2.0, 3])
+d = np.array([10, 20, 30, 40, 50])
 
-def berechne_kreisumfang(r_m):
-    return 2 * PI * r_m
-
-r = 5
-flaeche = berechne_kreisflaeche(r)
-umfang = berechne_kreisumfang(r)
-print(flaeche)   # 78.53981633974483
-print(umfang)    # 31.41592653589793
+print(a)         # [1, 2, 3, 4, 5, 6]
+print(b)         # [5 7 9]
+print(c.dtype)   # float64
+print(d[-1])     # 50
+print(d[-2])     # 40
 ```
 
-3. Erklärung: `r_m` ist der formale **Parameter** in der Funktionsdefinition.
-   Er ist ein Platzhalter und hat nur innerhalb der Funktion Bedeutung. `r`
-   ist das konkrete **Argument** beim Aufruf, also der tatsächliche Wert, der
-   an die Funktion übergeben wird. Beim Aufruf `berechne_kreisflaeche(r)`
-   nimmt der Parameter `r_m` den Wert von `r`, also `5`, an.
-
-4. `type(berechne_kreisflaeche(5))` gibt `<class 'float'>` zurück, da
-   `PI` ein Float ist und das Ergebnis der Berechnung ebenfalls ein Float.
+Erklärung:
+1. Bei Python-Listen bewirkt `+` eine Verkettung: Die beiden Listen werden zu
+   einer zusammengefügt. Bei NumPy-Arrays bedeutet `+` eine elementweise
+   Addition: Jedes Element des ersten Arrays wird zum entsprechenden Element
+   des zweiten Arrays addiert.
+2. NumPy wählt `float64`, weil das Array den Wert `2.0` enthält, der bereits
+   ein Float ist. NumPy wandelt dann alle anderen Werte in denselben Typ um,
+   da ein Array nur einen einzigen Datentyp enthalten kann. `int` kann
+   verlustfrei in `float` umgewandelt werden, umgekehrt aber nicht.
+3. `d[-1]` liefert `50` (letztes Element) und `d[-2]` liefert `40`
+   (vorletztes Element). NumPy-Arrays unterstützen denselben negativen Index
+   wie Python-Listen: Python berechnet intern den positiven Index, indem es
+   die Länge des Arrays zum negativen Index addiert.
 ````
 
 ````{admonition} Übung 9.2 (✩)
 :class: tip
-Schreiben Sie eine Funktion `zeige_trennlinie()`, die eine Zeile mit 40
-Gleichheitszeichen ausgibt:
+Die Tagestemperatur lässt sich näherungsweise als Sinusfunktion modellieren.
+Die Formel lautet:
 
-```
-========================================
-```
+$$T(t) = T_{m} + A \cdot \sin\left(\frac{2\pi}{24} \cdot (t - t_{max})\right)$$
 
-Verwenden Sie in der Funktion den Multiplikationsoperator `*` für Strings
-(z.B. `"=" * 40`). Die Funktion hat weder Parameter noch Rückgabewert.
+Dabei ist $t$ die Uhrzeit in Stunden (0 bis 24), $T_{m}$ die mittlere
+Tagestemperatur, $A$ die Amplitude und $t_{max}$ der Zeitpunkt der höchsten
+Temperatur (typischerweise 14 Uhr).
 
-Testen Sie die Funktion, indem Sie sie dreimal hintereinander aufrufen. Rufen
-Sie sie anschließend in einer for-Schleife fünfmal auf und beobachten Sie die
-Ausgabe.
-````
+Verwenden Sie folgende Werte: $T_{m} = 22.0$ °C, $A = 6.0$ °C,
+$t_{max} = 14.0$ h.
 
-```{code-cell} python
-# Code-Zelle
-```
-
-````{admonition} Lösung
-:class: tip
-:class: dropdown
-```python
-def zeige_trennlinie():
-    print("=" * 40)
-
-# Dreimaliger Aufruf
-zeige_trennlinie()
-zeige_trennlinie()
-zeige_trennlinie()
-
-# Aufruf in Schleife
-for i in range(5):
-    zeige_trennlinie()
-```
-
-Ausgabe der drei Aufrufe:
-```
-========================================
-========================================
-========================================
-```
-
-Erklärung: Die Funktionsdefinition mit `def` führt die Funktion noch nicht aus.
-Sie legt lediglich fest, was beim Aufruf passieren soll. Erst der Aufruf
-`zeige_trennlinie()` führt den Code im Funktionsrumpf aus. Da die Funktion
-keinen Rückgabewert hat, gibt sie automatisch `None` zurück. Das stört hier
-nicht, weil wir das Ergebnis nirgends speichern. Würden Sie
-`print(zeige_trennlinie())` schreiben, würde zusätzlich `None` angezeigt.
-````
-
-````{admonition} Übung 9.3 (✩)
-:class: tip
-Das Volumen eines Zylinders berechnet sich nach:
-
-$$V = \pi \cdot r^2 \cdot h$$
-
-wobei $r$ der Radius in Metern und $h$ die Höhe in Metern ist.
-
-Schreiben Sie eine Funktion `berechne_volumen_zylinder(r_m, h_m)`, die das
-Volumen in Kubikmetern zurückgibt. Versehen Sie die Funktion mit einem
-einzeiligen Docstring.
-
-Berechnen Sie anschließend das Volumen für folgende drei Zylinder und geben
-Sie die Ergebnisse mit f-Strings formatiert aus:
-
-| Zylinder | Radius | Höhe |
-|----------|--------|------|
-| Drucktank A | 0.5 m | 2.0 m |
-| Drucktank B | 0.3 m | 1.5 m |
-| Drucktank C | 0.8 m | 0.6 m |
+1. Erzeugen Sie eine Zeitachse von 0 bis 24 Stunden mit 500 Punkten und
+   berechnen Sie den Temperaturverlauf als NumPy-Array.
+2. Visualisieren Sie den Verlauf als Liniendiagramm mit Titel und
+   Achsenbeschriftungen.
+3. Geben Sie die Temperatur um Mitternacht (letzter Wert des Arrays) formatiert
+   auf 1 Nachkommastelle aus.
+4. Die maximale Tagestemperatur berechnet sich als $T_{m} + A$. Prüfen Sie mit
+   einer `if`-Bedingung, ob dieser Wert über 35 °C liegt, und geben Sie in
+   diesem Fall `"Hitzewarnung!"` aus.
 
 Strukturieren Sie Ihren Code mit EVA-Kommentaren.
 ````
@@ -156,57 +101,164 @@ Strukturieren Sie Ihren Code mit EVA-Kommentaren.
 :class: dropdown
 ```python
 import numpy as np
+import plotly.express as px
 
-def berechne_volumen_zylinder(r_m, h_m):
-    """Berechnet das Volumen eines Zylinders in Kubikmetern."""
-    return np.pi * r_m**2 * h_m
+# Eingabe
+T_m   = 22.0   # mittlere Temperatur in °C
+A     = 6.0    # Amplitude in °C
+t_max = 14.0   # Uhrzeit des Maximums in h
 
-# Verarbeitung und Ausgabe
-V_A = berechne_volumen_zylinder(0.5, 2.0)
-print(f"Drucktank A: r = 0.5 m,  h = 2.0 m,  V = {V_A:.4f} m³")
+# Verarbeitung
+t   = np.linspace(0, 24, 500)
+T   = T_m + A * np.sin(2 * np.pi / 24 * (t - t_max))
+T_max = T_m + A
 
-V_B = berechne_volumen_zylinder(0.3, 1.5)
-print(f"Drucktank B: r = 0.3 m,  h = 1.5 m,  V = {V_B:.4f} m³")
+# Ausgabe
+fig = px.line(x=t, y=T,
+              labels={"x": "Uhrzeit (h)", "y": "Temperatur (°C)"},
+              title="Modellierter Tagestemperaturverlauf")
+fig.show()
 
-V_C = berechne_volumen_zylinder(0.8, 0.6)
-print(f"Drucktank C: r = 0.8 m,  h = 0.6 m,  V = {V_C:.4f} m³")
+print(f"Temperatur um Mitternacht: {T[-1]:.1f} °C")
+
+if T_max > 35.0:
+    print("Hitzewarnung!")
 ```
 
 Ausgabe:
 ```
-Drucktank A: r = 0.5 m,  h = 2.0 m,  V = 1.5708 m³
-Drucktank B: r = 0.3 m,  h = 1.5 m,  V = 0.4241 m³
-Drucktank C: r = 0.8 m,  h = 0.6 m,  V = 1.2063 m³
+Temperatur um Mitternacht: 18.0 °C
 ```
 
-Erklärung: Die Funktion kapselt die Formel und kann beliebig oft mit
-verschiedenen Argumenten aufgerufen werden. Der Docstring erscheint, wenn
-man `help(berechne_volumen_zylinder)` aufruft.
+Die Hitzewarnung wird nicht ausgegeben, da die maximale Temperatur
+$22.0 + 6.0 = 28.0$ °C beträgt. Das Diagramm zeigt das
+charakteristische Tagestemperaturprofil: kühle Morgenstunden, Maximum
+am frühen Nachmittag, wieder abnehmende Temperatur bis Mitternacht.
+````
+
+````{admonition} Übung 9.3 (✩✩)
+:class: tip
+Das Kapitalwachstum bei kontinuierlicher Verzinsung folgt der
+Exponentialfunktion:
+
+$$K(t) = K_0 \cdot e^{r \cdot t}$$
+
+Dabei ist $K_0$ das Startkapital in Euro, $r$ der jährliche Zinssatz (als
+Dezimalzahl, z. B. 0.03 für 3 %) und $t$ die Zeit in Jahren.
+
+1. Schreiben Sie eine Funktion `berechne_kapital(K0_euro, r, t)`, die das
+   Kapital zum Zeitpunkt $t$ zurückgibt. Der Parameter `t` kann eine einzelne
+   Zahl oder ein NumPy-Array sein. Versehen Sie die Funktion mit einem
+   Docstring.
+2. Berechnen Sie das Kapitalwachstum für ein Startkapital von 10.000 € über
+   30 Jahre für folgende drei Szenarien und erstellen Sie für jedes Szenario
+   ein eigenes Liniendiagramm:
+
+   | Szenario | Zinssatz |
+   |----------|----------|
+   | Niedrigzins | 1 % |
+   | Normalzins | 3 % |
+   | Hochzins | 6 % |
+
+3. Das Zielkapital beträgt 25.000 €. Prüfen Sie für jedes Szenario mit einer
+   `if/else`-Bedingung, ob das Zielkapital nach 30 Jahren erreicht wird, und
+   geben Sie das Ergebnis formatiert aus.
+
+Strukturieren Sie Ihren Code mit EVA-Kommentaren.
+````
+
+```{code-cell} python
+# Code-Zelle
+```
+
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+```python
+import numpy as np
+import plotly.express as px
+
+def berechne_kapital(K0_euro, r, t):
+    """Berechnet das Kapital bei kontinuierlicher Verzinsung: K = K0 * e^(r*t).
+
+    K0_euro: Startkapital in Euro
+    r:       jährlicher Zinssatz als Dezimalzahl (z. B. 0.03 für 3 %)
+    t:       Zeit in Jahren (Zahl oder NumPy-Array)
+    """
+    return K0_euro * np.exp(r * t)
+
+# Eingabe
+K0        = 10000.0   # Startkapital in Euro
+ZIEL      = 25000.0   # Zielkapital in Euro
+t         = np.linspace(0, 30, 500)
+
+# Verarbeitung und Ausgabe: Niedrigzins
+K1 = berechne_kapital(K0, 0.01, t)
+fig1 = px.line(x=t, y=K1,
+               labels={"x": "Jahre", "y": "Kapital (€)"},
+               title="Kapitalwachstum bei 1 % Zinsen")
+fig1.show()
+if K1[-1] >= ZIEL:
+    print(f"Niedrigzins: Ziel erreicht. Endkapital: {K1[-1]:.2f} Euro")
+else:
+    print(f"Niedrigzins: Ziel nicht erreicht. Endkapital: {K1[-1]:.2f} Euro")
+
+# Verarbeitung und Ausgabe: Normalzins
+K2 = berechne_kapital(K0, 0.03, t)
+fig2 = px.line(x=t, y=K2,
+               labels={"x": "Jahre", "y": "Kapital (€)"},
+               title="Kapitalwachstum bei 3 % Zinsen")
+fig2.show()
+if K2[-1] >= ZIEL:
+    print(f"Normalzins: Ziel erreicht. Endkapital: {K2[-1]:.2f} Euro")
+else:
+    print(f"Normalzins: Ziel nicht erreicht. Endkapital: {K2[-1]:.2f} Euro")
+
+# Verarbeitung und Ausgabe: Hochzins
+K3 = berechne_kapital(K0, 0.06, t)
+fig3 = px.line(x=t, y=K3,
+               labels={"x": "Jahre", "y": "Kapital (€)"},
+               title="Kapitalwachstum bei 6 % Zinsen")
+fig3.show()
+if K3[-1] >= ZIEL:
+    print(f"Hochzins: Ziel erreicht. Endkapital: {K3[-1]:.2f} Euro")
+else:
+    print(f"Hochzins: Ziel nicht erreicht. Endkapital: {K3[-1]:.2f} Euro")
+```
+
+Ausgabe:
+```
+Niedrigzins: Ziel nicht erreicht. Endkapital: 13498.59 Euro
+Normalzins: Ziel nicht erreicht. Endkapital: 24596.03 Euro
+Hochzins: Ziel erreicht. Endkapital: 60496.47 Euro
+```
+
+Der Normalzins verfehlt das Ziel knapp, der Hochzins übertrifft es bei weitem.
+Das zeigt den großen Einfluss des Zinssatzes über lange Zeiträume: Bei 6 %
+wächst das Kapital auf das Sechsfache, bei 1 % nur um ein Drittel.
 ````
 
 ````{admonition} Übung 9.4 (✩✩)
 :class: tip
-Der Wirkungsgrad einer Maschine gibt an, welcher Anteil der zugeführten
-Energie als Nutzenergie abgegeben wird:
+Ein Fitness-Tracker zeichnet für eine Woche folgende tägliche Schrittzahlen
+auf:
 
-$$\eta = \frac{P_{nutz}}{P_{zu}} \cdot 100$$
+```python
+schritte = np.array([6200, 11500, 4800, 9300, 7100, 12400, 3900])
+wochentage = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
+```
 
-wobei $P_{nutz}$ die Nutzleistung in kW und $P_{zu}$ die zugeführte Leistung
-in kW ist. Das Ergebnis ist der Wirkungsgrad in Prozent.
-
-Schreiben Sie eine Funktion `berechne_wirkungsgrad(P_nutz_kW, P_zu_kW)`, die
-den Wirkungsgrad in Prozent zurückgibt. Versehen Sie die Funktion mit einem
-Docstring.
-
-Berechnen Sie den Wirkungsgrad für folgende vier Maschinen und geben Sie die
-Ergebnisse aus.
-
-| Maschine | Nutzleistung | Zugeführte Leistung |
-|----------|-------------|---------------------|
-| Elektromotor | 18.5 kW | 20.0 kW |
-| Verbrennungsmotor | 55.0 kW | 180.0 kW |
-| Hydraulikpumpe | 7.2 kW | 8.5 kW |
-| Dampfturbine | 420.0 kW | 1200.0 kW |
+1. Berechnen Sie mit einer `for`-Schleife die
+   kumulierten Schritte am Ende jedes Tages (Montag: 6200, Dienstag: 17700,
+   usw.) und speichern Sie die Werte in einer Liste.
+2. Durchlaufen Sie die Schrittzahlen und
+   klassifizieren Sie jeden Tag:
+   - unter 5.000 Schritte: `"zu wenig"`
+   - 5.000 bis unter 10.000 Schritte: `"ausreichend"`
+   - 10.000 Schritte und mehr: `"sehr aktiv"`
+   Geben Sie für jeden Tag den Wochentag, die Schrittzahl und die
+   Klassifikation aus.
+3. Visualisieren Sie die täglichen Schrittzahlen als Balkendiagramm.
 
 Strukturieren Sie Ihren Code mit EVA-Kommentaren.
 ````
@@ -219,62 +271,79 @@ Strukturieren Sie Ihren Code mit EVA-Kommentaren.
 :class: tip
 :class: dropdown
 ```python
-def berechne_wirkungsgrad(P_nutz_kW, P_zu_kW):
-    """Berechnet den Wirkungsgrad einer Maschine in Prozent."""
-    return P_nutz_kW / P_zu_kW * 100
+import numpy as np
+import plotly.express as px
 
-# Verarbeitung und Ausgabe
-eta = berechne_wirkungsgrad(18.5, 20.0)
-print(f"Elektromotor:        {eta:.1f} %")
+# Eingabe
+schritte   = np.array([6200, 11500, 4800, 9300, 7100, 12400, 3900])
+wochentage = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
 
-eta = berechne_wirkungsgrad(55.0, 180.0)
-print(f"Verbrennungsmotor:   {eta:.1f} %")
+# Verarbeitung: kumulierte Schritte
+kumuliert = []
+summe = 0
+for s in schritte:
+    summe = summe + s
+    kumuliert.append(summe)
 
-eta = berechne_wirkungsgrad(7.2, 8.5)
-print(f"Hydraulikpumpe:      {eta:.1f} %")
+# Verarbeitung und Ausgabe: Klassifikation
+i = 0
+for s in schritte:
+    if s < 5000:
+        klasse = "zu wenig"
+    elif s < 10000:
+        klasse = "ausreichend"
+    else:
+        klasse = "sehr aktiv"
+    print(f"{wochentage[i]}: {s} Schritte ({klasse})")
+    i = i + 1
 
-eta = berechne_wirkungsgrad(420.0, 1200.0)
-print(f"Dampfturbine:        {eta:.1f} %")
+print(f"Gesamtschritte: {kumuliert[-1]}")
+
+# Ausgabe: Balkendiagramm
+fig = px.bar(x=wochentage, y=schritte,
+             labels={"x": "Wochentag", "y": "Schritte"},
+             title="Tägliche Schrittzahlen")
+fig.show()
 ```
 
 Ausgabe:
 ```
-Elektromotor:        92.5 %
-Verbrennungsmotor:   30.6 %
-Hydraulikpumpe:      84.7 %
-Dampfturbine:        35.0 %
+Mo: 6200 Schritte (ausreichend)
+Di: 11500 Schritte (sehr aktiv)
+Mi: 4800 Schritte (zu wenig)
+Do: 9300 Schritte (ausreichend)
+Fr: 7100 Schritte (ausreichend)
+Sa: 12400 Schritte (sehr aktiv)
+So: 3900 Schritte (zu wenig)
+Gesamtschritte: 55200
 ```
 
-Ausgabe:
-```
-Maschine               P_nutz      P_zu  Wirkungsgrad
---------------------------------------------------------
-Elektromotor            18.5 kW    20.0 kW        92.5 %
-Verbrennungsmotor       55.0 kW   180.0 kW        30.6 %
-Hydraulikpumpe           7.2 kW     8.5 kW        84.7 %
-Dampfturbine           420.0 kW  1200.0 kW        35.0 %
-```
-
-Erklärung: Der Verbrennungsmotor hat mit ca. 30 % den schlechtesten
-Wirkungsgrad. Der Elektromotor gibt mit 92.5 % fast die gesamte zugeführte
-Energie als Nutzleistung ab. Die Funktion wird viermal mit denselben
-Formeln aufgerufen, ohne dass die Berechnung wiederholt werden muss.
+Die Schleife verwendet eine Zählvariable `i`, die zu Beginn auf 0 gesetzt
+und am Ende jedes Durchgangs um 1 erhöht wird. So kann mit `wochentage[i]`
+auf den zum aktuellen Schrittwert passenden Wochentag zugegriffen werden.
+Das kumulierte Gesamt wird mit `kumuliert[-1]` abgelesen, da der letzte Wert
+der Liste die Gesamtsumme enthält.
 ````
 
 ````{admonition} Übung 9.5 (✩✩)
 :class: tip
-Schreiben Sie eine Funktion `berechne_kreis(r_m)`, die sowohl den Umfang als
-auch die Fläche eines Kreises berechnet und beide Werte zurückgibt.
+Bei realen Messungen ist ein sauberes Signal immer von Rauschen überlagert.
+In dieser Aufgabe simulieren wir ein verrauschtes Sinussignal.
 
-Die Formeln lauten:
+Das saubere Signal lautet: $y(t) = \sin(2\pi \cdot 3 \cdot t)$ mit $t$ von
+0 bis 1 Sekunde (500 Punkte). Das Rauschen ist normalverteilt mit Mittelwert
+0 und Standardabweichung 0.15 (verwenden Sie `np.random.normal(0, 0.15, ...)`,
+wobei der dritte Parameter die Anzahl der Punkte von $t$ angibt.
 
-$$U = 2 \pi r \qquad A = \pi r^2$$
-
-Versehen Sie die Funktion mit einem Docstring, der beide Rückgabewerte
-beschreibt.
-
-Rufen Sie die Funktion für die Radien 0.1 m, 0.5 m, 1.0 m, 2.0 m und 5.0 m
-auf. Geben Sie die Ergebnisse formnatiert aus.
+1. Berechnen Sie das saubere Signal `y_sauber` und das verrauschte Signal
+   `y_verrauscht = y_sauber + rauschen`.
+2. Stellen Sie beide Signale in separaten Liniendiagrammen dar.
+3. Berechnen Sie die Abweichung `abweichung = y_verrauscht - y_sauber`.
+   Bestimmen Sie die maximale absolute Abweichung mit
+   `max_abw = np.max(np.abs(abweichung))`. `np.abs()` berechnet dabei den
+   Betrag jedes Elements, `np.max()` gibt den größten Wert des Arrays zurück.
+4. Geben Sie die maximale Abweichung mit einem f-String formatiert auf
+   2 Nachkommastellen aus.
 
 Strukturieren Sie Ihren Code mit EVA-Kommentaren.
 ````
@@ -288,75 +357,65 @@ Strukturieren Sie Ihren Code mit EVA-Kommentaren.
 :class: dropdown
 ```python
 import numpy as np
+import plotly.express as px
 
-def berechne_kreis(r_m):
-    """Berechnet Umfang und Fläche eines Kreises.
+# Eingabe
+t         = np.linspace(0, 1, 500)
+rauschen  = np.random.normal(0, 0.15, len(t))
 
-    Rückgabe: umfang_m (float), flaeche_m2 (float)
-    """
-    umfang_m = 2 * np.pi * r_m
-    flaeche_m2 = np.pi * r_m**2
-    return umfang_m, flaeche_m2
+# Verarbeitung
+y_sauber     = np.sin(2 * np.pi * 3 * t)
+y_verrauscht = y_sauber + rauschen
+abweichung   = y_verrauscht - y_sauber
+max_abw      = np.max(np.abs(abweichung))
 
-# Verarbeitung und Ausgabe
-U, A = berechne_kreis(0.1)
-print(f"r = 0.1 m:  Umfang = {U:.3f} m,  Fläche = {A:.3f} m²")
+# Ausgabe
+fig1 = px.line(x=t, y=y_sauber,
+               labels={"x": "Zeit (s)", "y": "Amplitude"},
+               title="Sauberes Signal")
+fig1.show()
 
-U, A = berechne_kreis(0.5)
-print(f"r = 0.5 m:  Umfang = {U:.3f} m,  Fläche = {A:.3f} m²")
+fig2 = px.line(x=t, y=y_verrauscht,
+               labels={"x": "Zeit (s)", "y": "Amplitude"},
+               title="Verrauschtes Signal")
+fig2.show()
 
-U, A = berechne_kreis(1.0)
-print(f"r = 1.0 m:  Umfang = {U:.3f} m,  Fläche = {A:.3f} m²")
-
-U, A = berechne_kreis(2.0)
-print(f"r = 2.0 m:  Umfang = {U:.3f} m,  Fläche = {A:.3f} m²")
-
-U, A = berechne_kreis(5.0)
-print(f"r = 5.0 m:  Umfang = {U:.3f} m,  Fläche = {A:.3f} m²")
+print(f"Maximale Abweichung: {max_abw:.2f}")
 ```
 
-Ausgabe:
-```
-r = 0.1 m:  Umfang = 0.628 m,  Fläche = 0.031 m²
-r = 0.5 m:  Umfang = 3.142 m,  Fläche = 0.785 m²
-r = 1.0 m:  Umfang = 6.283 m,  Fläche = 3.142 m²
-r = 2.0 m:  Umfang = 12.566 m,  Fläche = 12.566 m²
-r = 5.0 m:  Umfang = 31.416 m,  Fläche = 78.540 m²
-```
-
-Erklärung: Beim Aufruf `U, A = berechne_kreis(0.1)` werden die zwei
-Rückgabewerte der Funktion direkt zwei Variablen zugewiesen. Das funktioniert,
-weil Python bei mehreren Rückgabewerten intern die Werte der Reihe nach den
-Variablen links des `=` zuordnet.
+Die maximale Abweichung entspricht in etwa der dreifachen Standardabweichung
+des Rauschens (ca. 0.45), was dem statistischen Erwartungswert für
+normalverteiltes Rauschen entspricht. Da `np.random.normal()` zufällige Werte
+erzeugt, variiert das Ergebnis bei jedem Durchlauf leicht. `np.abs()` berechnet
+elementweise den Betrag des Abweichungs-Arrays, `np.max()` gibt daraus den
+größten Wert zurück.
 ````
 
 ````{admonition} Übung 9.6 (✩✩)
 :class: tip
-Gegeben sind folgende drei Funktionen ohne Docstring:
-```python
-import numpy as np
+Im freien Fall gilt ohne Luftwiderstand:
 
-def f1(m_kg, v_ms):
-    return 0.5 * m_kg * v_ms**2
+$$s(t) = \frac{1}{2} \cdot g \cdot t^2, \qquad v(t) = g \cdot t$$
 
-def f2(m_kg, g_ms2, h_m):
-    return m_kg * g_ms2 * h_m
+Die Erdbeschleunigung $g$ ist auf verschiedenen Himmelskörpern unterschiedlich.
 
-def f3(U_V, I_A):
-    return U_V * I_A
-```
+1. Schreiben Sie eine Funktion `berechne_fallhoehe(g, t)`, die die Fallhöhe
+   in Metern zurückgibt. `t` ist ein NumPy-Array. Versehen Sie die Funktion
+   mit einem Docstring.
+2. Schreiben Sie eine Funktion `klassifiziere_planet(g)`, die anhand der
+   Erdbeschleunigung eine Zeichenkette zurückgibt:
+   - kleiner als 5 m/s²: `"leichter als die Erde"`
+   - zwischen 5 und 15 m/s²: `"ähnlich wie die Erde"`
+   - größer als 15 m/s²: `"schwerer als die Erde"`
+3. Berechnen Sie die Fallhöhe für folgende drei Himmelskörper über 10 Sekunden
+   und erstellen Sie für jeden ein eigenes Liniendiagramm. Fügen Sie die
+   Klassifikation aus Aufgabe 2 in den Diagrammtitel ein.
 
-1. Ergänzen Sie jede Funktion mit einem einzeiligen Docstring, der beschreibt,
-   was die Funktion berechnet und welche Einheit der Rückgabewert hat.
-2. Rufen Sie für jede Funktion `help()` auf und überprüfen Sie, ob Ihr
-   Docstring verständlich ist.
-3. Berechnen Sie mit den drei Funktionen:
-   - Kinetische Energie eines Fahrzeugs mit 1200 kg bei 100 km/h
-     (Achtung: Umrechnung in m/s erforderlich: $v = 100 / 3.6$)
-   - Potentielle Energie einer Masse von 50 kg in 10 m Höhe
-     ($g = 9.81 \, \text{m/s}^2$)
-   - Elektrische Leistung bei 230 V und 16 A
-4. Geben Sie die drei Ergebnisse mit f-Strings formatiert aus.
+   | Himmelskörper | Erdbeschleunigung |
+   |---------------|-------------------|
+   | Mond | 1.62 m/s² |
+   | Erde | 9.81 m/s² |
+   | Jupiter | 24.79 m/s² |
 
 Strukturieren Sie Ihren Code mit EVA-Kommentaren.
 ````
@@ -370,71 +429,84 @@ Strukturieren Sie Ihren Code mit EVA-Kommentaren.
 :class: dropdown
 ```python
 import numpy as np
+import plotly.express as px
 
-def f1(m_kg, v_ms):
-    """Berechnet die kinetische Energie in Joule: E_kin = 0.5 * m * v^2."""
-    return 0.5 * m_kg * v_ms**2
+def berechne_fallhoehe(g, t):
+    """Berechnet die Fallhöhe im freien Fall ohne Luftwiderstand in Metern.
 
-def f2(m_kg, g_ms2, h_m):
-    """Berechnet die potentielle Energie in Joule: E_pot = m * g * h."""
-    return m_kg * g_ms2 * h_m
+    g: Erdbeschleunigung in m/s²
+    t: Zeitachse als NumPy-Array in s
+    """
+    return 0.5 * g * t**2
 
-def f3(U_V, I_A):
-    """Berechnet die elektrische Leistung in Watt: P = U * I."""
-    return U_V * I_A
-
-# Docstrings anzeigen
-help(f1)
-help(f2)
-help(f3)
+def klassifiziere_planet(g):
+    """Klassifiziert einen Himmelskörper anhand seiner Erdbeschleunigung."""
+    if g < 5.0:
+        return "leichter als die Erde"
+    elif g <= 15.0:
+        return "ähnlich wie die Erde"
+    else:
+        return "schwerer als die Erde"
 
 # Eingabe
-v_ms = 100 / 3.6
+t = np.linspace(0, 10, 500)
 
-# Verarbeitung
-E_kin_J = f1(1200, v_ms)
-E_pot_J = f2(50, 9.81, 10)
-P_W = f3(230, 16)
+# Verarbeitung und Ausgabe: Mond
+g_mond = 1.62
+s_mond = berechne_fallhoehe(g_mond, t)
+klasse_mond = klassifiziere_planet(g_mond)
+fig1 = px.line(x=t, y=s_mond,
+               labels={"x": "Zeit (s)", "y": "Fallhöhe (m)"},
+               title=f"Freier Fall auf dem Mond (g = {g_mond} m/s², {klasse_mond})")
+fig1.show()
 
-# Ausgabe
-print(f"Kinetische Energie:   {E_kin_J:.1f} J")
-print(f"Potentielle Energie:  {E_pot_J:.1f} J")
-print(f"Elektrische Leistung: {P_W:.1f} W")
+# Verarbeitung und Ausgabe: Erde
+g_erde = 9.81
+s_erde = berechne_fallhoehe(g_erde, t)
+klasse_erde = klassifiziere_planet(g_erde)
+fig2 = px.line(x=t, y=s_erde,
+               labels={"x": "Zeit (s)", "y": "Fallhöhe (m)"},
+               title=f"Freier Fall auf der Erde (g = {g_erde} m/s², {klasse_erde})")
+fig2.show()
+
+# Verarbeitung und Ausgabe: Jupiter
+g_jupiter = 24.79
+s_jupiter = berechne_fallhoehe(g_jupiter, t)
+klasse_jupiter = klassifiziere_planet(g_jupiter)
+fig3 = px.line(x=t, y=s_jupiter,
+               labels={"x": "Zeit (s)", "y": "Fallhöhe (m)"},
+               title=f"Freier Fall auf Jupiter (g = {g_jupiter} m/s², {klasse_jupiter})")
+fig3.show()
 ```
 
-Ausgabe:
-```
-Kinetische Energie:   462963.0 J
-Potentielle Energie:  4905.0 J
-Elektrische Leistung: 3680.0 W
-```
-
-Erklärung: Der Docstring wird direkt nach der `def`-Zeile in dreifachen
-Anführungszeichen geschrieben und bei `help()` angezeigt. So sind eigene
-Funktionen genauso dokumentiert wie eingebaute Python-Funktionen.
+Nach 10 Sekunden fallen Körper auf dem Mond 81 m, auf der Erde 490 m und auf
+Jupiter 1240 m. Die Kurven wachsen quadratisch, was sich im Diagramm an der
+charakteristischen Parabelform zeigt. Die Funktion `klassifiziere_planet()`
+liefert einen String, der direkt in den f-String für den Diagrammtitel
+eingesetzt wird.
 ````
 
 ````{admonition} Übung 9.7 (✩✩)
 :class: tip
-Das Hookesche Gesetz beschreibt den linearen Zusammenhang zwischen der
-Auslenkung einer Feder und der rücktreibenden Kraft: $F = k \cdot x$, wobei
-$k$ die Federkonstante in N/m und $x$ die Auslenkung in m ist.
+Töne lassen sich als Sinusschwingungen modellieren:
 
-Schreiben Sie eine Funktion `berechne_federkraft(k_nm, x_m)`, die die
-Federkraft in Newton zurückgibt. Versehen Sie die Funktion mit einem Docstring.
+$$y(t) = \sin(2\pi \cdot f \cdot t)$$
 
-Erstellen Sie anschließend drei separate Liniendiagramme für die drei
-Federkonstanten:
+Dabei ist $f$ die Frequenz in Hz und $t$ die Zeit in Sekunden. Für die
+Darstellung einer einzelnen Schwingung reichen wenige Millisekunden.
 
-| Feder | Federkonstante |
-|-------|----------------|
-| Weiche Feder | 200 N/m |
-| Mittlere Feder | 500 N/m |
-| Steife Feder | 1000 N/m |
-
-Verwenden Sie Auslenkungen von 0 m bis 0.20 m in Schritten von 0.01 m.
-Erstellen Sie für jede Feder eine eigene Liste mit Kräften und ein eigenes
-Diagramm mit passendem Titel.
+1. Schreiben Sie eine Funktion `berechne_ton(f_hz, dauer_s)`, die eine
+   Zeitachse von 0 bis `dauer_s` mit 1000 Punkten und das zugehörige
+   Sinussignal berechnet. Die Funktion soll beide Arrays zurückgeben.
+   Versehen Sie die Funktion mit einem Docstring.
+2. Berechnen Sie den Kammerton A (440 Hz) über eine Dauer von 10 ms
+   (0.01 Sekunden) und visualisieren Sie ihn als Liniendiagramm.
+3. Wählen Sie einen zweiten Ton mit einer anderen Frequenz und erstellen Sie
+   ein zweites Diagramm. Verwenden Sie als Titel den Frequenzwert aus einer
+   f-String-Formatierung.
+4. Erklären Sie kurz: Warum reichen 10 ms für eine sinnvolle Darstellung,
+   während bei der Schwingungsanalyse in Kapitel 9.2 mehrere Sekunden
+   verwendet wurden?
 
 Strukturieren Sie Ihren Code mit EVA-Kommentaren.
 ````
@@ -447,76 +519,86 @@ Strukturieren Sie Ihren Code mit EVA-Kommentaren.
 :class: tip
 :class: dropdown
 ```python
+import numpy as np
 import plotly.express as px
 
-def berechne_federkraft(k_nm, x_m):
-    """Berechnet die Federkraft in Newton nach dem Hookeschen Gesetz F = k * x."""
-    return k_nm * x_m
+def berechne_ton(f_hz, dauer_s):
+    """Berechnet eine Sinusschwingung für einen Ton.
 
-# Verarbeitung
-auslenkungen   = []
-kraefte_weich  = []
-kraefte_mittel = []
-kraefte_steif  = []
+    f_hz:   Frequenz in Hz
+    dauer_s: Dauer in Sekunden
+    Rückgabe: t (Zeitachse), y (Sinussignal), jeweils als NumPy-Array
+    """
+    t = np.linspace(0, dauer_s, 1000)
+    y = np.sin(2 * np.pi * f_hz * t)
+    return t, y
 
-for i in range(0, 21):
-    x = i * 0.01
-    auslenkungen.append(x)
-    kraefte_weich.append(berechne_federkraft(200, x))
-    kraefte_mittel.append(berechne_federkraft(500, x))
-    kraefte_steif.append(berechne_federkraft(1000, x))
+# Eingabe
+DAUER_S = 0.01   # 10 Millisekunden
 
-# Ausgabe
-fig1 = px.line(x=auslenkungen, y=kraefte_weich,
-               labels={"x": "Auslenkung (m)", "y": "Federkraft (N)"},
-               title="Federkennlinie: k = 200 N/m (weich)")
+# Verarbeitung und Ausgabe: Kammerton A
+t1, y1 = berechne_ton(440, DAUER_S)
+fig1 = px.line(x=t1 * 1000, y=y1,
+               labels={"x": "Zeit (ms)", "y": "Amplitude"},
+               title=f"Kammerton A ({440} Hz)")
 fig1.show()
 
-fig2 = px.line(x=auslenkungen, y=kraefte_mittel,
-               labels={"x": "Auslenkung (m)", "y": "Federkraft (N)"},
-               title="Federkennlinie: k = 500 N/m (mittel)")
+# Verarbeitung und Ausgabe: zweiter Ton (z. B. 261.63 Hz = mittleres C)
+f2 = 261.63
+t2, y2 = berechne_ton(f2, DAUER_S)
+fig2 = px.line(x=t2 * 1000, y=y2,
+               labels={"x": "Zeit (ms)", "y": "Amplitude"},
+               title=f"Mittleres C ({f2:.2f} Hz)")
 fig2.show()
-
-fig3 = px.line(x=auslenkungen, y=kraefte_steif,
-               labels={"x": "Auslenkung (m)", "y": "Federkraft (N)"},
-               title="Federkennlinie: k = 1000 N/m (steif)")
-fig3.show()
 ```
 
-Erklärung: Jede Kennlinie wird als eigenes Diagramm ausgegeben. Alle drei
-sind Geraden durch den Ursprung: Je größer die Federkonstante, desto steiler
-die Linie. Der Vergleich ergibt sich durch die unterschiedlichen Maximalwerte
-auf der y-Achse.
+4. Bei 440 Hz enthält ein Zeitfenster von 10 ms genau 4,4 vollständige
+   Schwingungen. Das reicht aus, um die Kurvenform klar zu sehen. Bei 10
+   Sekunden würden 4400 Schwingungen übereinander gezeichnet, was im Diagramm
+   nur als gefüllter Balken aussähe. Bei der Schwingungsanalyse in Kapitel 9.2
+   interessierte dagegen das langsame Abklingen der Amplitude über mehrere
+   Sekunden. Die Zeitskala richtet sich also immer nach dem zu beobachtenden
+   Phänomen: schnelle Schwingungsform erfordert einen kurzen Ausschnitt, langsame
+   Hüllkurve erfordert einen langen.
 ````
 
 ````{admonition} Übung 9.8 (✩✩✩)
 :class: tip
-Wer wissen möchte, was ein Haushaltsgerät im Jahr an Strom kostet, braucht
-zwei Formeln:
+Der mittlere Temperaturverlauf eines Jahres lässt sich als Sinusfunktion über
+12 Monate modellieren. Wir simulieren außerdem natürliche Schwankungen durch
+Rauschen.
 
-$$E = \frac{P \cdot t}{1000} \qquad K = E \cdot p$$
+Die Formel für den monatlichen Temperaturverlauf lautet:
 
-wobei $P$ die Leistung in Watt, $t$ die Betriebszeit in Stunden, $E$ der
-Verbrauch in Kilowattstunden und $p$ der Strompreis in €/kWh ist.
+$$T(m) = T_{avg} + A \cdot \sin\left(\frac{2\pi}{12} \cdot (m - m_{max})\right) + \epsilon$$
 
-1. Schreiben Sie eine Funktion `berechne_verbrauch(leistung_W, stunden)`, die
-   den Stromverbrauch in kWh zurückgibt. Versehen Sie sie mit einem Docstring.
-2. Schreiben Sie eine Funktion `berechne_kosten(kWh, preis_euro)`, die die
-   Stromkosten in Euro zurückgibt. Versehen Sie sie mit einem Docstring.
-3. Schreiben Sie eine Funktion `berechne_jahreskosten(leistung_W,
-   stunden_pro_tag, preis_euro)`, die `berechne_verbrauch()` und
-   `berechne_kosten()` aufruft und die jährlichen Stromkosten zurückgibt.
-4. Berechnen Sie die Jahreskosten für folgende Geräte bei einem Strompreis
-   von 0.32 €/kWh und geben Sie die Ergebnisse mit f-Strings aus:
+Dabei ist $m$ die Monatszahl (0 bis 11), $m_{max} = 6.5$ der Monat mit der
+höchsten Temperatur (Juli) und $\epsilon$ ein normalverteiltes Rauschen mit
+Standardabweichung 1.5 °C.
 
-| Gerät | Leistung | Betrieb pro Tag |
-|-------|----------|-----------------|
-| Kühlschrank | 150 W | 24 h |
-| Waschmaschine | 2000 W | 1 h |
-| Fernseher | 120 W | 4 h |
-| Kaffeemaschine | 1500 W | 0.5 h |
+Verwenden Sie $T_{avg} = 10.0$ °C und $A = 9.0$ °C.
 
-5. Visualisieren Sie die Jahreskosten als Balkendiagramm.
+1. Schreiben Sie eine Funktion `berechne_jahrestemperatur(T_avg, A, m)`, die
+   den Temperaturverlauf ohne Rauschen berechnet und zurückgibt. `m` ist ein
+   NumPy-Array. Versehen Sie die Funktion mit einem Docstring.
+2. Erzeugen Sie ein Array `m` mit den Monatszahlen 0 bis 11 (verwenden Sie
+   `np.linspace(0, 11, 12)`). Berechnen Sie das Temperatur-Array und fügen Sie
+   Rauschen hinzu.
+3. Visualisieren Sie den Temperaturverlauf als Liniendiagramm. Verwenden Sie
+   als x-Achse folgende Monatsnamen-Liste:
+   ```python
+   monate = ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun",
+             "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"]
+   ```
+4. Durchlaufen Sie das Temperatur-Array mit einer `for`-Schleife und
+   klassifizieren Sie jeden Monat mit `elif`:
+   - unter 5 °C: `"Winter"`
+   - 5 bis unter 15 °C: `"Übergang"`
+   - 15 °C und mehr: `"Sommer"`
+   Geben Sie Monatsnamen und Klassifikation aus. Verwenden Sie eine
+   Zählvariable für den Zugriff auf die Monatsnamen.
+5. Geben Sie die Temperatur im Dezember (letzter Wert) und im November
+   (vorletzter Wert) mit negativem Index und f-String formatiert aus.
 
 Strukturieren Sie Ihren Code mit EVA-Kommentaren.
 ````
@@ -529,105 +611,117 @@ Strukturieren Sie Ihren Code mit EVA-Kommentaren.
 :class: tip
 :class: dropdown
 ```python
+import numpy as np
 import plotly.express as px
 
-def berechne_verbrauch(leistung_W, stunden):
-    """Berechnet den Stromverbrauch in kWh: E = P * t / 1000."""
-    return leistung_W * stunden / 1000
+def berechne_jahrestemperatur(T_avg, A, m):
+    """Berechnet den mittleren monatlichen Temperaturverlauf in °C.
 
-def berechne_kosten(kWh, preis_euro):
-    """Berechnet die Stromkosten in Euro: K = E * p."""
-    return kWh * preis_euro
-
-def berechne_jahreskosten(leistung_W, stunden_pro_tag, preis_euro):
-    """Berechnet die jährlichen Stromkosten eines Geräts in Euro."""
-    verbrauch_jahr = berechne_verbrauch(leistung_W, stunden_pro_tag * 365)
-    return berechne_kosten(verbrauch_jahr, preis_euro)
+    T_avg: mittlere Jahrestemperatur in °C
+    A:     Amplitude in °C
+    m:     Monatszahl als NumPy-Array (0 = Januar, 11 = Dezember)
+    """
+    return T_avg + A * np.sin(2 * np.pi / 12 * (m - 6.5))
 
 # Eingabe
-PREIS = 0.32   # €/kWh
+T_avg  = 10.0
+A      = 9.0
+monate = ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun",
+          "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"]
 
 # Verarbeitung
-kosten_kuehlschrank   = berechne_jahreskosten(150,  24,  PREIS)
-kosten_waschmaschine  = berechne_jahreskosten(2000,  1,  PREIS)
-kosten_fernseher      = berechne_jahreskosten(120,   4,  PREIS)
-kosten_kaffeemaschine = berechne_jahreskosten(1500, 0.5, PREIS)
+m        = np.linspace(0, 11, 12)
+T_sauber = berechne_jahrestemperatur(T_avg, A, m)
+rauschen = np.random.normal(0, 1.5, 12)
+T        = T_sauber + rauschen
 
-# Ausgabe: Tabelle
-print(f"Kühlschrank:    {kosten_kuehlschrank:.2f} €/Jahr")
-print(f"Waschmaschine:  {kosten_waschmaschine:.2f} €/Jahr")
-print(f"Fernseher:      {kosten_fernseher:.2f} €/Jahr")
-print(f"Kaffeemaschine: {kosten_kaffeemaschine:.2f} €/Jahr")
-
-# Ausgabe: Balkendiagramm
-geraete  = ["Kühlschrank", "Waschmaschine", "Fernseher", "Kaffeemaschine"]
-jahreskosten = [kosten_kuehlschrank, kosten_waschmaschine,
-                kosten_fernseher, kosten_kaffeemaschine]
-
-fig = px.bar(x=geraete, y=jahreskosten,
-             labels={"x": "Gerät", "y": "Jahreskosten (€)"},
-             title=f"Stromkosten pro Jahr (Strompreis: {PREIS} €/kWh)")
+# Ausgabe: Liniendiagramm
+fig = px.line(x=monate, y=T,
+              labels={"x": "Monat", "y": "Temperatur (°C)"},
+              title="Simulierter Jahrestemperaturverlauf")
 fig.show()
+
+# Ausgabe: Klassifikation
+i = 0
+for temp in T:
+    if temp < 5.0:
+        klasse = "Winter"
+    elif temp < 15.0:
+        klasse = "Übergang"
+    else:
+        klasse = "Sommer"
+    print(f"{monate[i]}: {temp:.1f} °C ({klasse})")
+    i = i + 1
+
+# Ausgabe: Jahresende
+print(f"Temperatur im Dezember:  {T[-1]:.1f} °C")
+print(f"Temperatur im November:  {T[-2]:.1f} °C")
 ```
 
-Ausgabe:
-```
-Kühlschrank:    420.48 €/Jahr
-Waschmaschine:  233.60 €/Jahr
-Fernseher:      56.06 €/Jahr
-Kaffeemaschine: 87.60 €/Jahr
-```
-
-Erklärung: `berechne_jahreskosten()` ruft intern zwei weitere Funktionen auf.
-Die Betriebszeit pro Jahr ergibt sich aus `stunden_pro_tag * 365` und wird
-direkt als Argument an `berechne_verbrauch()` übergeben. Obwohl die
-Waschmaschine mit 2000 W viel mehr Leistung hat als der Kühlschrank, verursacht
-der Kühlschrank doppelt soviele Jahreskosten, weil er rund um die Uhr läuft.
+Die Klassifikation zeigt das typische mitteleuropäische Muster: Winter in den
+Monaten Dezember bis Februar, Sommer von Juni bis August, Übergang im Frühjahr
+und Herbst. Das Rauschen sorgt dafür, dass die Grenzen nicht immer exakt
+eingehalten werden. Durch den negativen Index `T[-1]` und `T[-2]` kann auf
+die letzten beiden Monatswerte zugegriffen werden, ohne die genaue Länge des
+Arrays zu kennen.
 ````
 
-````{admonition} Übung 9.9 (✩✩✩) Mini-Projekt
+````{admonition} Übung 9.9 (✩✩✩) Mini-Projekt: Schwingungsanalyse eines Stoßdämpfers
 :class: tip
-In der Physik und Technik gibt es verschiedene Arten von Leistung. In dieser
-Aufgabe implementieren Sie vier Formeln als Funktionen und vergleichen die
-Ergebnisse für konkrete Szenarien.
+In dieser Aufgabe analysieren Sie das Schwingungsverhalten eines Stoßdämpfers
+unter verschiedenen Bedingungen. Sie kombinieren dabei Funktionen, Schleifen,
+Bedingungen, Rauschen und NumPy-Arrays.
 
-**Teil 1: Funktionen implementieren**
+**Teil 1: Funktion implementieren**
 
-Schreiben Sie folgende vier Funktionen, jeweils mit Docstring:
+Schreiben Sie eine Funktion `berechne_daempfung(t, A_m, f_hz, delta)`, die
+eine gedämpfte Schwingung berechnet und zurückgibt. Verwenden Sie die Formel
+aus Kapitel 9.2 und versehen Sie die Funktion mit einem Docstring.
 
-1. `berechne_leistung_mechanisch(F_N, v_ms)`: mechanische Leistung
-   $P = F \cdot v$ in Watt
-2. `berechne_leistung_elektrisch(U_V, I_A)`: elektrische Leistung
-   $P = U \cdot I$ in Watt
-3. `berechne_leistung_hydraulisch(p_Pa, Q_m3s)`: hydraulische Leistung
-   $P = p \cdot Q$ in Watt
-4. `berechne_leistung_thermisch(m_kgs, c_Jkg, delta_T)`: thermische Leistung
-   $P = \dot{m} \cdot c \cdot \Delta T$ in Watt, wobei $\dot{m}$ der
-   Massenstrom in kg/s und $c$ die spezifische Wärmekapazität in J/(kg·K) ist
+**Teil 2: Klassifikation**
 
-**Teil 2: Szenarien berechnen**
+Schreiben Sie eine Funktion `klassifiziere_daempfung(delta)`, die den
+Dämpfungskoeffizienten $\delta$ bewertet und eine Zeichenkette zurückgibt:
+- kleiner als 0.5 s⁻¹: `"schwach gedämpft"`
+- zwischen 0.5 und 2.0 s⁻¹: `"mittel gedämpft"`
+- größer als 2.0 s⁻¹: `"stark gedämpft"`
 
-Berechnen Sie die Leistung für folgende vier Szenarien:
+**Teil 3: Simulation**
 
-| Szenario | Funktion | Eingabewerte |
-|----------|----------|--------------|
-| Elektromotor | elektrisch | 400 V, 25 A |
-| Hydraulikzylinder | hydraulisch | 150 bar = 15.000.000 Pa, 0.002 m³/s |
-| Antriebswelle | mechanisch | 800 N, 5 m/s |
-| Kühlwasserkreislauf | thermisch | 2.0 kg/s, 4182 J/(kg·K), 5 K |
+Verwenden Sie folgende Parameter: $A = 0.08$ m, $f = 1.5$ Hz,
+Simulationsdauer 6 s. Durchlaufen Sie mit einer `for`-Schleife die folgenden
+drei Dämpfungskoeffizienten:
 
-**Teil 3: Ausgabe und Visualisierung**
-
-Geben Sie die vier Ergebnisse mit f-Strings formatiert aus:
-```
-Elektromotor:          10000.0 W
-Hydraulikzylinder:     30000.0 W
-Antriebswelle:          4000.0 W
-Kühlwasserkreislauf:   41820.0 W
+```python
+delta_werte = [0.3, 1.2, 3.0]
 ```
 
-Visualisieren Sie die vier Leistungswerte als Balkendiagramm. Strukturieren
-Sie Ihren Code mit EVA-Kommentaren.
+Führen Sie in jedem Schleifendurchgang folgende Schritte aus:
+1. Klassifizieren Sie den Dämpfungskoeffizienten mit `klassifiziere_daempfung()`.
+2. Berechnen Sie das Schwingungssignal und addieren Sie Rauschen mit
+   Standardabweichung 0.003 m.
+3. Berechnen Sie die Einhüllende: `einhuelle = A_m * np.exp(-delta * t)`.
+4. Bestimmen Sie mit einer inneren `for`-Schleife und einem Flag die
+   Abklingzeit: den ersten Zeitpunkt, an dem die Einhüllende unter 1 mm
+   (0.001 m) fällt. Initialisieren Sie `abklingzeit = -1.0` und
+   `gefunden = False`. Verwenden Sie eine Zählvariable für den Zugriff
+   auf `t`.
+5. Erstellen Sie ein Liniendiagramm des verrauschten Signals.
+6. Geben Sie eine Zeile der Ergebnistabelle mit f-String formatiert aus.
+
+**Teil 4: Ergebnistabelle**
+
+Die Ausgabe soll folgendes Format haben:
+```
+delta = 0.3 s⁻¹ (schwach gedämpft):   Abklingzeit = 23.0 s
+delta = 1.2 s⁻¹ (mittel gedämpft):    Abklingzeit =  5.7 s
+delta = 3.0 s⁻¹ (stark gedämpft):     Abklingzeit =  2.3 s
+```
+
+Hinweis: Falls die Abklingzeit innerhalb der 6 Sekunden nicht erreicht wird,
+geben Sie `"nicht erreicht"` aus.
+
+Strukturieren Sie Ihren Code mit EVA-Kommentaren.
 ````
 
 ```{code-cell} python
@@ -638,57 +732,74 @@ Sie Ihren Code mit EVA-Kommentaren.
 :class: tip
 :class: dropdown
 ```python
+import numpy as np
 import plotly.express as px
 
-def berechne_leistung_mechanisch(F_N, v_ms):
-    """Berechnet die mechanische Leistung in Watt: P = F * v."""
-    return F_N * v_ms
+def berechne_daempfung(t, A_m, f_hz, delta):
+    """Berechnet eine gedämpfte Schwingung.
 
-def berechne_leistung_elektrisch(U_V, I_A):
-    """Berechnet die elektrische Leistung in Watt: P = U * I."""
-    return U_V * I_A
+    t:     Zeitachse als NumPy-Array in s
+    A_m:   Amplitude in m
+    f_hz:  Frequenz in Hz
+    delta: Dämpfungskoeffizient in 1/s
+    """
+    omega = 2 * np.pi * f_hz
+    return A_m * np.exp(-delta * t) * np.cos(omega * t)
 
-def berechne_leistung_hydraulisch(p_Pa, Q_m3s):
-    """Berechnet die hydraulische Leistung in Watt: P = p * Q."""
-    return p_Pa * Q_m3s
+def klassifiziere_daempfung(delta):
+    """Klassifiziert den Dämpfungskoeffizienten eines Stoßdämpfers."""
+    if delta < 0.5:
+        return "schwach gedämpft"
+    elif delta <= 2.0:
+        return "mittel gedämpft"
+    else:
+        return "stark gedämpft"
 
-def berechne_leistung_thermisch(m_kgs, c_Jkg, delta_T):
-    """Berechnet die thermische Leistung in Watt: P = m_dot * c * delta_T."""
-    return m_kgs * c_Jkg * delta_T
+# Eingabe
+A_m         = 0.08    # Amplitude in m
+f_hz        = 1.5     # Frequenz in Hz
+delta_werte = [0.3, 1.2, 3.0]
+t           = np.linspace(0, 6, 1000)
 
-# Verarbeitung
-P_elektrisch  = berechne_leistung_elektrisch(400, 25)
-P_hydraulisch = berechne_leistung_hydraulisch(15_000_000, 0.002)
-P_mechanisch  = berechne_leistung_mechanisch(800, 5)
-P_thermisch   = berechne_leistung_thermisch(2.0, 4182, 5)
+# Verarbeitung und Ausgabe
+for delta in delta_werte:
+    # Klassifikation
+    klasse = klassifiziere_daempfung(delta)
 
-# Ausgabe: Tabelle
-print(f"Elektromotor:          {P_elektrisch:>8.1f} W")
-print(f"Hydraulikzylinder:     {P_hydraulisch:>8.1f} W")
-print(f"Antriebswelle:         {P_mechanisch:>8.1f} W")
-print(f"Kühlwasserkreislauf:   {P_thermisch:>8.1f} W")
+    # Signal mit Rauschen
+    x          = berechne_daempfung(t, A_m, f_hz, delta)
+    rauschen   = np.random.normal(0, 0.003, len(t))
+    x_verrauscht = x + rauschen
 
-# Ausgabe: Balkendiagramm
-szenarien  = ["Elektromotor", "Hydraulikzylinder", "Antriebswelle", "Kühlwasserkreislauf"]
-leistungen = [P_elektrisch, P_hydraulisch, P_mechanisch, P_thermisch]
+    # Einhüllende und Abklingzeit
+    einhuelle  = A_m * np.exp(-delta * t)
+    abklingzeit = -1.0
+    gefunden   = False
+    i = 0
+    for e in einhuelle:
+        if e < 0.001 and gefunden == False:
+            abklingzeit = t[i]
+            gefunden = True
+        i = i + 1
 
-fig = px.bar(x=szenarien, y=leistungen,
-             labels={"x": "Szenario", "y": "Leistung (W)"},
-             title="Leistungsvergleich verschiedener physikalischer Systeme")
-fig.show()
+    # Diagramm
+    fig = px.line(x=t, y=x_verrauscht,
+                  labels={"x": "Zeit (s)", "y": "Auslenkung (m)"},
+                  title=f"Stoßdämpfer: delta = {delta} s⁻¹ ({klasse})")
+    fig.show()
+
+    # Tabelle
+    if gefunden == True:
+        print(f"delta = {delta} s⁻¹ ({klasse}):   Abklingzeit = {abklingzeit:.1f} s")
+    else:
+        print(f"delta = {delta} s⁻¹ ({klasse}):   Abklingzeit = nicht erreicht")
 ```
 
-Ausgabe:
-```
-Elektromotor:           10000.0 W
-Hydraulikzylinder:      30000.0 W
-Antriebswelle:           4000.0 W
-Kühlwasserkreislauf:    41820.0 W
-```
-
-Erklärung: Jede Funktion kapselt genau eine physikalische Formel. Die
-vier Ergebnisse werden in separaten Variablen gespeichert und anschließend
-für Tabelle und Balkendiagramm verwendet. Das Balkendiagramm zeigt, dass
-der Kühlwasserkreislauf mit über 41 kW die größte Leistung transportiert,
-während die Antriebswelle mit 4 kW die kleinste aufweist.
+Die äußere Schleife durchläuft die drei Dämpfungskoeffizienten. Die innere
+Schleife sucht mithilfe eines Flags (`gefunden`) nach dem ersten Zeitpunkt,
+an dem die Einhüllende unter die 1-mm-Grenze fällt. Ohne das Flag würde
+`abklingzeit` bei jedem weiteren Unterschreiten überschrieben werden. Mit dem
+Flag stoppt die Suche nach dem ersten Treffer, auch wenn die Schleife noch
+weiterläuft. Bei $\delta = 0.3$ s⁻¹ wird die Grenze innerhalb von 6 s
+möglicherweise nicht erreicht, was korrekt als "nicht erreicht" ausgegeben wird.
 ````
