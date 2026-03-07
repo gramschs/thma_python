@@ -70,24 +70,22 @@ Erklärung:
 Die Tagestemperatur lässt sich näherungsweise als Sinusfunktion modellieren.
 Die Formel lautet:
 
-$$T(t) = T_{m} + A \cdot \sin\left(\frac{2\pi}{24} \cdot (t - t_{max})\right)$$
+$$T(t) = T_{avg} + A \cdot \sin\left(\frac{2\pi}{24} \cdot (t - t_{max})\right)$$
 
-Dabei ist $t$ die Uhrzeit in Stunden (0 bis 24), $T_{m}$ die mittlere
+Dabei ist $t$ die Uhrzeit in Stunden (0 bis 24), $T_{avg}$ die mittlere
 Tagestemperatur, $A$ die Amplitude und $t_{max}$ der Zeitpunkt der höchsten
 Temperatur (typischerweise 14 Uhr).
 
-Verwenden Sie folgende Werte: $T_{m} = 22.0$ °C, $A = 6.0$ °C,
+Verwenden Sie folgende Werte: $T_{avg} = 22.0$ °C, $A = 6.0$ °C,
 $t_{max} = 14.0$ h.
 
 1. Erzeugen Sie eine Zeitachse von 0 bis 24 Stunden mit 500 Punkten und
    berechnen Sie den Temperaturverlauf als NumPy-Array.
-2. Visualisieren Sie den Verlauf als Liniendiagramm mit Titel und
-   Achsenbeschriftungen.
-3. Geben Sie die Temperatur um Mitternacht (letzter Wert des Arrays) formatiert
-   auf 1 Nachkommastelle aus.
-4. Die maximale Tagestemperatur berechnet sich als $T_{m} + A$. Prüfen Sie mit
-   einer `if`-Bedingung, ob dieser Wert über 35 °C liegt, und geben Sie in
-   diesem Fall `"Hitzewarnung!"` aus.
+2. Geben Sie die Temperatur um Mitternacht (letzter Wert des Arrays) mit
+   einem negativen Index und f-String formatiert auf 1 Nachkommastelle aus.
+3. Die maximale Tagestemperatur berechnet sich als $T_{avg} + A$. Prüfen Sie
+   mit einer `if`-Bedingung, ob dieser Wert über 35 °C liegt, und geben Sie
+   in diesem Fall `"Hitzewarnung!"` aus.
 
 Strukturieren Sie Ihren Code mit EVA-Kommentaren.
 ````
@@ -104,21 +102,16 @@ import numpy as np
 import plotly.express as px
 
 # Eingabe
-T_m   = 22.0   # mittlere Temperatur in °C
-A     = 6.0    # Amplitude in °C
-t_max = 14.0   # Uhrzeit des Maximums in h
+T_avg   = 22.0   # mittlere Temperatur in °C
+A       = 6.0    # Amplitude in °C
+t_max   = 14.0   # Uhrzeit des Maximums in h
 
 # Verarbeitung
-t   = np.linspace(0, 24, 500)
-T   = T_m + A * np.sin(2 * np.pi / 24 * (t - t_max))
-T_max = T_m + A
+t     = np.linspace(0, 24, 500)
+T     = T_avg + A * np.sin(2 * np.pi / 24 * (t - t_max))
+T_max = T_avg + A
 
 # Ausgabe
-fig = px.line(x=t, y=T,
-              labels={"x": "Uhrzeit (h)", "y": "Temperatur (°C)"},
-              title="Modellierter Tagestemperaturverlauf")
-fig.show()
-
 print(f"Temperatur um Mitternacht: {T[-1]:.1f} °C")
 
 if T_max > 35.0:
@@ -131,9 +124,7 @@ Temperatur um Mitternacht: 18.0 °C
 ```
 
 Die Hitzewarnung wird nicht ausgegeben, da die maximale Temperatur
-$22.0 + 6.0 = 28.0$ °C beträgt. Das Diagramm zeigt das
-charakteristische Tagestemperaturprofil: kühle Morgenstunden, Maximum
-am frühen Nachmittag, wieder abnehmende Temperatur bis Mitternacht.
+$22.0 + 6.0 = 28.0$ °C beträgt.
 ````
 
 ````{admonition} Übung 9.3 (✩✩)
@@ -151,18 +142,18 @@ Dezimalzahl, z. B. 0.03 für 3 %) und $t$ die Zeit in Jahren.
    Zahl oder ein NumPy-Array sein. Versehen Sie die Funktion mit einem
    Docstring.
 2. Berechnen Sie das Kapitalwachstum für ein Startkapital von 10.000 € über
-   30 Jahre für folgende drei Szenarien und erstellen Sie für jedes Szenario
+   30 Jahre für folgende zwei Szenarien und erstellen Sie für jedes Szenario
    ein eigenes Liniendiagramm:
 
    | Szenario | Zinssatz |
    |----------|----------|
-   | Niedrigzins | 1 % |
    | Normalzins | 3 % |
    | Hochzins | 6 % |
 
 3. Das Zielkapital beträgt 25.000 €. Prüfen Sie für jedes Szenario mit einer
    `if/else`-Bedingung, ob das Zielkapital nach 30 Jahren erreicht wird, und
-   geben Sie das Ergebnis formatiert aus.
+   geben Sie das Ergebnis formatiert aus. Verwenden Sie den negativen Index
+   `K[-1]`, um das Endkapital abzulesen.
 
 Strukturieren Sie Ihren Code mit EVA-Kommentaren.
 ````
@@ -192,17 +183,6 @@ K0        = 10000.0   # Startkapital in Euro
 ZIEL      = 25000.0   # Zielkapital in Euro
 t         = np.linspace(0, 30, 500)
 
-# Verarbeitung und Ausgabe: Niedrigzins
-K1 = berechne_kapital(K0, 0.01, t)
-fig1 = px.line(x=t, y=K1,
-               labels={"x": "Jahre", "y": "Kapital (€)"},
-               title="Kapitalwachstum bei 1 % Zinsen")
-fig1.show()
-if K1[-1] >= ZIEL:
-    print(f"Niedrigzins: Ziel erreicht. Endkapital: {K1[-1]:.2f} Euro")
-else:
-    print(f"Niedrigzins: Ziel nicht erreicht. Endkapital: {K1[-1]:.2f} Euro")
-
 # Verarbeitung und Ausgabe: Normalzins
 K2 = berechne_kapital(K0, 0.03, t)
 fig2 = px.line(x=t, y=K2,
@@ -228,14 +208,14 @@ else:
 
 Ausgabe:
 ```
-Niedrigzins: Ziel nicht erreicht. Endkapital: 13498.59 Euro
 Normalzins: Ziel nicht erreicht. Endkapital: 24596.03 Euro
 Hochzins: Ziel erreicht. Endkapital: 60496.47 Euro
 ```
 
 Der Normalzins verfehlt das Ziel knapp, der Hochzins übertrifft es bei weitem.
-Das zeigt den großen Einfluss des Zinssatzes über lange Zeiträume: Bei 6 %
-wächst das Kapital auf das Sechsfache, bei 1 % nur um ein Drittel.
+Der Vergleich zeigt eindrücklich, wie stark der Zinssatz das Langzeitergebnis
+beeinflusst: Zwei Prozentpunkte Unterschied bedeuten nach 30 Jahren fast das
+Dreifache an Endkapital.
 ````
 
 ````{admonition} Übung 9.4 (✩✩)
@@ -248,16 +228,17 @@ schritte = np.array([6200, 11500, 4800, 9300, 7100, 12400, 3900])
 wochentage = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
 ```
 
-1. Berechnen Sie mit einer `for`-Schleife die
+1. Berechnen Sie mit einer `for`-Schleife und einem Akkumulator die
    kumulierten Schritte am Ende jedes Tages (Montag: 6200, Dienstag: 17700,
    usw.) und speichern Sie die Werte in einer Liste.
-2. Durchlaufen Sie die Schrittzahlen und
-   klassifizieren Sie jeden Tag:
+2. Durchlaufen Sie die Schrittzahlen mit einer `for`-Schleife und
+   klassifizieren Sie jeden Tag mit `elif`:
    - unter 5.000 Schritte: `"zu wenig"`
    - 5.000 bis unter 10.000 Schritte: `"ausreichend"`
    - 10.000 Schritte und mehr: `"sehr aktiv"`
    Geben Sie für jeden Tag den Wochentag, die Schrittzahl und die
-   Klassifikation aus.
+   Klassifikation aus. Verwenden Sie eine Zählvariable, um auf den passenden
+   Wochentag zuzugreifen.
 3. Visualisieren Sie die täglichen Schrittzahlen als Balkendiagramm.
 
 Strukturieren Sie Ihren Code mit EVA-Kommentaren.
@@ -333,7 +314,8 @@ In dieser Aufgabe simulieren wir ein verrauschtes Sinussignal.
 Das saubere Signal lautet: $y(t) = \sin(2\pi \cdot 3 \cdot t)$ mit $t$ von
 0 bis 1 Sekunde (500 Punkte). Das Rauschen ist normalverteilt mit Mittelwert
 0 und Standardabweichung 0.15 (verwenden Sie `np.random.normal(0, 0.15, ...)`,
-wobei der dritte Parameter die Anzahl der Punkte von $t$ angibt.
+wobei der dritte Parameter die Anzahl der Punkte angibt, die sich aus
+`t.shape[0]` ergibt).
 
 1. Berechnen Sie das saubere Signal `y_sauber` und das verrauschte Signal
    `y_verrauscht = y_sauber + rauschen`.
@@ -388,14 +370,15 @@ des Rauschens (ca. 0.45), was dem statistischen Erwartungswert für
 normalverteiltes Rauschen entspricht. Da `np.random.normal()` zufällige Werte
 erzeugt, variiert das Ergebnis bei jedem Durchlauf leicht. `np.abs()` berechnet
 elementweise den Betrag des Abweichungs-Arrays, `np.max()` gibt daraus den
-größten Wert zurück.
+größten Wert zurück. Das ersetzt die manuelle Schleife durch einen einzigen
+kompakten Ausdruck.
 ````
 
 ````{admonition} Übung 9.6 (✩✩)
 :class: tip
 Im freien Fall gilt ohne Luftwiderstand:
 
-$$s(t) = \frac{1}{2} \cdot g \cdot t^2, \qquad v(t) = g \cdot t$$
+$$s(t) = \frac{1}{2} \cdot g \cdot t^2 \qquad v(t) = g \cdot t$$
 
 Die Erdbeschleunigung $g$ ist auf verschiedenen Himmelskörpern unterschiedlich.
 
@@ -486,27 +469,53 @@ liefert einen String, der direkt in den f-String für den Diagrammtitel
 eingesetzt wird.
 ````
 
-````{admonition} Übung 9.7 (✩✩)
+````{admonition} Übung 9.7 (✩✩✩) Mini-Projekt: Töne und Tonleiter
 :class: tip
 Töne lassen sich als Sinusschwingungen modellieren:
 
 $$y(t) = \sin(2\pi \cdot f \cdot t)$$
 
-Dabei ist $f$ die Frequenz in Hz und $t$ die Zeit in Sekunden. Für die
-Darstellung einer einzelnen Schwingung reichen wenige Millisekunden.
+Dabei ist $f$ die Frequenz in Hz und $t$ die Zeit in Sekunden.
 
-1. Schreiben Sie eine Funktion `berechne_ton(f_hz, dauer_s)`, die eine
-   Zeitachse von 0 bis `dauer_s` mit 1000 Punkten und das zugehörige
-   Sinussignal berechnet. Die Funktion soll beide Arrays zurückgeben.
-   Versehen Sie die Funktion mit einem Docstring.
-2. Berechnen Sie den Kammerton A (440 Hz) über eine Dauer von 10 ms
-   (0.01 Sekunden) und visualisieren Sie ihn als Liniendiagramm.
-3. Wählen Sie einen zweiten Ton mit einer anderen Frequenz und erstellen Sie
-   ein zweites Diagramm. Verwenden Sie als Titel den Frequenzwert aus einer
-   f-String-Formatierung.
-4. Erklären Sie kurz: Warum reichen 10 ms für eine sinnvolle Darstellung,
-   während bei der Schwingungsanalyse in Kapitel 9.2 mehrere Sekunden
-   verwendet wurden?
+**Teil 1: Funktion**
+
+Schreiben Sie eine Funktion `berechne_ton(f_hz, dauer_s)`, die eine Zeitachse
+von 0 bis `dauer_s` mit 1000 Punkten und das zugehörige Sinussignal berechnet.
+Die Funktion soll beide Arrays zurückgeben. Versehen Sie die Funktion mit einem
+Docstring.
+
+**Teil 2: C-Durtonleiter**
+
+Die C-Durtonleiter hat folgende acht Töne:
+
+```python
+noten      = ["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"]
+frequenzen = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25]
+```
+
+Durchlaufen Sie die Frequenzliste mit einer `for`-Schleife und führen Sie
+in jedem Durchgang folgende Schritte aus:
+
+1. Berechnen Sie das Signal mit `berechne_ton()` über 10 ms (0.01 s).
+2. Klassifizieren Sie den Ton mit `elif` anhand der Frequenz:
+   - unter 300 Hz: `"tief"`
+   - 300 bis unter 450 Hz: `"mittel"`
+   - 450 Hz und mehr: `"hoch"`
+3. Geben Sie Notenname, Frequenz und Klasse mit einem f-String formatiert aus.
+4. Erstellen Sie ein Liniendiagramm des Tons mit Notenname und Frequenz im Titel.
+
+Verwenden Sie eine Zählvariable für den Zugriff auf die Notennamen.
+
+**Teil 3: Überlagerung zweier Töne**
+
+Berechnen Sie den Kammerton A (440 Hz) und das mittlere C (261.63 Hz) jeweils
+über 10 ms. Addieren Sie beide Signale elementweise zu einem Überlagerungssignal
+`y_sum = y1 + y2` und visualisieren Sie es in einem eigenen Diagramm.
+
+**Teil 4: Erklärung**
+
+Erklären Sie kurz: Warum reichen 10 ms für eine sinnvolle Darstellung der
+Schwingungsform, während in Kapitel 9.2 mehrere Sekunden verwendet wurden?
 
 Strukturieren Sie Ihren Code mit EVA-Kommentaren.
 ````
@@ -525,7 +534,7 @@ import plotly.express as px
 def berechne_ton(f_hz, dauer_s):
     """Berechnet eine Sinusschwingung für einen Ton.
 
-    f_hz:   Frequenz in Hz
+    f_hz:    Frequenz in Hz
     dauer_s: Dauer in Sekunden
     Rückgabe: t (Zeitachse), y (Sinussignal), jeweils als NumPy-Array
     """
@@ -534,272 +543,64 @@ def berechne_ton(f_hz, dauer_s):
     return t, y
 
 # Eingabe
-DAUER_S = 0.01   # 10 Millisekunden
+noten      = ["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"]
+frequenzen = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25]
+DAUER_S    = 0.01   # 10 Millisekunden
 
-# Verarbeitung und Ausgabe: Kammerton A
-t1, y1 = berechne_ton(440, DAUER_S)
-fig1 = px.line(x=t1 * 1000, y=y1,
-               labels={"x": "Zeit (ms)", "y": "Amplitude"},
-               title=f"Kammerton A ({440} Hz)")
-fig1.show()
-
-# Verarbeitung und Ausgabe: zweiter Ton (z. B. 261.63 Hz = mittleres C)
-f2 = 261.63
-t2, y2 = berechne_ton(f2, DAUER_S)
-fig2 = px.line(x=t2 * 1000, y=y2,
-               labels={"x": "Zeit (ms)", "y": "Amplitude"},
-               title=f"Mittleres C ({f2:.2f} Hz)")
-fig2.show()
-```
-
-4. Bei 440 Hz enthält ein Zeitfenster von 10 ms genau 4,4 vollständige
-   Schwingungen. Das reicht aus, um die Kurvenform klar zu sehen. Bei 10
-   Sekunden würden 4400 Schwingungen übereinander gezeichnet, was im Diagramm
-   nur als gefüllter Balken aussähe. Bei der Schwingungsanalyse in Kapitel 9.2
-   interessierte dagegen das langsame Abklingen der Amplitude über mehrere
-   Sekunden. Die Zeitskala richtet sich also immer nach dem zu beobachtenden
-   Phänomen: schnelle Schwingungsform erfordert einen kurzen Ausschnitt, langsame
-   Hüllkurve erfordert einen langen.
-````
-
-````{admonition} Übung 9.8 (✩✩✩)
-:class: tip
-Der mittlere Temperaturverlauf eines Jahres lässt sich als Sinusfunktion über
-12 Monate modellieren. Wir simulieren außerdem natürliche Schwankungen durch
-Rauschen.
-
-Die Formel für den monatlichen Temperaturverlauf lautet:
-
-$$T(m) = T_{avg} + A \cdot \sin\left(\frac{2\pi}{12} \cdot (m - m_{max})\right) + \epsilon$$
-
-Dabei ist $m$ die Monatszahl (0 bis 11), $m_{max} = 6.5$ der Monat mit der
-höchsten Temperatur (Juli) und $\epsilon$ ein normalverteiltes Rauschen mit
-Standardabweichung 1.5 °C.
-
-Verwenden Sie $T_{avg} = 10.0$ °C und $A = 9.0$ °C.
-
-1. Schreiben Sie eine Funktion `berechne_jahrestemperatur(T_avg, A, m)`, die
-   den Temperaturverlauf ohne Rauschen berechnet und zurückgibt. `m` ist ein
-   NumPy-Array. Versehen Sie die Funktion mit einem Docstring.
-2. Erzeugen Sie ein Array `m` mit den Monatszahlen 0 bis 11 (verwenden Sie
-   `np.linspace(0, 11, 12)`). Berechnen Sie das Temperatur-Array und fügen Sie
-   Rauschen hinzu.
-3. Visualisieren Sie den Temperaturverlauf als Liniendiagramm. Verwenden Sie
-   als x-Achse folgende Monatsnamen-Liste:
-   ```python
-   monate = ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun",
-             "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"]
-   ```
-4. Durchlaufen Sie das Temperatur-Array mit einer `for`-Schleife und
-   klassifizieren Sie jeden Monat mit `elif`:
-   - unter 5 °C: `"Winter"`
-   - 5 bis unter 15 °C: `"Übergang"`
-   - 15 °C und mehr: `"Sommer"`
-   Geben Sie Monatsnamen und Klassifikation aus. Verwenden Sie eine
-   Zählvariable für den Zugriff auf die Monatsnamen.
-5. Geben Sie die Temperatur im Dezember (letzter Wert) und im November
-   (vorletzter Wert) mit negativem Index und f-String formatiert aus.
-
-Strukturieren Sie Ihren Code mit EVA-Kommentaren.
-````
-
-```{code-cell} python
-# Code-Zelle
-```
-
-````{admonition} Lösung
-:class: tip
-:class: dropdown
-```python
-import numpy as np
-import plotly.express as px
-
-def berechne_jahrestemperatur(T_avg, A, m):
-    """Berechnet den mittleren monatlichen Temperaturverlauf in °C.
-
-    T_avg: mittlere Jahrestemperatur in °C
-    A:     Amplitude in °C
-    m:     Monatszahl als NumPy-Array (0 = Januar, 11 = Dezember)
-    """
-    return T_avg + A * np.sin(2 * np.pi / 12 * (m - 6.5))
-
-# Eingabe
-T_avg  = 10.0
-A      = 9.0
-monate = ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun",
-          "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"]
-
-# Verarbeitung
-m        = np.linspace(0, 11, 12)
-T_sauber = berechne_jahrestemperatur(T_avg, A, m)
-rauschen = np.random.normal(0, 1.5, 12)
-T        = T_sauber + rauschen
-
-# Ausgabe: Liniendiagramm
-fig = px.line(x=monate, y=T,
-              labels={"x": "Monat", "y": "Temperatur (°C)"},
-              title="Simulierter Jahrestemperaturverlauf")
-fig.show()
-
-# Ausgabe: Klassifikation
+# Verarbeitung und Ausgabe: Tonleiter
 i = 0
-for temp in T:
-    if temp < 5.0:
-        klasse = "Winter"
-    elif temp < 15.0:
-        klasse = "Übergang"
+for f in frequenzen:
+    t_ton, y_ton = berechne_ton(f, DAUER_S)
+
+    if f < 300:
+        klasse = "tief"
+    elif f < 450:
+        klasse = "mittel"
     else:
-        klasse = "Sommer"
-    print(f"{monate[i]}: {temp:.1f} °C ({klasse})")
-    i = i + 1
+        klasse = "hoch"
 
-# Ausgabe: Jahresende
-print(f"Temperatur im Dezember:  {T[-1]:.1f} °C")
-print(f"Temperatur im November:  {T[-2]:.1f} °C")
-```
+    print(f"{noten[i]}: {f:.2f} Hz ({klasse})")
 
-Die Klassifikation zeigt das typische mitteleuropäische Muster: Winter in den
-Monaten Dezember bis Februar, Sommer von Juni bis August, Übergang im Frühjahr
-und Herbst. Das Rauschen sorgt dafür, dass die Grenzen nicht immer exakt
-eingehalten werden. Durch den negativen Index `T[-1]` und `T[-2]` kann auf
-die letzten beiden Monatswerte zugegriffen werden, ohne die genaue Länge des
-Arrays zu kennen.
-````
-
-````{admonition} Übung 9.9 (✩✩✩) Mini-Projekt: Schwingungsanalyse eines Stoßdämpfers
-:class: tip
-In dieser Aufgabe analysieren Sie das Schwingungsverhalten eines Stoßdämpfers
-unter verschiedenen Bedingungen. Sie kombinieren dabei Funktionen, Schleifen,
-Bedingungen, Rauschen und NumPy-Arrays.
-
-**Teil 1: Funktion implementieren**
-
-Schreiben Sie eine Funktion `berechne_daempfung(t, A_m, f_hz, delta)`, die
-eine gedämpfte Schwingung berechnet und zurückgibt. Verwenden Sie die Formel
-aus Kapitel 9.2 und versehen Sie die Funktion mit einem Docstring.
-
-**Teil 2: Klassifikation**
-
-Schreiben Sie eine Funktion `klassifiziere_daempfung(delta)`, die den
-Dämpfungskoeffizienten $\delta$ bewertet und eine Zeichenkette zurückgibt:
-- kleiner als 0.5 s⁻¹: `"schwach gedämpft"`
-- zwischen 0.5 und 2.0 s⁻¹: `"mittel gedämpft"`
-- größer als 2.0 s⁻¹: `"stark gedämpft"`
-
-**Teil 3: Simulation**
-
-Verwenden Sie folgende Parameter: $A = 0.08$ m, $f = 1.5$ Hz,
-Simulationsdauer 6 s. Durchlaufen Sie mit einer `for`-Schleife die folgenden
-drei Dämpfungskoeffizienten:
-
-```python
-delta_werte = [0.3, 1.2, 3.0]
-```
-
-Führen Sie in jedem Schleifendurchgang folgende Schritte aus:
-1. Klassifizieren Sie den Dämpfungskoeffizienten mit `klassifiziere_daempfung()`.
-2. Berechnen Sie das Schwingungssignal und addieren Sie Rauschen mit
-   Standardabweichung 0.003 m.
-3. Berechnen Sie die Einhüllende: `einhuelle = A_m * np.exp(-delta * t)`.
-4. Bestimmen Sie mit einer inneren `for`-Schleife und einem Flag die
-   Abklingzeit: den ersten Zeitpunkt, an dem die Einhüllende unter 1 mm
-   (0.001 m) fällt. Initialisieren Sie `abklingzeit = -1.0` und
-   `gefunden = False`. Verwenden Sie eine Zählvariable für den Zugriff
-   auf `t`.
-5. Erstellen Sie ein Liniendiagramm des verrauschten Signals.
-6. Geben Sie eine Zeile der Ergebnistabelle mit f-String formatiert aus.
-
-**Teil 4: Ergebnistabelle**
-
-Die Ausgabe soll folgendes Format haben:
-```
-delta = 0.3 s⁻¹ (schwach gedämpft):   Abklingzeit = 23.0 s
-delta = 1.2 s⁻¹ (mittel gedämpft):    Abklingzeit =  5.7 s
-delta = 3.0 s⁻¹ (stark gedämpft):     Abklingzeit =  2.3 s
-```
-
-Hinweis: Falls die Abklingzeit innerhalb der 6 Sekunden nicht erreicht wird,
-geben Sie `"nicht erreicht"` aus.
-
-Strukturieren Sie Ihren Code mit EVA-Kommentaren.
-````
-
-```{code-cell} python
-# Code-Zelle
-```
-
-````{admonition} Lösung
-:class: tip
-:class: dropdown
-```python
-import numpy as np
-import plotly.express as px
-
-def berechne_daempfung(t, A_m, f_hz, delta):
-    """Berechnet eine gedämpfte Schwingung.
-
-    t:     Zeitachse als NumPy-Array in s
-    A_m:   Amplitude in m
-    f_hz:  Frequenz in Hz
-    delta: Dämpfungskoeffizient in 1/s
-    """
-    omega = 2 * np.pi * f_hz
-    return A_m * np.exp(-delta * t) * np.cos(omega * t)
-
-def klassifiziere_daempfung(delta):
-    """Klassifiziert den Dämpfungskoeffizienten eines Stoßdämpfers."""
-    if delta < 0.5:
-        return "schwach gedämpft"
-    elif delta <= 2.0:
-        return "mittel gedämpft"
-    else:
-        return "stark gedämpft"
-
-# Eingabe
-A_m         = 0.08    # Amplitude in m
-f_hz        = 1.5     # Frequenz in Hz
-delta_werte = [0.3, 1.2, 3.0]
-t           = np.linspace(0, 6, 1000)
-
-# Verarbeitung und Ausgabe
-for delta in delta_werte:
-    # Klassifikation
-    klasse = klassifiziere_daempfung(delta)
-
-    # Signal mit Rauschen
-    x          = berechne_daempfung(t, A_m, f_hz, delta)
-    rauschen   = np.random.normal(0, 0.003, len(t))
-    x_verrauscht = x + rauschen
-
-    # Einhüllende und Abklingzeit
-    einhuelle  = A_m * np.exp(-delta * t)
-    abklingzeit = -1.0
-    gefunden   = False
-    i = 0
-    for e in einhuelle:
-        if e < 0.001 and gefunden == False:
-            abklingzeit = t[i]
-            gefunden = True
-        i = i + 1
-
-    # Diagramm
-    fig = px.line(x=t, y=x_verrauscht,
-                  labels={"x": "Zeit (s)", "y": "Auslenkung (m)"},
-                  title=f"Stoßdämpfer: delta = {delta} s⁻¹ ({klasse})")
+    fig = px.line(x=t_ton * 1000, y=y_ton,
+                  labels={"x": "Zeit (ms)", "y": "Amplitude"},
+                  title=f"{noten[i]} ({f:.2f} Hz)")
     fig.show()
 
-    # Tabelle
-    if gefunden == True:
-        print(f"delta = {delta} s⁻¹ ({klasse}):   Abklingzeit = {abklingzeit:.1f} s")
-    else:
-        print(f"delta = {delta} s⁻¹ ({klasse}):   Abklingzeit = nicht erreicht")
+    i = i + 1
+
+# Verarbeitung und Ausgabe: Überlagerung
+t1, y1 = berechne_ton(440.00, DAUER_S)
+t2, y2 = berechne_ton(261.63, DAUER_S)
+y_sum  = y1 + y2
+
+fig_sum = px.line(x=t1 * 1000, y=y_sum,
+                  labels={"x": "Zeit (ms)", "y": "Amplitude"},
+                  title="Überlagerung: A4 (440 Hz) + C4 (261.63 Hz)")
+fig_sum.show()
 ```
 
-Die äußere Schleife durchläuft die drei Dämpfungskoeffizienten. Die innere
-Schleife sucht mithilfe eines Flags (`gefunden`) nach dem ersten Zeitpunkt,
-an dem die Einhüllende unter die 1-mm-Grenze fällt. Ohne das Flag würde
-`abklingzeit` bei jedem weiteren Unterschreiten überschrieben werden. Mit dem
-Flag stoppt die Suche nach dem ersten Treffer, auch wenn die Schleife noch
-weiterläuft. Bei $\delta = 0.3$ s⁻¹ wird die Grenze innerhalb von 6 s
-möglicherweise nicht erreicht, was korrekt als "nicht erreicht" ausgegeben wird.
+Ausgabe (Auszug):
+```
+C4: 261.63 Hz (tief)
+D4: 293.66 Hz (tief)
+E4: 329.63 Hz (mittel)
+F4: 349.23 Hz (mittel)
+G4: 392.00 Hz (mittel)
+A4: 440.00 Hz (mittel)
+B4: 493.88 Hz (hoch)
+C5: 523.25 Hz (hoch)
+```
+
+4. Bei 440 Hz enthält ein Zeitfenster von 10 ms genau 4.4 vollständige
+   Schwingungen. Das reicht aus, um die Kurvenform klar zu sehen. Bei 10
+   Sekunden würden 4400 Schwingungen übereinander gezeichnet, was im Diagramm
+   nur als gefüllter Balken aussähe. In Kapitel 9.2 interessierte dagegen das
+   langsame Abklingen der Amplitude über mehrere Sekunden. Die Zeitskala richtet
+   sich immer nach dem zu beobachtenden Phänomen.
+
+Das Überlagerungssignal entsteht durch elementweise Addition der beiden Arrays.
+Die Kurve ist komplexer als ein einfacher Sinus und zeigt das typische Muster
+einer Schwebung: Die Amplitude schwankt rhythmisch, weil sich die beiden
+Frequenzen abwechselnd verstärken und auslöschen.
 ````
+
