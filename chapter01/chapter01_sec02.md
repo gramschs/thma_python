@@ -37,7 +37,7 @@ Die Kombination von Text, Code und Visualisierungen macht Jupyter Notebooks zu
 einem besonders geeigneten Werkzeug für das Programmierenlernen: Konzepte
 werden im Text erläutert und können direkt in Code-Zellen ausprobiert werden.
 
-```{figure} pics/jupyter_notebook.png
+```{figure} https://gramschs.github.io/thma_python_assets/pics/chapter01/jupyter_notebook.png
 :name: fig_jupyter_notebook
 Screenshot eines Jupyter Notebooks mit Text, Python-Code und Ergebnissen des
 ausgeführten Python-Codes, das mit der "JupyterLab" geladen wurde (Quelle:
@@ -97,7 +97,7 @@ Sie können die obigen Code-Zellen verändern, zum Beispiel `2 + 3` in `2 + 5`
 Wenn Sie dieses Skript als interaktives Jupyter Notebook öffnen, können Sie
 direkt in die Zellen klicken und den Code ändern. Falls Sie das Skript online
 lesen, klicken Sie bitte auf das Raketensymbol oben rechts und wählen „Live
-Code“, um interaktive Zellen zu aktivieren. Beim ersten Start kann dies etwas
+Code", um interaktive Zellen zu aktivieren. Beim ersten Start kann dies etwas
 dauern.
 
 Um Übungen zu ermöglichen, enthalten manche Zellen nur einen Kommentar als

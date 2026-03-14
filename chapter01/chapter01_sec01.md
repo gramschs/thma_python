@@ -151,6 +151,7 @@ von Programmiersprachen bietet der sogenannte *Tiobe-Index*:
 ```{admonition} Mini-Übung
 :class: tip
 Recherchieren Sie im Tiobe-Index nach den Programmiersprachen MATLAB und Python.
+
 1. Auf welchem Platz stehen die beiden Programmiersprachen aktuell?
 2. Schauen Sie sich auch die langfristige Entwicklung an. Wie haben sich beide
    Sprachen in den letzten 10 Jahren entwickelt?
@@ -175,7 +176,7 @@ In der Anfangszeit der Computer waren Programmiersprachen noch sehr nah an der
 Einsen), den der Prozessor direkt ausführt. Hier ein Beispiel in *Assembler*,
 einer sehr maschinenorientierten Sprache, die bereits schwer lesbar ist:
 
-```{figure} https://github.com/gramschs/assets/blob/main/thma_python/pics/fig_assembler.png
+```{figure} https://gramschs.github.io/thma_python_assets/pics/chapter01/fig_assembler.png
 :name: fig_chap00_sec01
 
 "Hallo Welt" in Assembler
@@ -212,7 +213,7 @@ interpretiert?
 
 * C bzw. C++  
 * C# (ausgesprochen: C Sharp)  
-* JavaScript 
+* JavaScript
 * Python
 * Visual Basic  
 ```
