@@ -29,7 +29,10 @@ beschäftigen.
   Liste zugreifen, beherrschen also **Lesezugriff** und **Schreibzugriff**.
 * [ ] Sie können die Anzahl der Elemente einer Liste mit `len()` bestimmen.
 * [ ] Sie können eine Liste manipulieren, z.B. die Liste mit der Methode
-* `.append()` am Ende erweitern oder Werte mit der Methode `.remove()` löschen.
+  `.append()` am Ende erweitern oder Werte mit der Methode `.remove()` löschen.
+* [ ] Sie können einen KI-Chatbot mit einem kontextreichen **Prompt** nach der
+  Erklärung eines Fachbegriffs fragen und die Qualität verschiedener Prompts
+  vergleichen.
 ```
 
 +++
@@ -81,7 +84,9 @@ Im folgenden Video können Sie sich die Erzeugung von Listen nochmal ansehen.
 
 ```{dropdown} Video "Python Tutorial - Listen" von Programmieren starten
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ihF8bZoauBs"
-title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+title="YouTube video player" frameborder="0" allow="accelerometer; autoplay;
+clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+allowfullscreen></iframe>
 ```
 
 ## Lese- und Schreibzugriff
@@ -137,6 +142,60 @@ schluessel = werkzeugkoffer[2]
 # Anzeige
 print(schluessel)
 ```
+````
+
++++
+
+```{admonition} Mini-Übung: Prompt Engineering
+:class: tip
+Ein KI-Chatbot kann Ihnen helfen, Fachbegriffe wie **Index** zu verstehen.
+Allerdings hängt die Qualität der Antwort stark davon ab, wie Sie Ihre Frage
+formulieren. Das gezielte Formulieren von Anfragen an einen KI-Chatbot nennt man
+**Prompt Engineering**.
+
+Probieren Sie die folgenden drei Prompts nacheinander in einem KI-Chatbot Ihrer
+Wahl aus und vergleichen Sie die Antworten:
+
+**Prompt 1:** "Was ist ein Index?"
+
+**Prompt 2:** "Was ist ein Index in Python?"
+
+**Prompt 3:** "Ich studiere Maschinenbau und lerne gerade Python. Erkläre mir
+anhand eines Beispiels, was in Python der Fachbegriff Index bedeutet."
+
+Notieren Sie in einer Markdown-Zelle, wie sich die drei Antworten unterscheiden.
+Welcher Prompt liefert die nützlichste Erklärung für Ihr Lernen?
+```
+
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+Die drei Prompts liefern in der Regel sehr unterschiedliche Antworten:
+
+**Prompt 1** ist zu vage. Der Chatbot weiß nicht, ob ein Buchindex, ein
+Datenbankindex oder etwas anderes gemeint ist. Die Antwort wird wahrscheinlich
+allgemein und nicht auf Python zugeschnitten sein.
+
+**Prompt 2** ist besser, weil der Kontext Python gesetzt ist. Die Antwort wird
+sich auf Python beziehen, bleibt aber möglicherweise abstrakt, da unklar ist,
+was Sie bereits wissen.
+
+**Prompt 3** liefert in der Regel die nützlichste Antwort: Der Chatbot kennt
+Ihr Studienfeld und wählt idealerweise ein ingenieurnahes Beispiel. Er weiß,
+dass Sie Anfänger sind, und erklärt entsprechend. Die Bitte um ein Beispiel
+sorgt für eine konkrete, anschauliche Erklärung.
+
+**Was macht einen guten Prompt aus?**
+
+Ein guter Prompt enthält drei Dinge:
+
+1. **Kontext:** Wer fragt, und in welchem Zusammenhang? (Studiengang, Lernstand)
+2. **Konkretes Ziel:** Was soll erklärt werden?
+3. **Gewünschte Form:** Wie soll die Erklärung aussehen? (z.B. "anhand eines
+   Beispiels", "in zwei Sätzen", "mit Python-Code")
+
+Je präziser der Prompt, desto weniger Rückfragen oder Nachbesserungen sind
+nötig.
 ````
 
 +++

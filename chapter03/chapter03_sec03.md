@@ -6,6 +6,11 @@ kernelspec:
 
 # Übungen
 
+```{code-cell} python
+# ggf. Module nachinstallieren und Kernel neu starten
+# %pip install plotly pandas nbformat
+```
+
 ```{admonition} Übung 3.1
 :class: tip
 Erzeugen Sie die folgenden Listen und geben Sie sie mit `print()` aus:
@@ -289,6 +294,11 @@ Erklärung:
 - Nach dem zweiten `.remove()` gibt es keine 'Schraube M8' mehr.
 - Ein dritter Versuch würde einen `ValueError` erzeugen, weil das Element nicht
   mehr in der Liste existiert.
+
+**Tipp:** Wenn Sie auf eine unbekannte Fehlermeldung stoßen, kopieren Sie den
+gesamten Fehlertext in einen KI-Chatbot und fragen Sie: "Ich lerne Python.
+Was bedeutet diese Fehlermeldung und wie behebe ich sie?" Das ist eine
+effiziente Methode, um Fehler schnell zu verstehen.
 ````
 
 ````{admonition} Übung 3.7
@@ -505,6 +515,10 @@ Das Programm soll folgende Aufgaben erfüllen:
    - Titel: "Maßabweichungen der Wellen"
    - Achsenbeschriftungen: x = "Bauteil Nr.", y = "Abweichung in mm"
 
+*Bonusaufgabe:* Fügen Sie dem Diagramm zusätzlich Datenpunkte als Symbole
+hinzu. Den passenden Parameter haben Sie in Kapitel 3.2 mit Hilfe eines
+KI-Chatbots entdeckt.
+
 *Anforderungen:*
 
 - Strukturieren Sie mit EVA-Kommentaren (Eingabe, Verarbeitung, Ausgabe)
@@ -559,7 +573,8 @@ bauteilnummern = [1, 2, 3, 4]
 
 fig = px.line(x=bauteilnummern, y=abweichungen_mm,
               title='Maßabweichungen der Wellen',
-              labels={'x': 'Bauteil Nr.', 'y': 'Abweichung in mm'})
+              labels={'x': 'Bauteil Nr.', 'y': 'Abweichung in mm'},
+              markers=True)
 fig.show()
 ```
 

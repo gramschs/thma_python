@@ -26,6 +26,8 @@ Plotly-Express-Moduls kennenlernen.
   anzeigen lassen.
 * [ ] Sie können mit Plotly Express ein Liniendiagramm mit Titel und
   Achsenbeschriftung generieren.
+* [ ] Sie können einen KI-Chatbot nutzen, um technische **Dokumentation** zu
+  verstehen und neue Parameter einer Funktion zu entdecken.
 ```
 
 ## Import von Modulen
@@ -40,13 +42,29 @@ sogenannten **Alias-Import**. Ein Alias ist eine Abkürzung, in diesem Fall für
 den Namen des Moduls. Theoretisch können wir jeden beliebigen Alias verwenden,
 in der Praxis haben sich jedoch bestimmte Aliase eingebürgert. Im Fall von
 Plotly Express ist `px` der Standard-Alias. Um also das Modul Plotly Express
-mit dem alias `px` zu importieren, schreiben wir die folgende Code-Zeile:
+mit dem Alias `px` zu importieren, schreiben wir die folgende Code-Zeile:
 
 ```{code-cell} python
+# ggf. Module nachinstallieren und Kernel neu starten
+# %pip install plotly pandas nbformat
 import plotly.express as px
 ```
 
-Wird die obige Anweisung ausgeführt, passiert scheinbar nichts. Tatsächlich hat
+```{admonition} Hinweis: Module nachinstallieren
+:class: danger
+Manche Python-Umgebungen wie **JupyterLite** oder **Google Colab** haben Plotly
+Express nicht vorinstalliert. In diesem Fall erscheint beim Import eine
+Fehlermeldung wie `ModuleNotFoundError: No module named 'plotly'`.
+
+Um das Modul nachzuinstallieren, entfernen Sie das `#` vor der Zeile
+`%pip install plotly pandas nbformat` und führen Sie die Zelle aus. Das `%`
+kennzeichnet einen sogenannten **Magic Command**, einen Sonderbefehl, der direkt
+in Jupyter Notebooks ausgeführt werden kann. Nach der Installation starten Sie
+den Kernel neu (Menü: *Kernel* → *Restart Kernel*) und führen die Code-Zellen
+erneut aus. Danach können Sie die Zeile wieder auskommentieren.
+```
+
+Wird die Import-Anweisung ausgeführt, passiert scheinbar nichts. Tatsächlich hat
 der Python-Interpreter jedoch das Modul geladen. Die Anweisung `dir(px)` listet
 auf, was genau alles importiert wurde.
 
@@ -67,7 +85,7 @@ help(px.scatter)
 ```
 
 ```{admonition} Alias benutzen
-:class: warning
+:class: note
 Wenn wir eine Konstante, Funktion oder Klasse aus einem Modul benutzen wollen,
 das wir mit einem Alias importiert haben, müssen wir immer den Alias
 voranstellen und mit einem Punkt von der Funktionalität abtrennen.
@@ -100,6 +118,57 @@ EVA-Prinzip. Die Hilfe beantwortet die Fragen:
 * Welche Eingaben sind möglich (Argumente und Parameter der Funktion)?
 * Was gibt die Funktion nach der Verarbeitung als Ausgabe zurück?
 ```
+
+```{admonition} Mini-Übung: KI-Chatbot zur Dokumentation nutzen
+:class: tip
+Die Ausgabe von `help(px.line)` ist lang und auf Englisch. Ein KI-Chatbot kann
+helfen, technische Dokumentation schnell zu verstehen.
+
+Kopieren Sie die vollständige Ausgabe von `help(px.line)` aus der obigen
+Code-Zelle und stellen Sie dem Chatbot folgende Frage:
+
+> "Ich lerne gerade Python und Plotly Express. Hier ist die Hilfebeschreibung
+> der Funktion `px.line`. Erkläre mir auf Deutsch in 3 bis 5 Sätzen, wofür die
+> Funktion gedacht ist. Nenne mir außerdem drei Parameter, die für Anfänger
+> besonders nützlich sind, und zeige jeweils ein kurzes Beispiel."
+
+Probieren Sie anschließend einen der vorgeschlagenen Parameter in der nächsten
+Code-Zelle aus.
+```
+
+```{code-cell} python
+# Hier Ihren Code mit dem neu entdeckten Parameter ausprobieren
+```
+
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+Ein KI-Chatbot könnte beispielsweise folgende drei Parameter empfehlen:
+
+**`title`**: Setzt den Diagrammtitel als String.
+```python
+fig = px.line(x=zeit_s, y=temperatur_celsius,
+              title='Mein Diagramm')
+```
+
+**`labels`**: Benennt die Achsen um. Die Schlüssel `'x'` und `'y'` entsprechen
+den Achsen.
+```python
+fig = px.line(x=zeit_s, y=temperatur_celsius,
+              labels={'x': 'Zeit in s', 'y': 'Temperatur in °C'})
+```
+
+**`markers`**: Zeigt zusätzlich Datenpunkte als Symbole an, wenn `True` gesetzt
+wird.
+```python
+fig = px.line(x=zeit_s, y=temperatur_celsius,
+              markers=True)
+```
+
+Diese Mini-Übung zeigt eine wichtige Strategie: Statt die gesamte Dokumentation
+zu lesen, können Sie den Chatbot bitten, die wichtigsten Informationen
+herauszufiltern und mit Beispielen zu erläutern.
+````
 
 ## Liniendiagramme
 
@@ -149,7 +218,7 @@ gesteuert werden. Dabei werden die beiden Achsen über ein sogenanntes Dictionar
 konfiguriert. Das ist eine Datenstruktur, die wir in einem späteren Kapitel noch
 ausführlich behandeln werden. Für heute genügt es zu wissen: Dictionaries werden
 mit geschweiften Klammern `{ }` erzeugt und ordnen Schlüsseln Werte zu. Die
-Syntax ist: {'Schlüssel': 'Wert'}.
+Syntax ist: `{'Schlüssel': 'Wert'}`.
 
 ```{code-cell} python
 # Visualisierung als Liniendiagramm mit Titel und Achsenbeschriftung
