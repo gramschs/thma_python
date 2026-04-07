@@ -108,6 +108,66 @@ if temperatur > 350:
 ```
 ````
 
+Bisher haben wir if-Blöcke eingesetzt, um eine einzelne Aktion auszulösen, etwa
+eine Warnung auszugeben. Häufig möchte man jedoch einen Wert abhängig von einer
+Bedingung anpassen. Das gelingt mit einem einfachen Muster: Man setzt eine
+Variable zunächst auf einen Standardwert und überschreibt diesen anschließend
+mit einem if-Block, falls die Bedingung erfüllt ist. In der folgenden Mini-Übung
+wenden Sie dieses Muster an.
+
+```{admonition} Mini-Übung
+:class: tip
+Ein Sensor misst die Temperatur einer Bremsscheibe. Schreiben Sie ein Programm,
+das den Benutzer oder die Benutzerin nach der aktuellen Temperatur fragt und
+anschließend den Betriebszustand der Bremse ausgibt.
+
+Verwenden Sie folgende Schwellenwerte:
+
+| Temperatur  | Betriebszustand        |
+|-------------|------------------------|
+| bis 200 °C  | `"Normal"`             |
+| über 200 °C | `"Erhoehte Belastung"` |
+| über 300 °C | `"Kritisch"`           |
+
+Gehen Sie dabei so vor:
+1. Setzen Sie den Betriebszustand zunächst auf `"Normal"`.
+2. Prüfen Sie dann mit zwei if-Bedingungen, ob der Zustand überschrieben
+   werden muss.
+3. Geben Sie am Ende den Betriebszustand aus.
+```
+
+```{code-cell} python
+# Code-Zelle
+
+```
+
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+```python
+# Eingabe
+temperatur = float(input('Aktuelle Temperatur der Bremsscheibe (in °C): '))
+
+# Verarbeitung: Voreinstellung
+betriebszustand = 'Normal'
+
+if temperatur > 200:
+    betriebszustand = 'Erhoehte Belastung'
+if temperatur > 300:
+    betriebszustand = 'Kritisch'
+
+# Ausgabe
+print('Betriebszustand: ' + betriebszustand)
+```
+
+Erklärung: Der Betriebszustand wird zunächst auf `'Normal'` gesetzt. Die beiden
+if-Blöcke werden anschließend nacheinander geprüft. Bei einer Temperatur von
+z.B. 320 °C ist sowohl die erste als auch die zweite Bedingung erfüllt, sodass
+der Betriebszustand zuerst auf `'Erhoehte Belastung'` und dann auf `'Kritisch'`
+überschrieben wird. Dieses Muster (Voreinstellung setzen, dann per if
+überschreiben) werden wir im nächsten Abschnitt erneut einsetzen.
+````
+
 ```{dropdown} Video "if-Anweisung" von Programmieren Starten
 <iframe width="560" height="315" src="https://www.youtube.com/embed/b6KzYbM-Hvg"
 title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write;
@@ -135,6 +195,13 @@ fig = px.line(x=zeit_s, y=temperatur_celsius,
               labels={'x': 'Zeit in Sekunden', 'y': 'Temperatur in °C'})
 fig.show()
 ```
+
+Das Liniendiagramm ist damit fertig, aber Titel und Achsenbeschriftungen sind
+fest auf Deutsch eingestellt. In internationalen Ingenieurteams ist das oft
+nicht ausreichend. Mit dem Voreinstellungs-Muster aus der letzten Übung lässt
+sich das elegent lösen: Die deutschen Texte dienen als Standardwerte und werden
+per if-Block durch englische ersetzt, falls der Benutzer oder die Benutzerin
+dies wünscht.
 
 ```{admonition} Mini-Übung
 :class: tip
