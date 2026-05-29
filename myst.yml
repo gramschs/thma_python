@@ -63,7 +63,17 @@ project:
       - file: chapter09/chapter09_sec01.md
       - file: chapter09/chapter09_sec02.md
       - file: chapter09/chapter09_sec03.md
-    
+    - title: 10. Messwerte verarbeiten mit Pandas
+      children:
+      - file: chapter10/chapter10_sec01.md
+      - file: chapter10/chapter10_sec02.md
+      - file: chapter10/chapter10_sec03.md
+    - title: 11. Visualisierung und Regression
+      children:
+      - file: chapter11/chapter11_sec01.md
+      - file: chapter11/chapter11_sec02.md
+      - file: chapter11/chapter11_sec03.md
+
 site:
   template: book-theme
   options:
