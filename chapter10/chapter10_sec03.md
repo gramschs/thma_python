@@ -1,42 +1,223 @@
+---
+kernelspec:
+  name: python3
+  display_name: 'Python 3'
+---
+
 # Übungen
 
-````{admonition} Optional: Übung 9.8 (✩✩✩)
+````{admonition} Übung 10.1 (✩)
 :class: tip
-Der mittlere Temperaturverlauf eines Jahres lässt sich als Sinusfunktion über
-12 Monate modellieren. Wir simulieren außerdem natürliche Schwankungen durch
-Rauschen.
+In dieser Aufgabe arbeiten wir mit einem historischen Datensatz der Titanic.
+Die Datei `titanic_DE_cleaned.csv` enthält Informationen zu 183 Passagieren.
+Die Spalte `ueberlebt` ist dabei mit `1` (überlebt) bzw. `0` (nicht überlebt)
+kodiert.
 
-Die Formel für den monatlichen Temperaturverlauf lautet:
+1. Lesen Sie die Datei ein und geben Sie die ersten fünf Zeilen aus.
+2. Wie viele Zeilen und Spalten hat der Datensatz?
+3. Welche Spalten enthalten numerische Werte, welche Textwerte? Verwenden Sie
+   `.dtypes` für die Antwort.
+4. Rufen Sie `.describe()` auf. Was bedeutet der Wert in der Zeile `mean` der
+   Spalte `ueberlebt`?
+````
 
-$$T(m) = T_{avg} + A \cdot \sin\left(\frac{2\pi}{12} \cdot (m - m_{max})\right) + \epsilon$$
+```{code-cell} python
+# Code-Zelle
+```
 
-Dabei ist $m$ die Monatszahl (0 bis 11), $m_{max} = 6.5$ der Monat mit der
-höchsten Temperatur (Juli) und $\epsilon$ ein normalverteiltes Rauschen mit
-Standardabweichung 1.5 °C.
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+```python
+import pandas as pd
 
-Verwenden Sie $T_{avg} = 10.0$ °C und $A = 9.0$ °C.
+df = pd.read_csv("titanic_DE_cleaned.csv")
 
-1. Schreiben Sie eine Funktion `berechne_jahrestemperatur(T_avg, A, m)`, die
-   den Temperaturverlauf ohne Rauschen berechnet und zurückgibt. `m` ist ein
-   NumPy-Array. Versehen Sie die Funktion mit einem Docstring.
-2. Erzeugen Sie ein Array `m` mit den Monatszahlen 0 bis 11 (verwenden Sie
-   `np.linspace(0, 11, 12)`). Berechnen Sie das Temperatur-Array und fügen Sie
-   Rauschen hinzu.
-3. Visualisieren Sie den Temperaturverlauf als Liniendiagramm. Verwenden Sie
-   als x-Achse folgende Monatsnamen-Liste:
-   ```python
-   monate = ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun",
-             "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"]
-   ```
-4. Durchlaufen Sie das Temperatur-Array mit einer `for`-Schleife und
-   klassifizieren Sie jeden Monat mit `elif`:
-   - unter 5 °C: `"Winter"`
-   - 5 bis unter 15 °C: `"Übergang"`
-   - 15 °C und mehr: `"Sommer"`
-   Geben Sie Monatsnamen und Klassifikation aus. Verwenden Sie eine
-   Zählvariable für den Zugriff auf die Monatsnamen.
-5. Geben Sie die Temperatur im Dezember (letzter Wert) und im November
-   (vorletzter Wert) mit negativem Index und f-String formatiert aus.
+# 1. Erste fünf Zeilen
+print(df.head())
+
+# 2. Form
+print(df.shape)
+
+# 3. Datentypen
+print(df.dtypes)
+
+# 4. Deskriptive Statistik
+print(df.describe())
+```
+
+Der Datensatz hat 183 Zeilen und 11 Spalten. Numerische Spalten sind
+`ueberlebt`, `Klasse`, `Alter`, `Anzahl_Geschwister_Partner`,
+`Anzahl_Eltern_Kinder` und `Ticketpreis`. Textspalten sind `Name`,
+`Geschlecht`, `Ticket`, `Kabine` und `Einstiegshafen`.
+
+Der Mittelwert der Spalte `ueberlebt` beträgt ca. 0.67. Da die Spalte nur die
+Werte 0 und 1 enthält, entspricht der Mittelwert dem Anteil der Überlebenden:
+67 % der Passagiere in diesem Datensatz haben überlebt.
+````
+
+````{admonition} Übung 10.2 (✩)
+:class: tip
+Filtern Sie den Titanic-Datensatz nach Überlebenden und Nicht-Überlebenden.
+
+1. Erstellen Sie einen DataFrame `ueberlebt` mit allen Passagieren, die
+   überlebt haben, und einen DataFrame `nicht_ueberlebt` mit allen, die nicht
+   überlebt haben.
+2. Geben Sie die Anzahl der Zeilen beider DataFrames aus.
+3. Berechnen Sie den mittleren Ticketpreis der Überlebenden und der
+   Nicht-Überlebenden. Was beobachten Sie?
+````
+
+```{code-cell} python
+# Code-Zelle
+```
+
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+```python
+import pandas as pd
+
+df = pd.read_csv("titanic_DE_cleaned.csv")
+
+# 1. Filtern
+ueberlebt      = df[df["ueberlebt"] == 1]
+nicht_ueberlebt = df[df["ueberlebt"] == 0]
+
+# 2. Anzahl
+print(len(ueberlebt))       # 123
+print(len(nicht_ueberlebt)) # 60
+
+# 3. Mittlerer Ticketpreis
+print(f"Überlebende:     {ueberlebt['Ticketpreis'].mean():.2f}")
+print(f"Nicht-Überlebende: {nicht_ueberlebt['Ticketpreis'].mean():.2f}")
+```
+
+123 Passagiere haben überlebt, 60 nicht. Der mittlere Ticketpreis der
+Überlebenden liegt deutlich höher als der der Nicht-Überlebenden. Das deutet
+darauf hin, dass teurere Tickets mit einer höheren Überlebenschance verbunden
+waren, was dem historischen Befund entspricht: Passagiere der ersten Klasse
+hatten einen besseren Zugang zu den Rettungsbooten.
+````
+
+````{admonition} Übung 10.3 (✩✩)
+:class: tip
+Filtern Sie den Datensatz mit kombinierten Bedingungen.
+
+1. Erstellen Sie einen DataFrame `weibl_ueberlebt` mit allen weiblichen
+   Passagieren, die überlebt haben. Wie viele sind es?
+2. Erstellen Sie einen DataFrame `maenner_jung_nicht` mit allen männlichen
+   Passagieren unter 30 Jahren, die nicht überlebt haben. Wie viele sind es?
+3. Geben Sie für beide Gruppen den minimalen und maximalen Ticketpreis aus.
+````
+
+```{code-cell} python
+# Code-Zelle
+```
+
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+```python
+import pandas as pd
+
+df = pd.read_csv("titanic_DE_cleaned.csv")
+
+# 1. Weibliche Überlebende
+weibl_ueberlebt = df[(df["Geschlecht"] == "weiblich") & (df["ueberlebt"] == 1)]
+print(len(weibl_ueberlebt))   # 82
+
+# 2. Männer unter 30, nicht überlebt
+maenner_jung_nicht = df[(df["Geschlecht"] == "maennlich") &
+                        (df["Alter"] < 30) &
+                        (df["ueberlebt"] == 0)]
+print(len(maenner_jung_nicht))   # 11
+
+# 3. Ticketpreise
+print(f"Weibl. Überlebende:   Min {weibl_ueberlebt['Ticketpreis'].min():.2f}, "
+      f"Max {weibl_ueberlebt['Ticketpreis'].max():.2f}")
+print(f"Männer jung, nicht ü.: Min {maenner_jung_nicht['Ticketpreis'].min():.2f}, "
+      f"Max {maenner_jung_nicht['Ticketpreis'].max():.2f}")
+```
+
+Von 88 Frauen im Datensatz haben 82 überlebt, das entspricht einer
+Überlebensrate von 93 %. Von den männlichen Passagieren unter 30, die nicht
+überlebt haben, gibt es 11. Werden mehrere Bedingungen kombiniert, muss jede
+einzelne in runden Klammern stehen, bevor sie mit `&` verknüpft wird.
+````
+
+````{admonition} Übung 10.4 (✩✩)
+:class: tip
+Vergleichen Sie weibliche und männliche Passagiere.
+
+1. Geben Sie mit `.value_counts()` aus, wie viele Passagiere jedes Geschlechts
+   im Datensatz enthalten sind.
+2. Berechnen Sie für jedes Geschlecht die Überlebensrate. Nutzen Sie dazu
+   `.mean()` auf der Spalte `ueberlebt` des gefilterten DataFrames.
+3. Berechnen Sie außerdem den mittleren Ticketpreis je Geschlecht.
+4. Fassen Sie die Ergebnisse mit f-Strings in einer übersichtlichen Ausgabe
+   zusammen.
+````
+
+```{code-cell} python
+# Code-Zelle
+```
+
+````{admonition} Lösung
+:class: tip
+:class: dropdown
+```python
+import pandas as pd
+
+df = pd.read_csv("titanic_DE_cleaned.csv")
+
+# 1. Verteilung
+print(df["Geschlecht"].value_counts())
+
+# 2. und 3. Überlebensrate und Ticketpreis je Geschlecht
+weiblich  = df[df["Geschlecht"] == "weiblich"]
+maennlich = df[df["Geschlecht"] == "maennlich"]
+
+print(f"Weiblich:  Überlebensrate {weiblich['ueberlebt'].mean():.2f}, "
+      f"Ticketpreis {weiblich['Ticketpreis'].mean():.2f}")
+print(f"Männlich:  Überlebensrate {maennlich['ueberlebt'].mean():.2f}, "
+      f"Ticketpreis {maennlich['Ticketpreis'].mean():.2f}")
+```
+
+Der Unterschied in der Überlebensrate ist erheblich: Frauen überlebten zu 93 %,
+Männer nur zu 43 %. Das spiegelt die damalige Evakuierungsstrategie wider:
+Frauen und Kinder erhielten zuerst Platz in den Rettungsbooten. Der mittlere
+Ticketpreis der Frauen liegt mit etwa 89 etwas höher als der der Männer
+mit etwa 69.
+````
+
+````{admonition} Übung 10.5 (✩✩✩) Mini-Projekt
+:class: tip
+In dieser Aufgabe vergleichen Sie Kinder (unter 18 Jahren) mit Erwachsenen
+(18 Jahre und älter).
+
+**Teil 1: Gruppen bilden**
+
+Erstellen Sie zwei DataFrames `kinder` und `erwachsene` durch Filtern nach der
+Spalte `Alter`. Geben Sie die Anzahl der Passagiere in jeder Gruppe aus.
+
+**Teil 2: Kennzahlen berechnen**
+
+Berechnen Sie für jede Gruppe:
+
+- die Überlebensrate (Mittelwert der Spalte `ueberlebt`),
+- den mittleren Ticketpreis.
+
+**Teil 3: Ausgabe**
+
+Geben Sie die Ergebnisse beider Gruppen formatiert aus. Verwenden Sie f-Strings
+und runden Sie die Überlebensrate auf zwei Nachkommastellen und den Ticketpreis
+auf eine Nachkommastelle.
+
+**Teil 4: Interpretation**
+
+Beantworten Sie in einer Markdown-Zelle: Unterscheiden sich Kinder und
+Erwachsene in ihrer Überlebensrate? Wie lässt sich das erklären?
 
 Strukturieren Sie Ihren Code mit EVA-Kommentaren.
 ````
@@ -49,195 +230,42 @@ Strukturieren Sie Ihren Code mit EVA-Kommentaren.
 :class: tip
 :class: dropdown
 ```python
-import numpy as np
-import plotly.express as px
-
-def berechne_jahrestemperatur(T_avg, A, m):
-    """Berechnet den mittleren monatlichen Temperaturverlauf in °C.
-
-    T_avg: mittlere Jahrestemperatur in °C
-    A:     Amplitude in °C
-    m:     Monatszahl als NumPy-Array (0 = Januar, 11 = Dezember)
-    """
-    return T_avg + A * np.sin(2 * np.pi / 12 * (m - 6.5))
+import pandas as pd
 
 # Eingabe
-T_avg  = 10.0
-A      = 9.0
-monate = ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun",
-          "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"]
+df = pd.read_csv("titanic_DE_cleaned.csv")
 
 # Verarbeitung
-m        = np.linspace(0, 11, 12)
-T_sauber = berechne_jahrestemperatur(T_avg, A, m)
-rauschen = np.random.normal(0, 1.5, 12)
-T        = T_sauber + rauschen
+kinder     = df[df["Alter"] < 18]
+erwachsene = df[df["Alter"] >= 18]
 
-# Ausgabe: Liniendiagramm
-fig = px.line(x=monate, y=T,
-              labels={"x": "Monat", "y": "Temperatur (°C)"},
-              title="Simulierter Jahrestemperaturverlauf")
-fig.show()
+rate_kinder      = kinder["ueberlebt"].mean()
+rate_erwachsene  = erwachsene["ueberlebt"].mean()
+preis_kinder     = kinder["Ticketpreis"].mean()
+preis_erwachsene = erwachsene["Ticketpreis"].mean()
 
-# Ausgabe: Klassifikation
-i = 0
-for temp in T:
-    if temp < 5.0:
-        klasse = "Winter"
-    elif temp < 15.0:
-        klasse = "Übergang"
-    else:
-        klasse = "Sommer"
-    print(f"{monate[i]}: {temp:.1f} °C ({klasse})")
-    i = i + 1
-
-# Ausgabe: Jahresende
-print(f"Temperatur im Dezember:  {T[-1]:.1f} °C")
-print(f"Temperatur im November:  {T[-2]:.1f} °C")
+# Ausgabe
+print(f"Kinder     (n={len(kinder)}):     Überlebensrate {rate_kinder:.2f}, "
+      f"Ticketpreis {preis_kinder:.1f}")
+print(f"Erwachsene (n={len(erwachsene)}): Überlebensrate {rate_erwachsene:.2f}, "
+      f"Ticketpreis {preis_erwachsene:.1f}")
 ```
 
-Die Klassifikation zeigt das typische mitteleuropäische Muster: Winter in den
-Monaten Dezember bis Februar, Sommer von Juni bis August, Übergang im Frühjahr
-und Herbst. Das Rauschen sorgt dafür, dass die Grenzen nicht immer exakt
-eingehalten werden. Durch den negativen Index `T[-1]` und `T[-2]` kann auf
-die letzten beiden Monatswerte zugegriffen werden, ohne die genaue Länge des
-Arrays zu kennen.
-````
-
-````{admonition} Optional: Übung 9.9 (✩✩✩) Mini-Projekt: Schwingungsanalyse eines Stoßdämpfers
-:class: tip
-In dieser Aufgabe analysieren Sie das Schwingungsverhalten eines Stoßdämpfers
-unter verschiedenen Bedingungen. Sie kombinieren dabei Funktionen, Schleifen,
-Bedingungen, Rauschen und NumPy-Arrays.
-
-**Teil 1: Funktion implementieren**
-
-Schreiben Sie eine Funktion `berechne_daempfung(t, A_m, f_hz, delta)`, die
-eine gedämpfte Schwingung berechnet und zurückgibt. Verwenden Sie die Formel
-aus Kapitel 9.2 und versehen Sie die Funktion mit einem Docstring.
-
-**Teil 2: Klassifikation**
-
-Schreiben Sie eine Funktion `klassifiziere_daempfung(delta)`, die den
-Dämpfungskoeffizienten $\delta$ bewertet und eine Zeichenkette zurückgibt:
-- kleiner als 0.5 s⁻¹: `"schwach gedämpft"`
-- zwischen 0.5 und 2.0 s⁻¹: `"mittel gedämpft"`
-- größer als 2.0 s⁻¹: `"stark gedämpft"`
-
-**Teil 3: Simulation**
-
-Verwenden Sie folgende Parameter: $A = 0.08$ m, $f = 1.5$ Hz,
-Simulationsdauer 6 s. Durchlaufen Sie mit einer `for`-Schleife die folgenden
-drei Dämpfungskoeffizienten:
-
-```python
-delta_werte = [0.3, 1.2, 3.0]
+Ausgabe:
+```
+Kinder     (n=19):     Überlebensrate 0.89, Ticketpreis 77.2
+Erwachsene (n=164): Überlebensrate 0.65, Ticketpreis 78.9
 ```
 
-Führen Sie in jedem Schleifendurchgang folgende Schritte aus:
-1. Klassifizieren Sie den Dämpfungskoeffizienten mit `klassifiziere_daempfung()`.
-2. Berechnen Sie das Schwingungssignal und addieren Sie Rauschen mit
-   Standardabweichung 0.003 m.
-3. Berechnen Sie die Einhüllende: `einhuelle = A_m * np.exp(-delta * t)`.
-4. Bestimmen Sie mit einer inneren `for`-Schleife und einem Flag die
-   Abklingzeit: den ersten Zeitpunkt, an dem die Einhüllende unter 1 mm
-   (0.001 m) fällt. Initialisieren Sie `abklingzeit = -1.0` und
-   `gefunden = False`. Verwenden Sie eine Zählvariable für den Zugriff
-   auf `t`.
-5. Erstellen Sie ein Liniendiagramm des verrauschten Signals.
-6. Geben Sie eine Zeile der Ergebnistabelle mit f-String formatiert aus.
+**Interpretation:** Kinder überlebten mit 89 % deutlich häufiger als
+Erwachsene mit 65 %. Das stimmt mit der historisch belegten Evakuierungsregel
+"Frauen und Kinder zuerst" überein. Der mittlere Ticketpreis beider Gruppen
+ist nahezu identisch, sodass der Preisunterschied nicht als Erklärung herangezogen
+werden kann. Die höhere Überlebensrate der Kinder ist also auf die
+Evakuierungspolitik zurückzuführen, nicht auf soziale Unterschiede.
 
-**Teil 4: Ergebnistabelle**
-
-Die Ausgabe soll folgendes Format haben:
-```
-delta = 0.3 s⁻¹ (schwach gedämpft):   Abklingzeit = 23.0 s
-delta = 1.2 s⁻¹ (mittel gedämpft):    Abklingzeit =  5.7 s
-delta = 3.0 s⁻¹ (stark gedämpft):     Abklingzeit =  2.3 s
-```
-
-Hinweis: Falls die Abklingzeit innerhalb der 6 Sekunden nicht erreicht wird,
-geben Sie `"nicht erreicht"` aus.
-
-Strukturieren Sie Ihren Code mit EVA-Kommentaren.
-````
-
-```{code-cell} python
-# Code-Zelle
-```
-
-````{admonition} Lösung
-:class: tip
-:class: dropdown
-```python
-import numpy as np
-import plotly.express as px
-
-def berechne_daempfung(t, A_m, f_hz, delta):
-    """Berechnet eine gedämpfte Schwingung.
-
-    t:     Zeitachse als NumPy-Array in s
-    A_m:   Amplitude in m
-    f_hz:  Frequenz in Hz
-    delta: Dämpfungskoeffizient in 1/s
-    """
-    omega = 2 * np.pi * f_hz
-    return A_m * np.exp(-delta * t) * np.cos(omega * t)
-
-def klassifiziere_daempfung(delta):
-    """Klassifiziert den Dämpfungskoeffizienten eines Stoßdämpfers."""
-    if delta < 0.5:
-        return "schwach gedämpft"
-    elif delta <= 2.0:
-        return "mittel gedämpft"
-    else:
-        return "stark gedämpft"
-
-# Eingabe
-A_m         = 0.08    # Amplitude in m
-f_hz        = 1.5     # Frequenz in Hz
-delta_werte = [0.3, 1.2, 3.0]
-t           = np.linspace(0, 6, 1000)
-
-# Verarbeitung und Ausgabe
-for delta in delta_werte:
-    # Klassifikation
-    klasse = klassifiziere_daempfung(delta)
-
-    # Signal mit Rauschen
-    x          = berechne_daempfung(t, A_m, f_hz, delta)
-    rauschen   = np.random.normal(0, 0.003, len(t))
-    x_verrauscht = x + rauschen
-
-    # Einhüllende und Abklingzeit
-    einhuelle  = A_m * np.exp(-delta * t)
-    abklingzeit = -1.0
-    gefunden   = False
-    i = 0
-    for e in einhuelle:
-        if e < 0.001 and gefunden == False:
-            abklingzeit = t[i]
-            gefunden = True
-        i = i + 1
-
-    # Diagramm
-    fig = px.line(x=t, y=x_verrauscht,
-                  labels={"x": "Zeit (s)", "y": "Auslenkung (m)"},
-                  title=f"Stoßdämpfer: delta = {delta} s⁻¹ ({klasse})")
-    fig.show()
-
-    # Tabelle
-    if gefunden == True:
-        print(f"delta = {delta} s⁻¹ ({klasse}):   Abklingzeit = {abklingzeit:.1f} s")
-    else:
-        print(f"delta = {delta} s⁻¹ ({klasse}):   Abklingzeit = nicht erreicht")
-```
-
-Die äußere Schleife durchläuft die drei Dämpfungskoeffizienten. Die innere
-Schleife sucht mithilfe eines Flags (`gefunden`) nach dem ersten Zeitpunkt,
-an dem die Einhüllende unter die 1-mm-Grenze fällt. Ohne das Flag würde
-`abklingzeit` bei jedem weiteren Unterschreiten überschrieben werden. Mit dem
-Flag stoppt die Suche nach dem ersten Treffer, auch wenn die Schleife noch
-weiterläuft. Bei $\delta = 0.3$ s⁻¹ wird die Grenze innerhalb von 6 s
-möglicherweise nicht erreicht, was korrekt als "nicht erreicht" ausgegeben wird.
+Zu beachten ist, dass dieser bereinigte Datensatz nur 183 der ursprünglich
+über 2000 Passagiere enthält und stark von Klasse-1-Passagieren dominiert
+wird. Die Ergebnisse sind daher nicht ohne Weiteres auf die Gesamtheit
+der Titanic-Passagiere übertragbar.
 ````
